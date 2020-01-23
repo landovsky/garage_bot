@@ -51,7 +51,7 @@ class GarageBot
                 "block_id": "EJKJ2EI-monday",
           "text": {
             "type": "mrkdwn",
-            "text": "*Monday*\nspot 553"
+            "text": "*Monday*\npark on spot 553"
           },
           "accessory": {
             "type": "button",
@@ -69,7 +69,7 @@ class GarageBot
                 "block_id": "EJKJEI-tuesday",
           "text": {
             "type": "mrkdwn",
-            "text": "*Tuesday*\n#{Time.now}"
+            "text": "*Tuesday*\n:car: parking available"
           },
           "accessory": {
             "type": "button",
@@ -93,7 +93,7 @@ class GarageBot
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text": "*Thursday*\nspot 534"
+            "text": "*Thursday*\npark on spot 534"
           },
           "accessory": {
             "type": "button",
@@ -110,7 +110,7 @@ class GarageBot
           "type": "section",
           "text": {
             "type": "mrkdwn",
-            "text": "*Friday*\nparking available"
+            "text": "*Friday*\n:car: parking available"
           },
           "accessory": {
             "type": "button",

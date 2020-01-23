@@ -4,6 +4,7 @@ require 'rack/app'
 require 'rest-client'
 require_relative 'garage_bot'
 require_relative 'http_client'
+require_relative 'dynamo'
 
 class MyApp < Rack::App
 
