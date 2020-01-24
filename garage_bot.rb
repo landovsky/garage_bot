@@ -1,22 +1,23 @@
 require_relative 'http_client'
 require_relative 'dynamo'
+require_relative 'utils'
 
-class GarageBot
-  def initialize(request)
-    @request = request
-    puts request
-  end
+module GarageBot
+  DAY_SEC = 86_400
+  DAY_COUNT = 5
 
   def self.garage(user, building = Dynamo::RIVER)
-    date_data = garage_on(Time.now, user, building)
-    # day_data2 = garage_on(DateTime.new(Time.now.year, Time.now.month, Time.now.day+1), user, building)
-    message([date_data])
+    date_data = (Utils.today..Utils.days_from_now(DAY_COUNT)).map do |date|
+      garage_on(date, user, building)
+    end
+
+    message(date_data, building)
   end
 
   def self.garage_on(date, user, building = Dynamo::RIVER)
-    day_spots      = Dynamo.load_item(date)
+    day_spots      = Dynamo.load_item(date, building)
     booked_spot_id = day_spots.find { |spot| spot['spot_user'] == user }&.dig('spot_id')&.to_i
-    spot_available = Dynamo.spot_available?(day_spots) unless booked_spot_id
+    spot_available = Dynamo.spot_available?(day_spots, building) unless booked_spot_id
 
     { date: date, booked_spot: !!booked_spot_id, booked_spot_id: booked_spot_id, vacancy: spot_available }
   end
@@ -31,14 +32,13 @@ class GarageBot
     end
   end
 
-  def self.header
+  def self.header(building)
     {
       "type": "section",
       "block_id": "EJKJEI",
       "text": {
-        "type": "plain_text",
-        "emoji": true,
-        "text": "Your parking for 14.5. - 22.4."
+        "type": "mrkdwn",
+        "text": "Parking in *#{building.upcase}*"
       }
     }
   end
@@ -49,17 +49,17 @@ class GarageBot
     }
   end
 
-  def self.build_day(day_data)
+  def self.build_day(day_data, building)
     date = day_data[:date]
     button = day_data[:booked_spot] ? button(:cancel, date) : (day_data[:vacancy] && button(:book, date))
 
-    day(date.strftime('%A'), day_text(day_data), button)
+    day(date.strftime('%A'), day_text(day_data), building, button)
   end
 
-  def self.day(name, status, button = nil)
+  def self.day(name, status, building, button = nil)
     base = {
       "type": "section",
-            "block_id": "EJKJ2EI-#{name}",
+            "block_id": [building, rand(1..1000000).to_s].join('-'),
       "text": {
         "type": "mrkdwn",
         "text": "*#{name}*\n#{status}"
@@ -81,21 +81,24 @@ class GarageBot
     type == :cancel ? base.merge('style': 'danger') : base
   end
 
-  def self.message(days_data)
+  def self.message(days_data, building)
     {
       "replace_original": true,
       "blocks": [
-        header,
+        header(building),
         divider,
-        *days_data.map {|day_data| build_day(day_data) },
-        {
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": "*<fakelink.ToMoreTimes.com|Show me next week>*"
-          }
-        }
+        *days_data.map {|day_data| build_day(day_data, building) }
       ]
+    }
+  end
+
+  def self.link
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*<fakelink.ToMoreTimes.com|Show me next week>*"
+      }
     }
   end
 end
