@@ -29,23 +29,30 @@ class MyApp < Rack::App
   end
 
   post '/chatbot' do
-    # parsed = JSON.parse(payload)
+    request_data = URI.decode_www_form(payload).to_h
     response.status = 200
-    # HTTPClient.post(URI.unescape(params[response_url], GarageBot.blocks.to_json)
-    GarageBot.blocks.to_json
+    router(request_data)
   rescue
     response.status = 400
     { error: "could not parse JSON" }
   end
 
-  post '/response' do
-    raw = URI.decode_www_form(payload)
-    parsed = JSON.parse raw[0][1]
-    response.status = 200
-    HTTPClient.post(URI.unescape(parsed['response_url']), GarageBot.blocks.to_json)
-  rescue
-    response.status = 400
-    { error: "could not parse JSON" }
+  def router(request_data)
+    # /garage command
+    if request_data['token']
+      GarageBot.garage(request_data['user_id'])
+    # button clicked
+    else
+      parsed = JSON.parse request_data['payload']
+      action = parsed['actions'][0]['text']['text'].downcase == 'book' ? :book : :cancel
+      date   = DateTime.parse(parsed['actions'][0]['value']).to_time
+      user   = parsed['user']['id']
+      _persist = Dynamo.call(action, date, user)
+
+      response_msg = GarageBot.message([GarageBot.garage_on(date, user)]).to_json
+
+      HTTPClient.post(parsed['response_url'], response_msg)
+    end
   end
 end
 

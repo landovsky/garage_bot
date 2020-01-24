@@ -1,0 +1,17 @@
+AllCops:
+  TargetRubyVersion: 2.6
+
+Rails:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false

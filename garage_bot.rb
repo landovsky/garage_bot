@@ -7,16 +7,28 @@ class GarageBot
     puts request
   end
 
-  def self.garage(building = 'river')
-    garage_on(Time.now)
+  def self.garage(user, building = Dynamo::RIVER)
+    date_data = garage_on(Time.now, user, building)
+    # day_data2 = garage_on(DateTime.new(Time.now.year, Time.now.month, Time.now.day+1), user, building)
+    message([date_data])
   end
 
-  def self.garage_on(date, user)
-    day_spots = Dynamo.load_item(date)
-    booked_spot = day_spots.select { |spot| spot['spot_user'] == user }
-    spot_available = Dynamo.spot_available?(day_spots) unless booked_spot.is_a? Hash
+  def self.garage_on(date, user, building = Dynamo::RIVER)
+    day_spots      = Dynamo.load_item(date)
+    booked_spot_id = day_spots.find { |spot| spot['spot_user'] == user }&.dig('spot_id')&.to_i
+    spot_available = Dynamo.spot_available?(day_spots) unless booked_spot_id
 
-    booked_spot.is_a?(Hash) ? booked_spot['spot_id'] : spot_available
+    { date: date, booked_spot: !!booked_spot_id, booked_spot_id: booked_spot_id, vacancy: spot_available }
+  end
+
+  def self.day_text(day_data)
+    if day_data[:booked_spot]
+      "park on spot #{day_data[:booked_spot_id]}"
+    elsif day_data[:vacancy]
+      ':car: parking available'
+    else
+      'all places are taken'
+    end
   end
 
   def self.header
@@ -37,13 +49,20 @@ class GarageBot
     }
   end
 
+  def self.build_day(day_data)
+    date = day_data[:date]
+    button = day_data[:booked_spot] ? button(:cancel, date) : (day_data[:vacancy] && button(:book, date))
+
+    day(date.strftime('%A'), day_text(day_data), button)
+  end
+
   def self.day(name, status, button = nil)
     base = {
       "type": "section",
             "block_id": "EJKJ2EI-#{name}",
       "text": {
         "type": "mrkdwn",
-        "text": "*#{name.upcase}*\n#{status}"
+        "text": "*#{name}*\n#{status}"
       }
     }
     button ? base.merge(accessory: button) : base
@@ -57,22 +76,18 @@ class GarageBot
         "emoji": true,
         "text": type.to_s.upcase
       },
-      "value": "#{type}-#{day}"
+      "value": day
     }
     type == :cancel ? base.merge('style': 'danger') : base
   end
 
-  def self.blocks
+  def self.message(days_data)
     {
       "replace_original": true,
       "blocks": [
         header,
         divider,
-        day('monday', 'park on spot 553', button(:book, 'monday')),
-        day('tuesday', ':car: parking available', button(:cancel, 'tuesday')),
-        day('wednesday', 'all places are taken'),
-        day('thursday', 'park on spot 553', button(:cancel, 'thursday')),
-        day('friday', ':car: parking available', button(:book, 'friday')),
+        *days_data.map {|day_data| build_day(day_data) },
         {
           "type": "section",
           "text": {

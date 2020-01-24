@@ -52,17 +52,25 @@ module Dynamo
     spot_id = first_available_spot(day_spots)
     return false unless spot_id
 
-    new_payload = action_merge_booking(day_spots, spot_id, user)
+    action_merge_booking(day_spots, spot_id, user).tap do |new_payload|
+      store(date, building, new_payload)
+    end
+  end
 
-    store(date, building, new_payload)
+  def self.call(action, date, user, building = RIVER)
+    if action == :book
+      book(date, user, building)
+    else
+      cancel(date, user, building)
+    end
   end
 
   def self.cancel(date, user, building = RIVER)
     day_spots = load_item(date, building)
 
-    new_payload = action_cancel_booking(day_spots, user)
-
-    store(date, building, new_payload)
+    action_cancel_booking(day_spots, user).tap do |new_payload|
+      store(date, building, new_payload)
+    end
   end
 
   def self.config
