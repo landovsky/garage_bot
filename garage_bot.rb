@@ -1,4 +1,5 @@
 require_relative 'http_client'
+require_relative 'dynamo'
 
 class GarageBot
   def initialize(request)
@@ -6,28 +7,16 @@ class GarageBot
     puts request
   end
 
-  def self.call(request)
-
+  def self.garage(building = 'river')
+    garage_on(Time.now)
   end
 
-  def self.response
-    {
-      "replace_original": true,
-      "blocks": [
-        {
-          "type": "section",
-          "block_id": "EJKJEI",
-          "text": {
-            "type": "plain_text",
-            "emoji": true,
-            "text": "Your parking for 14.5. - 22.4."
-          }
-        },
-        {
-          "type": "divider"
-        }
-      ]
-    }
+  def self.garage_on(date, user)
+    day_spots = Dynamo.load_item(date)
+    booked_spot = day_spots.select { |spot| spot['spot_user'] == user }
+    spot_available = Dynamo.spot_available?(day_spots) unless booked_spot.is_a? Hash
+
+    booked_spot.is_a?(Hash) ? booked_spot['spot_id'] : spot_available
   end
 
   def self.header

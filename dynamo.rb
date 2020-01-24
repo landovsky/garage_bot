@@ -5,8 +5,11 @@ module Dynamo
   TABLE_NAME = 'applifting-parking'
   RIVER      = 'river'
 
-  def self.all_spots
-    [500, 501, 502, 503, 504, 505]
+  def self.all_spots(building = RIVER)
+    data = {
+      Dynamo::RIVER => [500, 501, 502, 503, 504, 505]
+    }
+    data[building]
   end
 
   DAY_SPOTS =
@@ -28,6 +31,10 @@ module Dynamo
     taken_spots = day_spots.map { |spot| spot['spot_id'].to_i }
 
     (all_spots - taken_spots).first
+  end
+
+  def self.spot_available?(day_spots)
+    first_available_spot(day_spots).is_a? Integer
   end
 
   def self.timestamp_to_date(unixtime)
