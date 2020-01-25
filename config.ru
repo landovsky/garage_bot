@@ -1,9 +1,9 @@
 # Rack app for local testing
-
+require 'rubygems'
+require 'bundler/setup'
 require 'json'
 require 'pry'
 require 'rack/app'
-require 'rest-client'
 require_relative 'app/controller'
 
 class MyApp < Rack::App

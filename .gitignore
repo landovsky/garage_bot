@@ -1,6 +1,6 @@
-.pryrc
 local/*
 Gemfile.lock
 .DS_Store
 vendor/
 .bundle
+tmp/*
