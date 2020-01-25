@@ -1,16 +1,16 @@
 require 'aws-sdk-dynamodb'
-require 'pry'
 require_relative 'utils'
 
-module Dynamo
+module Store
+  DB         = Aws::DynamoDB::Client.new
   TABLE_NAME = 'applifting-parking'
   RIVER      = 'river'
   SALDOVKA   = 'saldovka'
 
   def self.all_spots(building = RIVER)
     data = {
-      Dynamo::RIVER => [159, 160, 161, 165, 166],
-      Dynamo::SALDOVKA => [1, 2, 3, 4]
+      Store::RIVER => [159, 160, 161, 165, 166],
+      Store::SALDOVKA => [1, 2, 3, 4]
     }
     data[building]
   end
@@ -79,14 +79,12 @@ module Dynamo
   end
 
   def self.store(date, building = RIVER, payload)
-    dynamodb = Aws::DynamoDB::Client.new
-
     pk = Utils.date_to_timestamp(date)
 
     data = params(date, building, payload)
 
     begin
-      dynamodb.put_item(data)
+      DB.put_item(data)
       puts "Added item: #{pk}  - #{building}: #{payload}"
 
     rescue  Aws::DynamoDB::Errors::ServiceError => error
@@ -102,14 +100,12 @@ module Dynamo
   end
 
   def self.load(date, building = RIVER)
-    dynamodb = Aws::DynamoDB::Client.new
-
     params = {
       table_name: TABLE_NAME,
       key: primary_key(date, building)
     }
 
-    item = dynamodb.get_item(params)
+    item = DB.get_item(params)
     item
   rescue  Aws::DynamoDB::Errors::ServiceError => error
     puts "Unable to read item:"
@@ -117,4 +113,4 @@ module Dynamo
   end
 end
 
-Dynamo.config
+Store.config

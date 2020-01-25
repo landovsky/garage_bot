@@ -2,9 +2,12 @@
 
 source 'https://rubygems.org'
 
-ruby '2.6.4'
+ruby '2.5.6'
 
-gem 'aws-sdk-dynamodb'
-gem 'pry'
-gem 'rack-app'
 gem 'rest-client'
+
+group :development do
+  gem 'aws-sdk-dynamodb'
+  gem 'pry'
+  gem 'rack-app'
+end
