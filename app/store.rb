@@ -1,13 +1,10 @@
-require 'aws-sdk-dynamodb'
-require_relative 'utils'
+require_relative 'dynamo'
 
 module Store
-  DB         = Aws::DynamoDB::Client.new
-  TABLE_NAME = 'applifting-parking'
   RIVER      = 'river'
   SALDOVKA   = 'saldovka'
 
-  def self.all_spots(building = RIVER)
+  def self.all_spots(building)
     data = {
       Store::RIVER => [159, 160, 161, 165, 166],
       Store::SALDOVKA => [1, 2, 3, 4]
@@ -33,18 +30,7 @@ module Store
     first_available_spot(day_spots, building).is_a? Integer
   end
 
-  def self.book(date, user, building = RIVER)
-    day_spots = load_item(date, building)
-
-    spot_id = first_available_spot(day_spots, building)
-    return false unless spot_id
-
-    action_merge_booking(day_spots, spot_id, user).tap do |new_payload|
-      store(date, building, new_payload)
-    end
-  end
-
-  def self.call(action, date, user, building = RIVER)
+  def self.call(action, date, user, building)
     if action == :book
       book(date, user, building)
     else
@@ -52,65 +38,28 @@ module Store
     end
   end
 
-  def self.cancel(date, user, building = RIVER)
+  def self.book(date, user, building)
+    day_spots = load_item(date, building)
+
+    spot_id = first_available_spot(day_spots, building)
+    return false unless spot_id
+
+    action_merge_booking(day_spots, spot_id, user).tap do |new_payload|
+      Dynamo.persist(date, building, new_payload)
+    end
+  end
+
+  def self.cancel(date, user, building)
     day_spots = load_item(date, building)
 
     action_cancel_booking(day_spots, user).tap do |new_payload|
-      store(date, building, new_payload)
+      Dynamo.persist(date, building, new_payload)
     end
   end
 
-  def self.config
-    Aws.config.update(region: "eu-central-1")
-  end
-
-  def self.primary_key(date, building)
-    {
-      'date'     => Utils.date_to_timestamp(date),
-      'building' => building
-    }
-  end
-
-  def self.params(date, building = RIVER, payload)
-    {
-      table_name: TABLE_NAME,
-      item: primary_key(date, building).merge('payload' => payload)
-    }
-  end
-
-  def self.store(date, building = RIVER, payload)
-    pk = Utils.date_to_timestamp(date)
-
-    data = params(date, building, payload)
-
-    begin
-      DB.put_item(data)
-      puts "Added item: #{pk}  - #{building}: #{payload}"
-
-    rescue  Aws::DynamoDB::Errors::ServiceError => error
-      puts "Unable to add item:"
-      puts "#{error.message}"
-    end
-  end
-
-  def self.load_item(date, building = RIVER)
-    raw = load(date, building)
+  def self.load_item(date, building)
+    raw = Dynamo.fetch(date, building)
 
     raw.dig('item', 'payload') || []
   end
-
-  def self.load(date, building = RIVER)
-    params = {
-      table_name: TABLE_NAME,
-      key: primary_key(date, building)
-    }
-
-    item = DB.get_item(params)
-    item
-  rescue  Aws::DynamoDB::Errors::ServiceError => error
-    puts "Unable to read item:"
-    puts "#{error.message}"
-  end
 end
-
-Store.config

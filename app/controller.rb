@@ -1,14 +1,14 @@
-require_relative 'garage_bot'
+require_relative 'garage'
 require_relative 'store'
 require_relative 'http_client'
 
 module Controller
-  def self.route(request_data)
+  def self.call(request_data)
     # /garage command received
     if request_data['token']
       command_text = request_data['text'][0]
       building     = (command_text && command_text[0].downcase == 's') ? Store::SALDOVKA : Store::RIVER
-      GarageBot.garage(request_data['user_id'], building)
+      Garage.park(request_data['user_id'], building)
 
     # button interaction received
     else
@@ -20,7 +20,7 @@ module Controller
       user     = parsed['user']['id']
       _persist = Store.call(action, date, user, building)
 
-      response_msg = GarageBot.garage(user, building)
+      response_msg = Garage.park(user, building)
 
       HTTPClient.post(parsed['response_url'], response_msg)
     end

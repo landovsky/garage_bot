@@ -27,7 +27,7 @@ class MyApp < Rack::App
   post '/chatbot' do
     request_data = URI.decode_www_form(payload).to_h
     response.status = 200
-    Controller.route(request_data)
+    Controller.call(request_data)
   rescue
     response.status = 400
     { error: "could not parse JSON" }

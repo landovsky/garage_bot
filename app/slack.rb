@@ -1,27 +1,4 @@
-require_relative 'http_client'
-require_relative 'store'
-require_relative 'utils'
-
-module GarageBot
-  DAY_SEC = 86_400
-  DAY_COUNT = 5
-
-  def self.garage(user, building = Store::RIVER)
-    date_data = (Utils.today..Utils.days_from_now(DAY_COUNT)).map do |date|
-      garage_on(date, user, building)
-    end
-
-    message(date_data, building)
-  end
-
-  def self.garage_on(date, user, building = Store::RIVER)
-    day_spots      = Store.load_item(date, building)
-    booked_spot_id = day_spots.find { |spot| spot['spot_user'] == user }&.dig('spot_id')&.to_i
-    spot_available = Store.spot_available?(day_spots, building) unless booked_spot_id
-
-    { date: date, booked_spot: !!booked_spot_id, booked_spot_id: booked_spot_id, vacancy: spot_available }
-  end
-
+module Slack
   def self.day_text(day_data)
     if day_data[:booked_spot]
       "park on spot #{day_data[:booked_spot_id]}"
@@ -81,7 +58,7 @@ module GarageBot
     type == :cancel ? base.merge('style': 'danger') : base
   end
 
-  def self.message(days_data, building)
+  def self.create_message(days_data, building)
     {
       "replace_original": true,
       "blocks": [
