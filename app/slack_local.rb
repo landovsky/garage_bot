@@ -1,4 +1,4 @@
-module Slack
+module SlackLocal
   def self.day_text(day_data)
     if day_data[:booked_spot]
       "park on spot #{day_data[:booked_spot_id]}"
@@ -14,15 +14,52 @@ module Slack
       "type": "section",
       "block_id": "EJKJEI",
       "text": {
-        "type": "mrkdwn",
-        "text": "Parking in *#{building.upcase}*"
+        "type": "plain_text",
+        "text": "Parking in"
       }
-    }
+    }.merge(accessory: building_picker)
   end
 
   def self.divider
     {
       "type": "divider"
+    }
+  end
+
+  def self.building_picker
+    {
+      "type": "static_select",
+      "placeholder": {
+        "type": "plain_text",
+        "text": "Select an item",
+        "emoji": true
+      },
+      "options": [
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Choice 1",
+            "emoji": true
+          },
+          "value": "value-0"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Choice 2",
+            "emoji": true
+          },
+          "value": "value-1"
+        },
+        {
+          "text": {
+            "type": "plain_text",
+            "text": "Choice 3",
+            "emoji": true
+          },
+          "value": "value-2"
+        }
+      ]
     }
   end
 
@@ -60,7 +97,6 @@ module Slack
 
   def self.create_message(days_data, building)
     {
-      "replace_original": true,
       "blocks": [
         header(building),
         divider,

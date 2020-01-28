@@ -1,7 +1,7 @@
 require_relative 'http_client'
 require_relative 'store'
 require_relative 'utils'
-require_relative 'slack'
+require_relative 'slack_local'
 
 module Garage
   DAY_SEC = 86_400
@@ -12,7 +12,7 @@ module Garage
       park_on(date, user, building)
     end
 
-    Slack.create_message(date_data, building)
+    SlackLocal.create_message(date_data, building)
   end
 
   def self.park_on(date, user, building = Store::RIVER)
