@@ -1,8 +1,30 @@
-Routes.draw do
-  post 'garage:words' => 'garage#park'
-  post 'interaction:book' => 'garage#book'
-  post 'interaction:cancel' => 'garage#cancel'
-end
+# parse(payload)
+# => identify controller#method (from routes)
+# => collect data from interactions / forms
+# => identify method for response
+# => call controller
+
+# controller(response_method, params)
+# => use params
+# => controller / model custom code
+# => creating response from view
+# => internally: respond, using correct response method
+
+routes = {
+  'garage' => 'garage#park',
+  'garage/:date/book' => 'garage#book',
+  'garage/:date/cancel' => 'garage#cancel',
+  'slack_event:app_home_opened' => 'garage#park'
+}
+
+# garage/:day/cancel
+# garage/:day/book
+# garage
+
+# Sources
+# => event
+# => reaction from view
+# => reaction from message
 
 class GarageController
   def garage
@@ -26,7 +48,8 @@ class GarageView
     section 'block_id' do
       text 'some text', type: :markdown
       accessory do
-        button 'Cancel', action: :cancel, value: :cancel, type: :text
+        # garage/2020-01-31/cancel
+        button 'Cancel', Garage.link_to(date, :cancel), value: :cancel, type: :text
       end
     end
     divider
