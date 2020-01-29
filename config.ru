@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Rack app for local testing
 require 'rubygems'
 require 'bundler/setup'
@@ -9,6 +11,7 @@ require_relative 'app/controller'
 # TMP
 require_relative 'app/garage'
 require_relative 'app/store'
+require_relative 'app/slack/dsl'
 require 'slack'
 
 class MyApp < Rack::App
@@ -36,23 +39,32 @@ class MyApp < Rack::App
 
   post '/chatbot' do
     request_data = URI.decode_www_form(payload).to_h
-    puts request_data
+    # puts request_data
     response.status = 200
     Controller.call(request_data)
-  rescue
+  rescue => e
     response.status = 400
-    { error: "could not parse JSON" }
+    { msg: 'could not parse JSON', error: e }
   end
 
   post '/test' do
     request_data = JSON.parse payload
-    puts request_data
-    user = request_data['event']['user']
+    user_id = request_data['event']['user']
     response.status = 200
-    blocks = Garage.park(user, Store::SALDOVKA)[:blocks]
-    view = { type: "home", view: blocks }
+    blocks  = Garage.park user_id
+    view    = Slack::DSL.view(:home, blocks)
 
-    SLACK.views_update(user: 'UJC1L8Q87', view: view)
+    options = { user_id: user_id, view: view }
+
+    SLACK.views_publish(options)
+    # puts '
+    # SLACK.views_update(view_id: 'VT9UVQVAT', view: view)
+    # binding.pry
+  rescue => e
+    puts '==== ERROR ===='
+    puts e
+    puts e.backtrace.first
+    puts '==============='
   end
 end
 

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'http_client'
 require_relative 'store'
 require_relative 'utils'
-require_relative 'slack_local'
+require_relative 'slack/dsl'
 
 module Garage
   DAY_SEC = 86_400
@@ -12,7 +14,7 @@ module Garage
       park_on(date, user, building)
     end
 
-    SlackLocal.create_message(date_data, building)
+    Slack::DSL.create_message(date_data, building)
   end
 
   def self.park_on(date, user, building = Store::RIVER)
