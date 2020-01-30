@@ -12,6 +12,7 @@ require_relative 'app/controller'
 require_relative 'app/garage'
 require_relative 'app/store'
 require_relative 'app/slack/dsl'
+require_relative 'app/slack_router'
 require 'slack'
 
 class MyApp < Rack::App
@@ -41,7 +42,7 @@ class MyApp < Rack::App
     request_data = URI.decode_www_form(payload).to_h
     # puts request_data
     response.status = 200
-    Controller.call(request_data)
+    Router.call(request_data)
   rescue => e
     response.status = 400
     { msg: 'could not parse JSON', error: e }
@@ -49,14 +50,17 @@ class MyApp < Rack::App
 
   post '/test' do
     request_data = JSON.parse payload
-    user_id = request_data['event']['user']
+    # user_id = request_data['event']['user']
+
     response.status = 200
-    blocks  = Garage.park user_id
-    view    = Slack::DSL.view(:home, blocks)
 
-    options = { user_id: user_id, view: view }
+    SlackRouter.call(request_data)
 
-    SLACK.views_publish(options)
+    # blocks  = Garage.park user_id
+    # view    = Slack::DSL.view(:home, blocks)
+    # options = { user_id: user_id, view: view }
+
+    # SLACK.views_publish(options)
     # puts '
     # SLACK.views_update(view_id: 'VT9UVQVAT', view: view)
     # binding.pry

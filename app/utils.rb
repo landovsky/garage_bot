@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Utils
   def self.timestamp_to_date(unixtime)
     Date.strptime(unixtime.to_s, '%s')
