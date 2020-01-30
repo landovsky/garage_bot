@@ -65,8 +65,10 @@ class SlackRouter
     ApplicationController.call(controller, params, response_method)
   end
 
-  def self.identify_resonse_method(_payload)
-    :view
+  def self.identify_resonse_method(payload)
+    user_id = payload['user']['id']
+
+    proc { |content| SLACK.views_publish(user_id: user_id, view: Slack::DSL.view(:home, content)) }
   end
 
   def self.parse_params(payload)
