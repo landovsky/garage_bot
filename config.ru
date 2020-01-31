@@ -39,37 +39,40 @@ class MyApp < Rack::App
   end
 
   post '/chatbot' do
-    request_data = URI.decode_www_form(payload).to_h
-    # puts request_data
+    # request_data = URI.decode_www_form(payload).to_h
+    res = SlackRouter.call(payload)
+    if res.is_a? String
+      response.status = 'text/plain'
+    end
     response.status = 200
-    Router.call(request_data)
+    res
+    # Router.call(request_data)
   rescue => e
     response.status = 400
-    { msg: 'could not parse JSON', error: e }
+    Utils.error e
   end
 
-  post '/test' do
-    request_data = JSON.parse payload
-    # user_id = request_data['event']['user']
+  # post '/test' do
+  #   request_data = JSON.parse payload
 
-    response.status = 200
+  #   # user_id = request_data['event']['user']
 
-    SlackRouter.call(request_data)
+  #   response.status = 200
 
-    # blocks  = Garage.park user_id
-    # view    = Slack::DSL.view(:home, blocks)
-    # options = { user_id: user_id, view: view }
+  #   SlackRouter.call(request_data)
 
-    # SLACK.views_publish(options)
-    # puts '
-    # SLACK.views_update(view_id: 'VT9UVQVAT', view: view)
-    # binding.pry
-  rescue => e
-    puts '==== ERROR ===='
-    puts e
-    puts e.backtrace.first
-    puts '==============='
-  end
+  #   # blocks  = Garage.park user_id
+  #   # view    = Slack::DSL.view(:home, blocks)
+  #   # options = { user_id: user_id, view: view }
+
+  #   # SLACK.views_publish(options)
+  #   # puts '
+  #   # SLACK.views_update(view_id: 'VT9UVQVAT', view: view)
+  #   # binding.pry
+  # rescue => e
+  #   response.status = 400
+  #   Utils.error e
+  # end
 end
 
 run MyApp

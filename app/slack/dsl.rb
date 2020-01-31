@@ -53,18 +53,18 @@ module Slack
           {
             'text': {
               'type': 'plain_text',
-              'text': Store::SALDOVKA.camelcase,
+              'text': Garage::SALDOVKA.camelcase,
               'emoji': true
             },
-            'value': Store::SALDOVKA
+            'value': Garage::SALDOVKA
           },
           {
             'text': {
               'type': 'plain_text',
-              'text': Store::RIVER.camelcase,
+              'text': Garage::RIVER.camelcase,
               'emoji': true
             },
-            'value': Store::RIVER
+            'value': Garage::RIVER
           }
         ]
       }

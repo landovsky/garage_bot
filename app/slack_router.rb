@@ -1,15 +1,90 @@
 # frozen_string_literal: true
 
+require 'slack'
 require_relative 'application_controller'
+require_relative 'http_client'
 
 class SlackRouter
+  Slack.configure do |config|
+    config.token = ENV['SLACK_API_TOKEN']
+  end
+
+  SLACK = Slack::Web::Client.new
+  HTTP  = HTTPClient
+
   def self.routes
     {
       'garage' => 'garage#park',
       'garage/:date/book' => 'garage#book',
       'garage/:date/cancel' => 'garage#cancel',
-      'slack_event:app_home_opened' => 'garage#park'
+      'slack_event/app_home_opened' => 'garage#park'
     }
+  end
+
+  def self.respond_to_challenge?(payload)
+    payload['challenge']
+  end
+
+  def self.parse_payload(raw_payload)
+    return raw_payload.with_indifferent_access if raw_payload.is_a? Hash
+
+    if raw_payload.start_with? 'payload'
+      JSON.parse(URI.decode_www_form(raw_payload)[0][1]).with_indifferent_access
+    else
+      JSON.parse(raw_payload).with_indifferent_access
+    end
+  end
+
+  def self.call(raw_payload)
+    payload = parse_payload(raw_payload)
+    File.open('payload.json', 'wb') { |file| file.write JSON.dump(payload) }
+
+    return payload['challenge'] if respond_to_challenge?(payload)
+
+    response_method = identify_response_method(payload)
+
+    if response_method[:type] == :event
+      controller, _route = find_event_route(payload)
+      params = {}
+    else
+      controller, _route, route_params = find_route(payload)
+      data, params    = parse_params(payload)
+      params          = route_params.merge(data).merge(params: params)
+    end
+
+    puts "controller: #{controller}"
+    puts "route_finder: #{response_method[:type]}"
+    puts "params: #{params}"
+
+    ApplicationController.call(controller, params, response_method)
+  end
+
+  def self.identify_response_method(payload)
+    if payload[:event]
+      user_id = payload[:event][:user]
+
+      options = proc { |content| { user_id: user_id, view: Slack::DSLTwo.home_view(*content) } }
+      meth = proc { |opts| SLACK.views_publish(options[opts]) }
+      { type: :event, method: meth }
+    elsif payload[:view]
+      user_id = payload[:user][:id]
+      view_id = payload[:view][:id]
+
+      options = proc { |content| { view_id: view_id, user_id: user_id, view: Slack::DSLTwo.home_view(*content) } }
+      meth = proc { |opts| SLACK.views_update(options[opts]) }
+      { type: :view, method: meth }
+    else
+      raise 'unhandled payload type'
+    end
+  end
+
+  def self.find_event_route(payload)
+    action = 'slack_event/' + payload['event']['type']
+
+    controller = routes[action]
+    raise "no route found for #{action}" if controller.blank?
+
+    [controller, action]
   end
 
   def self.action(*args, **opts)
@@ -52,31 +127,12 @@ class SlackRouter
     end
   end
 
-  def self.hash_select(hash, keys)
-    Hash[*hash.select { |k, v| keys.include?(k) }.flatten]
-  end
-
-  def self.call(payload)
-    controller, route_params, _route = find_route(payload)
-    data, params    = parse_params(payload)
-    params          = route_params.merge(data).merge(params: params)
-    response_method = identify_resonse_method(payload)
-
-    ApplicationController.call(controller, params, response_method)
-  end
-
-  def self.identify_resonse_method(payload)
-    user_id = payload['user']['id']
-
-    proc { |content| SLACK.views_publish(user_id: user_id, view: Slack::DSL.view(:home, content)) }
-  end
-
   def self.parse_params(payload)
     action = payload['actions'][0]['action_id']
     params = action.split('?')[1] || ''
 
     data = {
-      user: payload.dig('user', 'id')
+      user_id: payload.dig('user', 'id')
     }
     params = CGI.parse(params).map do |k, v|
       [k, v.count == 1 ? v[0] : v]
@@ -89,17 +145,19 @@ class SlackRouter
     action = payload['actions'][0]['action_id']
     action_items = action.split('?')[0].split('/')
 
-    selected_route = routes.map do |route, controller|
-      next [] if route.start_with? 'slack_event'
+    routes_without_events = routes.reject { |r| r.start_with? 'slack_event' }
 
+    selected_route = nil
+
+    routes_without_events.each_entry do |route, controller|
       route_items = route.split('/')
-      # puts "#{action} #{action_items.count} #{route_items.count}"
-      next [] if action_items.count != route_items.count
+      next if action_items.count != route_items.count
 
       params = []
 
       match = route_items.all? do |item|
         item_index = route_items.index(item)
+
         if item.start_with? ':'
           params << [item.sub(':', '').to_sym, action_items[item_index]]
           next true
@@ -107,16 +165,12 @@ class SlackRouter
         action_items[item_index] == item
       end
 
-      return [controller, params.to_h, route] if match
-
-      raise "no route found for #{action}"
-    end.first
-    raise "no route found for #{action}" if selected_route.empty?
+      selected_route = [controller, route, params.to_h] if match
+    end
+    raise "no route found for #{action}" if selected_route.blank?
 
     selected_route
   rescue => e
-    # Logger.submit 'could not find any matching routes', action: action
-    puts e
-    puts e.backtrace[0]
+    Utils.error e
   end
 end

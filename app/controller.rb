@@ -16,7 +16,7 @@ module Controller
     # /garage command received
     if request_data['token']
       command_text = request_data['text'][0]
-      building     = command_text && command_text[0].downcase == 's' ? Store::SALDOVKA : Store::RIVER
+      building     = command_text && command_text[0].downcase == 's' ? Garage::SALDOVKA : Garage::RIVER
       Garage.park(request_data['user_id'], building)
 
     # button interaction received
@@ -33,10 +33,7 @@ module Controller
       end
     end
   rescue => e
-    puts '==== ERROR ===='
-    puts e
-    puts e.backtrace.first
-    puts '==============='
+    Utils.error e
   end
 
   def self.parse_button(payload, user)

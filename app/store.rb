@@ -1,13 +1,12 @@
+# frozen_string_literal: true
+
 require_relative 'dynamo'
 
 module Store
-  RIVER      = 'river'
-  SALDOVKA   = 'saldovka'
-
   def self.all_spots(building)
     data = {
-      Store::RIVER => [159, 160, 161, 165, 166],
-      Store::SALDOVKA => [1, 2, 3, 4]
+      Garage::RIVER => [159, 160, 161, 165, 166],
+      Garage::SALDOVKA => [1, 2, 3, 4]
     }
     data[building]
   end
