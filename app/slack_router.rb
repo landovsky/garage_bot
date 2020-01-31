@@ -17,7 +17,8 @@ class SlackRouter
       'garage' => 'garage#park',
       'garage/:date/book' => 'garage#book',
       'garage/:date/cancel' => 'garage#cancel',
-      'slack_event/app_home_opened' => 'garage#park'
+      'slack_event/app_home_opened' => 'garage#park',
+      'command/tmp' => 'garage#park'
     }
   end
 
@@ -30,6 +31,8 @@ class SlackRouter
 
     if raw_payload.start_with? 'payload'
       JSON.parse(URI.decode_www_form(raw_payload)[0][1]).with_indifferent_access
+    elsif raw_payload.start_with? 'token'
+      URI.decode_www_form(raw_payload).to_h.with_indifferent_access
     else
       JSON.parse(raw_payload).with_indifferent_access
     end
@@ -46,17 +49,26 @@ class SlackRouter
     if response_method[:type] == :event
       controller, _route = find_event_route(payload)
       params = {}
+    elsif response_method[:type] == :command
+      controller, _route = find_command_route(payload)
+      params             = {}
+    elsif response_method[:type] == :message
+      controller, _route, route_params = find_route(payload)
+      data, params    = parse_params(payload)
+      params          = data ? route_params.merge(data).merge(params: params) : {}
     else
       controller, _route, route_params = find_route(payload)
       data, params    = parse_params(payload)
-      params          = route_params.merge(data).merge(params: params)
+      params          = data ? route_params.merge(data).merge(params: params) : {}
     end
-
     puts "controller: #{controller}"
     puts "route_finder: #{response_method[:type]}"
     puts "params: #{params}"
 
     ApplicationController.call(controller, params, response_method)
+  rescue => e
+    Utils.error e
+    raise e
   end
 
   def self.identify_response_method(payload)
@@ -73,6 +85,13 @@ class SlackRouter
       options = proc { |content| { view_id: view_id, user_id: user_id, view: Slack::DSLTwo.home_view(*content) } }
       meth = proc { |opts| SLACK.views_update(options[opts]) }
       { type: :view, method: meth }
+    elsif payload[:command]
+      meth = proc { |content| Slack::DSLTwo.blocks(*content) }
+      { type: :command, method: meth }
+    elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
+      url = payload[:response_url]
+      meth = proc { |content| HTTPClient.post(url, Slack::DSLTwo.blocks(*content)) }
+      { type: :message, method: meth }
     else
       raise 'unhandled payload type'
     end
@@ -80,6 +99,15 @@ class SlackRouter
 
   def self.find_event_route(payload)
     action = 'slack_event/' + payload['event']['type']
+
+    controller = routes[action]
+    raise "no route found for #{action}" if controller.blank?
+
+    [controller, action]
+  end
+
+  def self.find_command_route(payload)
+    action = 'command' + payload['command']
 
     controller = routes[action]
     raise "no route found for #{action}" if controller.blank?
@@ -128,6 +156,8 @@ class SlackRouter
   end
 
   def self.parse_params(payload)
+    return if payload['actions'].blank?
+
     action = payload['actions'][0]['action_id']
     params = action.split('?')[1] || ''
 
@@ -143,6 +173,7 @@ class SlackRouter
 
   def self.find_route(payload)
     action = payload['actions'][0]['action_id']
+    puts "actions: #{action}"
     action_items = action.split('?')[0].split('/')
 
     routes_without_events = routes.reject { |r| r.start_with? 'slack_event' }

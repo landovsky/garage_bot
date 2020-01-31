@@ -39,6 +39,7 @@ class MyApp < Rack::App
   end
 
   post '/chatbot' do
+    # puts payload
     # request_data = URI.decode_www_form(payload).to_h
     res = SlackRouter.call(payload)
     if res.is_a? String
@@ -48,8 +49,8 @@ class MyApp < Rack::App
     res
     # Router.call(request_data)
   rescue => e
-    response.status = 400
     Utils.error e
+    response.status = 400
   end
 
   # post '/test' do
