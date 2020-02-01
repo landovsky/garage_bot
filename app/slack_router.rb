@@ -48,10 +48,10 @@ class SlackRouter
 
     if response_method[:type] == :event
       controller, _route = find_event_route(payload)
-      params = {}
+      params             = { user_id: payload.dig('event', 'user') }
     elsif response_method[:type] == :command
       controller, _route = find_command_route(payload)
-      params             = {}
+      params             = { user_id: payload['user_id'] }
     elsif response_method[:type] == :message
       controller, _route, route_params = find_route(payload)
       data, params    = parse_params(payload)

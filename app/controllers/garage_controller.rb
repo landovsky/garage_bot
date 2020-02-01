@@ -12,9 +12,12 @@ class GarageController
   end
 
   def park(data)
-    puts "data building: #{data.dig(:params, :building)}"
     building  = data.dig(:params, :building) || Garage::SALDOVKA
     days_data = Garage.park(data[:user_id], building)
+
+    puts "==============="
+    puts "user: #{data[:user_id]}"
+    puts "==============="
 
     GarageView.new.garage(days_data, building)
   end
