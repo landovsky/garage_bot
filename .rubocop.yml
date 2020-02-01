@@ -1,17 +1,26 @@
 AllCops:
-  TargetRubyVersion: 2.6
-
-Rails:
-  Enabled: false
+  TargetRubyVersion: 2.5
 
 Style/Documentation:
   Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
   Enabled: false
 
+Style/RescueStandardError:
+  Enabled: false
+
+Layout/SpaceAroundOperators:
+  Enabled: false
+
 Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ModuleLength:
   Enabled: false
