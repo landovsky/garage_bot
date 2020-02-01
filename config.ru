@@ -39,7 +39,7 @@ class MyApp < Rack::App
   end
 
   post '/chatbot' do
-    # puts payload
+    File.open('payload_raw.txt', 'wb') { |file| file.write(payload) } if ENV['BOT_ENV'] == 'dev'
     # request_data = URI.decode_www_form(payload).to_h
     res = SlackRouter.call(payload)
     if res.is_a? String

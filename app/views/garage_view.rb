@@ -20,7 +20,7 @@ class GarageView
     content << actions(building_picker(building))
     content << days_data.map { |day_data| build_day(day_data, building) }
     c = content.flatten
-    File.open('content.json', 'wb') { |file| file.write(JSON.dump(c)) }
+    File.open('content.json', 'wb') { |file| file.write(JSON.dump(c)) } if ENV['BOT_ENV'] == 'dev'
     c
   end
 

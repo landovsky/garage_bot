@@ -18,7 +18,7 @@ class SlackRouter
       'garage/:date/book' => 'garage#book',
       'garage/:date/cancel' => 'garage#cancel',
       'slack_event/app_home_opened' => 'garage#park',
-      'command/tmp' => 'garage#park'
+      'command/garage' => 'garage#park'
     }
   end
 
@@ -40,7 +40,7 @@ class SlackRouter
 
   def self.call(raw_payload)
     payload = parse_payload(raw_payload)
-    File.open('payload.json', 'wb') { |file| file.write JSON.dump(payload) }
+    File.open('payload.json', 'wb') { |file| file.write JSON.dump(payload) } if ENV['BOT_ENV'] == 'dev'
 
     return payload['challenge'] if respond_to_challenge?(payload)
 
