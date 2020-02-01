@@ -2,8 +2,10 @@
 
 require_relative '../slack/dsl_two'
 require_relative '../slack_router'
+require_relative '../utils'
 
 class GarageView
+  U = Utils
   include Slack::DSLTwo
 
   # { date_data: date_data, building: building }
@@ -73,7 +75,7 @@ class GarageView
       'initial_option': {
         'text': {
           'type': 'plain_text',
-          'text': building.camelcase,
+          'text': building.camelize,
           'emoji': true
         },
         'value': building
@@ -82,7 +84,7 @@ class GarageView
         {
           'text': {
             'type': 'plain_text',
-            'text': Garage::SALDOVKA.camelcase,
+            'text': Garage::SALDOVKA.camelize,
             'emoji': true
           },
           'value': Garage::SALDOVKA
@@ -90,7 +92,7 @@ class GarageView
         {
           'text': {
             'type': 'plain_text',
-            'text': Garage::RIVER.camelcase,
+            'text': Garage::RIVER.camelize,
             'emoji': true
           },
           'value': Garage::RIVER

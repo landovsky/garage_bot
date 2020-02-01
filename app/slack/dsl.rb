@@ -44,7 +44,7 @@ module Slack
         'initial_option': {
           'text': {
             'type': 'plain_text',
-            'text': building.camelcase,
+            'text': building.camelize,
             'emoji': true
           },
           'value': building
@@ -53,7 +53,7 @@ module Slack
           {
             'text': {
               'type': 'plain_text',
-              'text': Garage::SALDOVKA.camelcase,
+              'text': Garage::SALDOVKA.camelize,
               'emoji': true
             },
             'value': Garage::SALDOVKA
@@ -61,7 +61,7 @@ module Slack
           {
             'text': {
               'type': 'plain_text',
-              'text': Garage::RIVER.camelcase,
+              'text': Garage::RIVER.camelize,
               'emoji': true
             },
             'value': Garage::RIVER

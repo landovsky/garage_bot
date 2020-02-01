@@ -7,19 +7,10 @@ require 'json'
 require 'pry'
 require 'rack/app'
 
-# TMP
-require_relative 'app/garage'
-require_relative 'app/store'
-require_relative 'app/slack/dsl'
 require_relative 'app/slack_router'
-require 'slack'
 
 class MyApp < Rack::App
-  Slack.configure do |config|
-    config.token = ENV['SLACK_API_TOKEN']
-  end
-
-  SLACK = Slack::Web::Client.new
+  SLACK = HTTPClient
 
   headers 'Access-Control-Allow-Origin' => '*',
           'Access-Control-Expose-Headers' => 'X-My-Custom-Header, X-Another-Custom-Header',
@@ -51,28 +42,6 @@ class MyApp < Rack::App
     Utils.error e
     response.status = 400
   end
-
-  # post '/test' do
-  #   request_data = JSON.parse payload
-
-  #   # user_id = request_data['event']['user']
-
-  #   response.status = 200
-
-  #   SlackRouter.call(request_data)
-
-  #   # blocks  = Garage.park user_id
-  #   # view    = Slack::DSL.view(:home, blocks)
-  #   # options = { user_id: user_id, view: view }
-
-  #   # SLACK.views_publish(options)
-  #   # puts '
-  #   # SLACK.views_update(view_id: 'VT9UVQVAT', view: view)
-  #   # binding.pry
-  # rescue => e
-  #   response.status = 400
-  #   Utils.error e
-  # end
 end
 
 run MyApp

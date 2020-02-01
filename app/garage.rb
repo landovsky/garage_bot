@@ -3,7 +3,6 @@
 require_relative 'http_client'
 require_relative 'store'
 require_relative 'utils'
-require_relative 'slack/dsl'
 
 module Garage
   DAY_SEC = 86_400
