@@ -41,7 +41,7 @@ class GarageView
     if day_data[:booked_spot]
       "park on spot #{day_data[:booked_spot_id]}"
     elsif day_data[:vacancy]
-      ':car: parking available'
+      ":car: #{day_data[:vacancies]} #{day_data[:vacancies] == 1 ? 'spot' : 'spots'} available"
     else
       'all places are taken'
     end

@@ -6,7 +6,6 @@ require 'bundler/setup'
 require 'json'
 require 'pry'
 require 'rack/app'
-require_relative 'app/controller'
 
 # TMP
 require_relative 'app/garage'

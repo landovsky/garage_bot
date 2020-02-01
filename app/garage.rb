@@ -20,11 +20,22 @@ module Garage
 
   def self.park_on(date, user, building = RIVER)
     day_spots      = Store.load_item(date, building)
-    booked_spot_id = day_spots.find { |spot| spot['spot_user'] == user }&.dig('spot_id')&.to_i
+    booked_spot_id = day_spots.find { |spot| spot['spot_user'] == user }&.fetch('spot_id', nil)&.to_i
     spot_available = Store.spot_available?(day_spots, building) unless booked_spot_id
 
-    { date: date, booked_spot: !!booked_spot_id, booked_spot_id: booked_spot_id, vacancy: spot_available }
+    {
+      date: date,
+      booked_spot: !!booked_spot_id,
+      booked_spot_id: booked_spot_id,
+      vacancy: spot_available,
+      vacancies: count_available_spots(day_spots, building)
+    }
   rescue => e
     Utils.error e
+    raise e
+  end
+
+  def self.count_available_spots(day_spots, building)
+    Store.all_spots(building).count - day_spots.count
   end
 end
