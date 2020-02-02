@@ -119,7 +119,7 @@ module Tests
     end
 
     def load_expectation(event)
-      [File.read("tmp/#{event}.txt"), JSON.parse(File.read("tmp/#{event}.json")).symbolize_keys]
+      [File.read("fixtures/#{event}.txt"), JSON.parse(File.read("fixtures/#{event}.json")).symbolize_keys]
     end
 
     def match_block_count(blocks, expected_count)

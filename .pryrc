@@ -13,23 +13,11 @@ require_relative 'app/slack_router'
 # p2 = pay.call 'garage/398493/neco'
 # p3 = pay.call 'garage/398493/book?neco=333&aha=1'
 
-# app_home_button = JSON.parse File.read('tmp/app_home-book_btn.json')
-# app_home_select = JSON.parse File.read('tmp/app_home-select.json')
-# app_home_event  = JSON.parse File.read('tmp/app_home_opened.json')
+# app_home_button = JSON.parse File.read('fixtures/app_home-book_btn.json')
+# app_home_select = JSON.parse File.read('fixtures/app_home-select.json')
+# app_home_event  = JSON.parse File.read('fixtures/app_home_opened.json')
 # view = JSON.parse File.read('view.json')
 
-def go
-  files = Dir['tmp/*.txt']
-  files.each do |file|
-    request = File.read(file)
-    filename_out = file.split('.')[0] + '.json'
-    puts "_________#{filename_out}"
-
-    res = SlackRouter.call(request)
-    File.open(filename_out, 'wb') { |f| f.write JSON.dump(res) }
-  end
-end
-
 def scan(event, type)
-  File.read("tmp/#{event}.#{type}")
+  File.read("fixtures/#{event}.#{type}")
 end

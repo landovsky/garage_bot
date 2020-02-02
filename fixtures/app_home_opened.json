@@ -1,0 +1,155 @@
+{
+  "user_id": "UJC1L8Q87",
+  "view": {
+    "blocks": [
+      {
+        "block_id": "9159",
+        "text": {
+          "text": "Parking in",
+          "type": "plain_text"
+        },
+        "type": "section"
+      },
+      {
+        "block_id": "583",
+        "elements": [
+          {
+            "action_id": "garage?building=river",
+            "initial_option": {
+              "text": {
+                "emoji": true,
+                "text": "Saldovka",
+                "type": "plain_text"
+              },
+              "value": "saldovka"
+            },
+            "options": [
+              {
+                "text": {
+                  "emoji": true,
+                  "text": "Saldovka",
+                  "type": "plain_text"
+                },
+                "value": "saldovka"
+              },
+              {
+                "text": {
+                  "emoji": true,
+                  "text": "River",
+                  "type": "plain_text"
+                },
+                "value": "river"
+              }
+            ],
+            "placeholder": {
+              "emoji": true,
+              "text": "Select an item",
+              "type": "plain_text"
+            },
+            "type": "static_select"
+          }
+        ],
+        "type": "actions"
+      },
+      {
+        "accessory": {
+          "action_id": "garage/2020-02-02/book?building=saldovka",
+          "text": {
+            "text": "Book",
+            "type": "plain_text"
+          },
+          "type": "button"
+        },
+        "block_id": "592",
+        "text": {
+          "text": "*Sunday*\n:car: 4 spots available",
+          "type": "mrkdwn"
+        },
+        "type": "section"
+      },
+      {
+        "accessory": {
+          "action_id": "garage/2020-02-03/book?building=saldovka",
+          "text": {
+            "text": "Book",
+            "type": "plain_text"
+          },
+          "type": "button"
+        },
+        "block_id": "998",
+        "text": {
+          "text": "*Monday*\n:car: 4 spots available",
+          "type": "mrkdwn"
+        },
+        "type": "section"
+      },
+      {
+        "accessory": {
+          "action_id": "garage/2020-02-04/cancel?building=saldovka",
+          "style": "danger",
+          "text": {
+            "text": "Cancel",
+            "type": "plain_text"
+          },
+          "type": "button"
+        },
+        "block_id": "6340",
+        "text": {
+          "text": "*Tuesday*\npark on spot 1",
+          "type": "mrkdwn"
+        },
+        "type": "section"
+      },
+      {
+        "accessory": {
+          "action_id": "garage/2020-02-05/book?building=saldovka",
+          "text": {
+            "text": "Book",
+            "type": "plain_text"
+          },
+          "type": "button"
+        },
+        "block_id": "3279",
+        "text": {
+          "text": "*Wednesday*\n:car: 4 spots available",
+          "type": "mrkdwn"
+        },
+        "type": "section"
+      },
+      {
+        "accessory": {
+          "action_id": "garage/2020-02-06/cancel?building=saldovka",
+          "style": "danger",
+          "text": {
+            "text": "Cancel",
+            "type": "plain_text"
+          },
+          "type": "button"
+        },
+        "block_id": "7262",
+        "text": {
+          "text": "*Thursday*\npark on spot 1",
+          "type": "mrkdwn"
+        },
+        "type": "section"
+      },
+      {
+        "accessory": {
+          "action_id": "garage/2020-02-07/book?building=saldovka",
+          "text": {
+            "text": "Book",
+            "type": "plain_text"
+          },
+          "type": "button"
+        },
+        "block_id": "8380",
+        "text": {
+          "text": "*Friday*\n:car: 4 spots available",
+          "type": "mrkdwn"
+        },
+        "type": "section"
+      }
+    ],
+    "type": "home"
+  }
+}
