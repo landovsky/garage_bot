@@ -9,7 +9,7 @@ class SlackRouter
   U = Utils
 
   def self.routes
-    command = ENV['BOT_ENV'] == 'dev' ? :tmp : :garage
+    command = ENV['BOT_ENV'] == 'dev' || ENV['BOT_ENV'] == 'test' ? :tmp : :garage
     {
       'garage' => 'garage#park',
       'garage/:date/book' => 'garage#book',
@@ -73,21 +73,37 @@ class SlackRouter
       user_id = payload[:event][:user]
 
       options = proc { |content| { user_id: user_id, view: Slack::DSLTwo.home_view(*content) } }
-      meth = proc { |opts| SLACK.views_publish(options[opts]) }
+      meth = if ENV['BOT_ENV'] == 'test'
+               proc { |opts| options[opts] }
+             else
+               proc { |opts| SLACK.views_publish(options[opts]) }
+             end
       { type: :event, method: meth }
+
     elsif payload[:view]
       user_id = payload[:user][:id]
       view_id = payload[:view][:id]
 
       options = proc { |content| { view_id: view_id, user_id: user_id, view: Slack::DSLTwo.home_view(*content) } }
-      meth = proc { |opts| SLACK.views_update(options[opts]) }
+      meth = if ENV['BOT_ENV'] == 'test'
+               proc { |opts| options[opts] }
+             else
+               proc { |opts| SLACK.views_update(options[opts]) }
+             end
       { type: :view, method: meth }
+
     elsif payload[:command]
       meth = proc { |content| Slack::DSLTwo.blocks(*content) }
       { type: :command, method: meth }
+
     elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
       url = payload[:response_url]
-      meth = proc { |content| SLACK.post(url, Slack::DSLTwo.blocks(*content)) }
+      meth = if ENV['BOT_ENV'] == 'test'
+               proc { |content| Slack::DSLTwo.blocks(*content) }
+             else
+               proc { |content| SLACK.post(url, Slack::DSLTwo.blocks(*content)) }
+             end
+
       { type: :message, method: meth }
     else
       raise 'unhandled payload type'
