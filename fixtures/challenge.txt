@@ -1,0 +1,5 @@
+{
+  "token": "raiyvEnJ2xN6tNDIG8bfHHis",
+  "challenge": "VHb1mng1HIe7UnbncJxIVcr4hzkyi0x2kYIuETsrAGsvos1z45F5",
+  "type": "url_verification"
+}

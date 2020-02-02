@@ -23,6 +23,7 @@ module Tests
       results << message_response
       results << message_response_button
       results << message_response_select
+      results << challenge
       puts results.flatten.compact.count
     end
 
@@ -116,6 +117,13 @@ module Tests
       results << base_keys_not_blank(actual_result)
       results << match_block_count(actual_result, 8)
       print_results(results, __method__)
+    end
+
+    def challenge
+      raw_request, expected_result = [File.read('fixtures/challenge.txt'), File.read('fixtures/challenge.json')]
+      actual_result = SlackRouter.call(raw_request)
+
+      'challenge verification failed' unless actual_result == JSON.parse(raw_request)['challenge']
     end
 
     def load_expectation(event)

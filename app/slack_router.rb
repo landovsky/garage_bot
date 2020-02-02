@@ -9,7 +9,7 @@ class SlackRouter
   U = Utils
 
   def self.routes
-    command = ENV['BOT_ENV'] == 'dev' || ENV['BOT_ENV'] == 'test' ? :tmp : :garage
+    command = ENV['BOT_ENV'] == 'dev' || ENV['BOT_ENV'] == 'test' || ENV['BOT_ENV'] == 'aws-dev' ? :tmp : :garage
     {
       'garage' => 'garage#park',
       'garage/:date/book' => 'garage#book',
@@ -26,13 +26,14 @@ class SlackRouter
   def self.parse_payload(raw_payload)
     return raw_payload.symbolize_keys if raw_payload.is_a? Hash
 
-    if raw_payload.start_with? 'payload'
-      JSON.parse(URI.decode_www_form(raw_payload)[0][1]).symbolize_keys
-    elsif raw_payload.start_with? 'token'
-      URI.decode_www_form(raw_payload).to_h.symbolize_keys
-    else
-      JSON.parse(raw_payload).symbolize_keys
-    end
+    parsed = if raw_payload.start_with? 'payload'
+               JSON.parse(URI.decode_www_form(raw_payload)[0][1])
+             elsif raw_payload.start_with? 'token'
+               URI.decode_www_form(raw_payload).to_h
+             else
+               JSON.parse(raw_payload)
+             end
+    parsed.symbolize_keys
   end
 
   def self.call(raw_payload)
