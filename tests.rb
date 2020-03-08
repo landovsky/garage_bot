@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# typed: ignore
 
 # frozen_string_literal: true
 
@@ -120,7 +121,8 @@ module Tests
     end
 
     def challenge
-      raw_request, expected_result = [File.read('fixtures/challenge.txt'), File.read('fixtures/challenge.json')]
+      raw_request = File.read('fixtures/challenge.txt')
+      expected_result = File.read('fixtures/challenge.json')
       actual_result = SlackRouter.call(raw_request)
 
       'challenge verification failed' unless actual_result == JSON.parse(raw_request)['challenge']
@@ -146,7 +148,7 @@ module Tests
     end
 
     def base_keys_not_blank(actual_result)
-      'some base keys are empty' unless actual_result.none? { |k, v| v.empty? }
+      'some base keys are empty' unless actual_result.none? { |_k, v| v.empty? }
     end
 
     def print_results(results, meth)

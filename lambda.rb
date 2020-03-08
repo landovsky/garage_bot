@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 load_paths = Dir['vendor/ruby/2.5.0/**/lib']

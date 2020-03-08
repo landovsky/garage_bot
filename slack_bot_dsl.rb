@@ -1,3 +1,4 @@
+# typed: ignore
 # parse(payload)
 # => identify controller#method (from routes)
 # => collect data from interactions / forms
