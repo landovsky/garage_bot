@@ -7,6 +7,8 @@ require 'rubygems'
 require 'bundler/setup'
 require 'json'
 require 'pry'
+require 'sorbet-runtime'
+require_relative 'app/s_type'
 
 require_relative 'app/slack_router'
 
@@ -17,14 +19,14 @@ module Tests
     def call
       results = []
       results << app_home_book
-      results << app_home_cancel
-      results << app_home_opened
-      results << app_home_select
-      results << command
-      results << message_response
-      results << message_response_button
-      results << message_response_select
-      results << challenge
+      # results << app_home_cancel
+      # results << app_home_opened
+      # results << app_home_select
+      # results << command
+      # results << message_response
+      # results << message_response_button
+      # results << message_response_select
+      # results << challenge
       puts results.flatten.compact.count
     end
 
@@ -121,15 +123,15 @@ module Tests
     end
 
     def challenge
-      raw_request = File.read('fixtures/challenge.txt')
-      expected_result = File.read('fixtures/challenge.json')
+      raw_request = File.read('spec/fixtures/challenge.txt')
+      expected_result = File.read('spec/fixtures/challenge.json')
       actual_result = SlackRouter.call(raw_request)
 
       'challenge verification failed' unless actual_result == JSON.parse(raw_request)['challenge']
     end
 
     def load_expectation(event)
-      [File.read("fixtures/#{event}.txt"), JSON.parse(File.read("fixtures/#{event}.json")).symbolize_keys]
+      [File.read("spec/fixtures/#{event}.txt"), JSON.parse(File.read("spec/fixtures/#{event}.json")).symbolize_keys]
     end
 
     def match_block_count(blocks, expected_count)

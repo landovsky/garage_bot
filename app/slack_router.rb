@@ -6,6 +6,11 @@ require_relative 'http_client'
 require_relative 'utils'
 
 class SlackRouter
+  extend T::Sig
+
+  RawPayloadType = T.type_alias { T.any(String, SType::Hash) }
+  PayloadType = T.type_alias { SType::HashSymbol }
+
   SLACK = HTTPClient
   U = Utils
 
@@ -20,15 +25,17 @@ class SlackRouter
     }
   end
 
+  sig { params(payload: PayloadType).returns(T.nilable(String)) }
   def self.respond_to_challenge?(payload)
     payload[:challenge]
   end
 
+  sig { params(raw_payload: RawPayloadType).returns(PayloadType) }
   def self.parse_payload(raw_payload)
     return raw_payload.symbolize_keys if raw_payload.is_a? Hash
 
     parsed = if raw_payload.start_with? 'payload'
-               JSON.parse(URI.decode_www_form(raw_payload)[0][1])
+               JSON.parse(T.must(URI.decode_www_form(raw_payload)[0])[1])
              elsif raw_payload.start_with? 'token'
                URI.decode_www_form(raw_payload).to_h
              else
@@ -37,6 +44,7 @@ class SlackRouter
     parsed.symbolize_keys
   end
 
+  sig { params(raw_payload: RawPayloadType).returns(T.untyped) }
   def self.call(raw_payload)
     payload = parse_payload(raw_payload)
     File.open('payload.json', 'wb') { |file| file.write JSON.dump(payload) } if ENV['BOT_ENV'] == 'dev'
@@ -70,6 +78,7 @@ class SlackRouter
     raise e
   end
 
+  sig { params(payload: PayloadType).returns(SType::HashSymbol) }
   def self.identify_response_method(payload)
     if payload[:event]
       user_id = payload[:event][:user]
@@ -112,10 +121,12 @@ class SlackRouter
     end
   end
 
+  sig { params(payload: PayloadType).returns(T::Array[T.untyped]) }
   def self.find_event_route(payload)
     action = 'slack_event/' + payload[:event][:type]
 
     controller = routes[action]
+    binding.pry
     raise "no route found for #{action}" unless controller
 
     [controller, action]
@@ -130,45 +141,45 @@ class SlackRouter
     [controller, action]
   end
 
-  def self.action(*args, **opts)
-    arguments = args.map(&:to_s)
-    match = routes.map do |route, _controller|
-      next if route.start_with? 'slack_event'
+  # def self.action(*args, **opts)
+  #   arguments = args.map(&:to_s)
+  #   match = routes.map do |route, _controller|
+  #     next if route.start_with? 'slack_event'
 
-      route_items = route.split('/')
-      route_items_without_params = route_items.reject { |i| i.start_with? ':' }
+  #     route_items = route.split('/')
+  #     route_items_without_params = route_items.reject { |i| i.start_with? ':' }
 
-      next if route_items_without_params.sort != arguments.sort
+  #     next if route_items_without_params.sort != arguments.sort
 
-      route
-    end.compact.first
-    raise "no action found for '#{arguments.join(' - ')}' keywords" if match.nil?
+  #     route
+  #   end.compact.first
+  #   raise "no action found for '#{arguments.join(' - ')}' keywords" if match.nil?
 
-    url_params = opts
-    action = match.split('/').each_with_object([]) do |item, o|
-      if item.start_with? ':'
-        param = item.gsub(':', '').to_sym
-        param_value = opts[param]
-        raise "param '#{param}' in route #{match} not found in options" unless param_value
+  #   url_params = opts
+  #   action = match.split('/').each_with_object([]) do |item, o|
+  #     if item.start_with? ':'
+  #       param = item.gsub(':', '').to_sym
+  #       param_value = opts[param]
+  #       raise "param '#{param}' in route #{match} not found in options" unless param_value
 
-        url_params = url_params.except param
-        o << param_value
-      else
-        matched_index = arguments.index(item)
-        raise "action '#{item}' not found in arguments" unless matched_index
+  #       url_params = url_params.except param
+  #       o << param_value
+  #     else
+  #       matched_index = arguments.index(item)
+  #       raise "action '#{item}' not found in arguments" unless matched_index
 
-        o << arguments.delete_at(matched_index)
-      end
-    end
+  #       o << arguments.delete_at(matched_index)
+  #     end
+  #   end
 
-    stringified = action.join('/')
+  #   stringified = action.join('/')
 
-    if !url_params.empty?
-      stringified + '?' + URI.encode_www_form(url_params)
-    else
-      stringified
-    end
-  end
+  #   if !url_params.empty?
+  #     stringified + '?' + URI.encode_www_form(url_params)
+  #   else
+  #     stringified
+  #   end
+  # end
 
   def self.parse_params(payload)
     return if payload[:actions].empty?
@@ -193,7 +204,7 @@ class SlackRouter
 
     routes_without_events = routes.reject { |r| r.start_with? 'slack_event' }
 
-    selected_route = nil
+    selected_route = []
 
     routes_without_events.each_entry do |route, controller|
       route_items = route.split('/')
