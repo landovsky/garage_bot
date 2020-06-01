@@ -6,7 +6,7 @@ require_relative 'dynamo'
 module Store
   def self.all_spots(building)
     data = {
-      Garage::RIVER => [159, 160, 161, 165, 166],
+      Garage::RIVER => [155, 156, 157, 158, 159, 160, 161, 165, 166, 191],
       Garage::SALDOVKA => [1, 2, 3, 4]
     }
     data[building]
