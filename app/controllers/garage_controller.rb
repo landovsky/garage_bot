@@ -6,19 +6,19 @@ require_relative '../garage'
 require_relative '../store'
 
 class GarageController
-  def initialize(data, response_method)
+  def initialize(data, _response_method)
     data.each do |key, value|
       instance_variable_set("@#{key}".to_sym, value)
     end
   end
 
   def park(data)
-    building  = data.dig(:params, :building) || Garage::SALDOVKA
+    building  = data.dig(:params, :building) || Garage::RIVER
     days_data = Garage.park(data[:user_id], building)
 
-    puts "==============="
+    puts '==============='
     puts "user: #{data[:user_id]}"
-    puts "==============="
+    puts '==============='
 
     GarageView.new.garage(days_data, building)
   end
