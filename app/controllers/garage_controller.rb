@@ -15,24 +15,24 @@ class GarageController
     building  = data.dig(:params, :building) || Garage::RIVER
     days_data = Garage.park(data[:user_id], building)
 
-    puts '==============='
-    puts "user: #{data[:user_id]}"
-    puts '==============='
-
     GarageView.new.garage(days_data, building)
   end
 
-  def book(data)
+  def book_spot(data)
     building = data[:params][:building]
-    Store.book(data[:date], data[:user_id], building)
+    spot_id  = data[:spot_id]
+
+    Store.book_spot(data[:date], data[:user_id], building, spot_id)
 
     days_data = Garage.park(data[:user_id], building)
     GarageView.new.garage(days_data, building)
   end
 
-  def cancel(data)
+  def cancel_spot(data)
     building = data[:params][:building]
-    Store.cancel(data[:date], data[:user_id], building)
+    spot_id  = data[:spot_id]
+
+    Store.cancel_spot(data[:date], data[:user_id], building, spot_id)
 
     days_data = Garage.park(data[:user_id], building)
     GarageView.new.garage(days_data, building)

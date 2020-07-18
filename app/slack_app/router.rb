@@ -15,8 +15,8 @@ module SlackApp
       command = ENV['BOT_ENV'] == 'dev' || ENV['BOT_ENV'] == 'test' || ENV['BOT_ENV'] == 'aws-dev' ? :tmp : :garage
       {
         'garage' => 'garage#park',
-        'garage/:date/book' => 'garage#book',
-        'garage/:date/cancel' => 'garage#cancel',
+        'garage/:date/spot/:spot_id/book' => 'garage#book_spot',
+        'garage/:date/spot/:spot_id/cancel' => 'garage#cancel_spot',
         'slack_event/app_home_opened' => 'garage#park',
         "command/#{command}" => 'garage#park'
       }
@@ -41,7 +41,7 @@ module SlackApp
 
     def self.call(raw_payload)
       payload = parse_payload(raw_payload)
-      File.open('payload.json', 'wb') { |file| file.write JSON.dump(payload) } if ENV['BOT_ENV'] == 'dev'
+      File.open('payload-incoming.json', 'wb') { |file| file.write JSON.dump(payload) } if ENV['BOT_ENV'] == 'dev'
 
       return payload[:challenge] if respond_to_challenge?(payload)
 
@@ -62,9 +62,6 @@ module SlackApp
         data, params    = parse_params(payload)
         params          = data ? route_params.merge(data).merge(params: params) : {}
       end
-      puts "controller: #{controller}"
-      puts "route_finder: #{response_method[:type]}"
-      puts "params: #{params}"
 
       ApplicationController.call(controller, params, response_method)
     rescue => e

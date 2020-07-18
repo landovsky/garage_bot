@@ -5,8 +5,8 @@ require_relative 'store'
 require_relative 'utils'
 
 module Garage
-  DAY_SEC = 86_400
-  DAY_COUNT = 5
+  DAY_SEC   = 86_400
+  DAY_COUNT = 4
 
   SALDOVKA = 'saldovka'
   RIVER    = 'river'
@@ -19,22 +19,16 @@ module Garage
 
   def self.park_on(date, user, building = RIVER)
     day_spots      = Store.load_item(date, building)
-    booked_spot_id = day_spots.find { |spot| spot['spot_user'] == user }&.fetch('spot_id', nil)&.to_i
-    spot_available = Store.spot_available?(day_spots, building) unless booked_spot_id
+    booked_spot_ids = day_spots.select { |spot| spot['spot_user'] == user }.map { |spot| spot&.fetch('spot_id', nil)&.to_i }
+    available_spot_ids = Store.available_spots(day_spots, building)
 
     {
       date: date,
-      booked_spot: !!booked_spot_id,
-      booked_spot_id: booked_spot_id,
-      vacancy: spot_available,
-      vacancies: count_available_spots(day_spots, building)
+      booked_spot_ids: booked_spot_ids,
+      available_spot_ids: available_spot_ids
     }
   rescue => e
     Utils.error e
     raise e
-  end
-
-  def self.count_available_spots(day_spots, building)
-    Store.all_spots(building).count - day_spots.count
   end
 end
