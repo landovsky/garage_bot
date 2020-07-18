@@ -8,7 +8,7 @@ require 'bundler/setup'
 require 'json'
 require 'pry'
 
-require_relative 'app/slack_router'
+require_relative '../app/slack_router'
 
 ENV['BOT_ENV'] = 'test'
 

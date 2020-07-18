@@ -1,126 +1,61 @@
-# typed: true
+# typed: false
 # frozen_string_literal: true
 
 module Slack
   module DSL
-    def self.day_text(day_data)
-      if day_data[:booked_spot]
-        "park on spot #{day_data[:booked_spot_id]}"
-      elsif day_data[:vacancy]
-        ':car: parking available'
-      else
-        'all places are taken'
-      end
+    def self.home_view(*blocks)
+      view blocks(*blocks)
     end
 
-    def self.header(building)
-      {
-        'type': 'section',
-        'block_id': 'EJKJEI',
-        'text': {
-          'type': 'plain_text',
-          'text': 'Parking in'
-        }
-      }.merge(accessory: building_picker(building))
+    def self.view(content)
+      content.merge(type: :home)
     end
 
-    def self.view(type, blocks)
-      blocks.merge(type: type)
+    def self.blocks(*blocks)
+      { blocks: blocks }
     end
 
-    def self.divider
-      {
-        'type': 'divider'
-      }
-    end
-
-    def self.building_picker(building)
-      {
-        'type': 'static_select',
-        'placeholder': {
-          'type': 'plain_text',
-          'text': 'Select an item',
-          'emoji': true
-        },
-        'initial_option': {
-          'text': {
-            'type': 'plain_text',
-            'text': building.camelize,
-            'emoji': true
-          },
-          'value': building
-        },
-        'options': [
-          {
-            'text': {
-              'type': 'plain_text',
-              'text': Garage::SALDOVKA.camelize,
-              'emoji': true
-            },
-            'value': Garage::SALDOVKA
-          },
-          {
-            'text': {
-              'type': 'plain_text',
-              'text': Garage::RIVER.camelize,
-              'emoji': true
-            },
-            'value': Garage::RIVER
-          }
-        ]
-      }
-    end
-
-    def self.build_day(day_data, building)
-      date = day_data[:date]
-      button = day_data[:booked_spot] ? button(:cancel, date) : (day_data[:vacancy] && button(:book, date))
-
-      day(date.strftime('%A'), day_text(day_data), building, button)
-    end
-
-    def self.day(name, status, building, button = nil)
+    def section(text = nil, type: :plain_text, accessory: nil, fields: nil, block_id: random_block_id)
       base = {
-        'type': 'section',
-        'block_id': [building, rand(1..1_000_000).to_s].join('-'),
-        'text': {
-          'type': 'mrkdwn',
-          'text': "*#{name}*\n#{status}"
-        }
+        type: 'section',
+        block_id: block_id
       }
-      button ? base.merge(accessory: button) : base
+
+      base = base.merge(text: { type: type, text: text }) if text
+      base = base.merge(fields: fields) if fields
+      base = base.merge(accessory: accessory) if accessory
+      base
     end
 
-    def self.button(type, day)
-      base = {
-        'type': 'button',
-        'text': {
-          'type': 'plain_text',
-          'emoji': true,
-          'text': type.to_s.upcase
+    def divider
+      {
+        type: 'divider'
+      }
+    end
+
+    def actions(elements, block_id: random_block_id, **opts)
+      {
+        type: 'actions',
+        block_id: block_id,
+        elements: [elements].flatten
+      }.merge(opts)
+    end
+
+    def button(text, action:, **opts)
+      {
+        type: 'button',
+        text: {
+          type: 'plain_text',
+          text: text
         },
-        'value': day
-      }
-      type == :cancel ? base.merge('style': 'danger') : base
+        action_id: action
+      }.merge(opts)
     end
 
-    def self.create_message(days_data, building)
-      {
-        'blocks': [
-          header(building),
-          divider,
-          *days_data.map { |day_data| build_day(day_data, building) }
-        ]
-      }
-    end
+    private
 
-    def self.link
-      {
-        'type': 'section',
-        'text': {
-          'type': 'mrkdwn',
-          'text': '*<fakelink.ToMoreTimes.com|Show me next week>*'
-        }
-      }
+    def random_block_id
+      rand(1..10_000).to_s
     end
   end
 end

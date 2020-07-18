@@ -74,7 +74,7 @@ class SlackRouter
     if payload[:event]
       user_id = payload[:event][:user]
 
-      options = proc { |content| { user_id: user_id, view: Slack::DSLTwo.home_view(*content) } }
+      options = proc { |content| { user_id: user_id, view: Slack::DSL.home_view(*content) } }
       meth = if ENV['BOT_ENV'] == 'test'
                proc { |opts| options[opts] }
              else
@@ -86,7 +86,7 @@ class SlackRouter
       user_id = payload[:user][:id]
       view_id = payload[:view][:id]
 
-      options = proc { |content| { view_id: view_id, user_id: user_id, view: Slack::DSLTwo.home_view(*content) } }
+      options = proc { |content| { view_id: view_id, user_id: user_id, view: Slack::DSL.home_view(*content) } }
       meth = if ENV['BOT_ENV'] == 'test'
                proc { |opts| options[opts] }
              else
@@ -95,15 +95,15 @@ class SlackRouter
       { type: :view, method: meth }
 
     elsif payload[:command]
-      meth = proc { |content| Slack::DSLTwo.blocks(*content) }
+      meth = proc { |content| Slack::DSL.blocks(*content) }
       { type: :command, method: meth }
 
     elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
       url = payload[:response_url]
       meth = if ENV['BOT_ENV'] == 'test'
-               proc { |content| Slack::DSLTwo.blocks(*content) }
+               proc { |content| Slack::DSL.blocks(*content) }
              else
-               proc { |content| SLACK.post(url, Slack::DSLTwo.blocks(*content)) }
+               proc { |content| SLACK.post(url, Slack::DSL.blocks(*content)) }
              end
 
       { type: :message, method: meth }
@@ -128,46 +128,6 @@ class SlackRouter
     raise "no route found for #{action}" if controller&.empty?
 
     [controller, action]
-  end
-
-  def self.action(*args, **opts)
-    arguments = args.map(&:to_s)
-    match = routes.map do |route, _controller|
-      next if route.start_with? 'slack_event'
-
-      route_items = route.split('/')
-      route_items_without_params = route_items.reject { |i| i.start_with? ':' }
-
-      next if route_items_without_params.sort != arguments.sort
-
-      route
-    end.compact.first
-    raise "no action found for '#{arguments.join(' - ')}' keywords" if match.nil?
-
-    url_params = opts
-    action = match.split('/').each_with_object([]) do |item, o|
-      if item.start_with? ':'
-        param = item.gsub(':', '').to_sym
-        param_value = opts[param]
-        raise "param '#{param}' in route #{match} not found in options" unless param_value
-
-        url_params = url_params.except param
-        o << param_value
-      else
-        matched_index = arguments.index(item)
-        raise "action '#{item}' not found in arguments" unless matched_index
-
-        o << arguments.delete_at(matched_index)
-      end
-    end
-
-    stringified = action.join('/')
-
-    if !url_params.empty?
-      stringified + '?' + URI.encode_www_form(url_params)
-    else
-      stringified
-    end
   end
 
   def self.parse_params(payload)
