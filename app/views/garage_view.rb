@@ -1,20 +1,20 @@
 # typed: false
 # frozen_string_literal: true
 
-require_relative '../slack/dsl_two'
-require_relative '../slack_router'
+# require_relative '../slack'
 require_relative '../utils'
 
 class GarageView
   U = Utils
-  include Slack::DSLTwo
+  include ::SlackApp::DSL
+  include ::SlackApp::Helper
 
   # { date_data: date_data, building: building }
   # { date: date, booked_spot: !!booked_spot_id, booked_spot_id: booked_spot_id, vacancy: spot_available }
 
   def view
     binding.pry
-    Slack::DSLTwo.home_view actions(button('Cancel', action: SlackRouter.action(:garage, :cancel, date: "12323", building: 'ahaha'), style: :danger))
+    SlackApp::DSL.home_view actions(button('Cancel', action: path_for(:garage, :cancel, date: "12323", building: 'ahaha'), style: :danger))
   end
 
   def garage(days_data, building)
@@ -32,9 +32,9 @@ class GarageView
   def build_day(day_data, building)
     date = day_data[:date]
     btn  = if day_data[:booked_spot]
-             button('Cancel', action: SlackRouter.action(:garage, :cancel, date: date, building: building), style: :danger)
+             button('Cancel', action: path_for(:garage, :cancel, date: date, building: building), style: :danger)
            elsif day_data[:vacancy]
-             button('Book', action: SlackRouter.action(:garage, :book, date: date, building: building))
+             button('Book', action: path_for(:garage, :book, date: date, building: building))
            end
 
     section("*#{date.strftime('%A')}*\n#{day_text(day_data)}", type: 'mrkdwn', accessory: btn)
@@ -67,7 +67,7 @@ class GarageView
     next_building = building == Garage::SALDOVKA ? Garage::RIVER : Garage::SALDOVKA
     {
       'type': 'static_select',
-      'action_id': SlackRouter.action(:garage, building: next_building),
+      'action_id': path_for(:garage, building: next_building),
       'placeholder': {
         'type': 'plain_text',
         'text': 'Select an item',

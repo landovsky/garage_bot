@@ -1,8 +1,8 @@
 # typed: false
 # frozen_string_literal: true
 
-module Slack
-  module DSLTwo
+module SlackApp
+  module DSL
     def self.home_view(*blocks)
       view blocks(*blocks)
     end

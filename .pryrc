@@ -3,7 +3,7 @@ require 'bundler/setup'
 
 # require_relative 'app/store'
 # require_relative 'app/garage'
-require_relative 'app/slack_router'
+require_relative 'app/slack_app'
 # require_relative 'app/views/garage_view'
 # require_relative 'app/slack/dsl_two'
 
