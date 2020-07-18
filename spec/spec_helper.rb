@@ -18,7 +18,7 @@
 
 require 'pry'
 require 'support/helpers'
-require_relative '../app/slack_app'
+require_relative '../app/garage_bot'
 
 RSpec.configure do |config|
   config.include Helpers

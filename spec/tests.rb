@@ -8,7 +8,7 @@ require 'bundler/setup'
 require 'json'
 require 'pry'
 
-require_relative '../app/slack_router'
+require_relative '../app/slack_app'
 
 ENV['BOT_ENV'] = 'test'
 
@@ -30,7 +30,7 @@ module Tests
 
     def app_home_book
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -42,7 +42,7 @@ module Tests
 
     def app_home_cancel
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -54,7 +54,7 @@ module Tests
 
     def app_home_opened
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -66,7 +66,7 @@ module Tests
 
     def app_home_select
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -78,7 +78,7 @@ module Tests
 
     def command
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -89,7 +89,7 @@ module Tests
 
     def message_response
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -100,7 +100,7 @@ module Tests
 
     def message_response_button
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -111,7 +111,7 @@ module Tests
 
     def message_response_select
       raw_request, expected_result = load_expectation(__method__)
-      actual_result = SlackRouter.call(raw_request).symbolize_keys
+      actual_result = SlackApp::Router.call(raw_request).symbolize_keys
 
       results = []
       results << base_keys_present(expected_result, actual_result)
@@ -121,15 +121,15 @@ module Tests
     end
 
     def challenge
-      raw_request = File.read('fixtures/challenge.txt')
-      expected_result = File.read('fixtures/challenge.json')
-      actual_result = SlackRouter.call(raw_request)
+      raw_request = File.read('spec/fixtures/challenge.txt')
+      expected_result = File.read('spec/fixtures/challenge.json')
+      actual_result = SlackApp::Router.call(raw_request)
 
       'challenge verification failed' unless actual_result == JSON.parse(raw_request)['challenge']
     end
 
     def load_expectation(event)
-      [File.read("fixtures/#{event}.txt"), JSON.parse(File.read("fixtures/#{event}.json")).symbolize_keys]
+      [File.read("spec/fixtures/#{event}.txt"), JSON.parse(File.read("spec/fixtures/#{event}.json")).symbolize_keys]
     end
 
     def match_block_count(blocks, expected_count)

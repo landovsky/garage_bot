@@ -1,7 +1,6 @@
 # typed: true
 # frozen_string_literal: true
 
-require_relative 'http_client'
 require_relative 'store'
 require_relative 'utils'
 

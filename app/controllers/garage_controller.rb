@@ -1,7 +1,6 @@
 # typed: false
 # frozen_string_literal: true
 
-require_relative '../views/garage_view'
 require_relative '../garage'
 require_relative '../store'
 

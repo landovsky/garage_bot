@@ -1,11 +1,11 @@
 # typed: false
 # frozen_string_literal: true
 
-module Slack
+module SlackApp
   module Helper
     def path_for(*args, **opts)
       arguments = args.map(&:to_s)
-      match = SlackRouter.routes.map do |route, _controller|
+      match = Router.routes.map do |route, _controller|
         next if route.start_with? 'slack_event'
 
         route_items = route.split('/')

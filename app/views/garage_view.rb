@@ -1,22 +1,20 @@
 # typed: false
 # frozen_string_literal: true
 
-require_relative '../slack/dsl'
-require_relative '../slack/helper'
-require_relative '../slack_router'
+# require_relative '../slack'
 require_relative '../utils'
 
 class GarageView
   U = Utils
-  include Slack::DSL
-  include Slack::Helper
+  include ::SlackApp::DSL
+  include ::SlackApp::Helper
 
   # { date_data: date_data, building: building }
   # { date: date, booked_spot: !!booked_spot_id, booked_spot_id: booked_spot_id, vacancy: spot_available }
 
   def view
     binding.pry
-    Slack::DSL.home_view actions(button('Cancel', action: path_for(:garage, :cancel, date: "12323", building: 'ahaha'), style: :danger))
+    SlackApp::DSL.home_view actions(button('Cancel', action: path_for(:garage, :cancel, date: "12323", building: 'ahaha'), style: :danger))
   end
 
   def garage(days_data, building)
