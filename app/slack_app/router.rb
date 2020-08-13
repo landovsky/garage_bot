@@ -73,7 +73,7 @@ module SlackApp
       if payload[:event]
         user_id = payload[:event][:user]
 
-        options = proc { |content| { user_id: user_id, view: SlackApp::DSL.home_view(*content) } }
+        options = proc { |content| { user_id: user_id, view: SlackApp::DSL.home_view(content) } }
         meth = if ENV['BOT_ENV'] == 'test'
                 proc { |opts| options[opts] }
               else
@@ -89,7 +89,7 @@ module SlackApp
         user_id = payload[:user][:id]
         view_id = payload[:view][:id]
 
-        options = proc { |content| { view_id: view_id, user_id: user_id, view: SlackApp::DSL.home_view(*content) } }
+        options = proc { |content| { view_id: view_id, user_id: user_id, view: SlackApp::DSL.home_view(content) } }
         meth = if ENV['BOT_ENV'] == 'test'
                 proc { |opts| options[opts] }
               else

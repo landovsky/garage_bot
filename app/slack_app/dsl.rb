@@ -3,8 +3,8 @@
 
 module SlackApp
   module DSL
-    def self.home_view(*blocks)
-      view blocks_wrapper(*blocks), type: :home
+    def self.home_view(blocks)
+      view blocks_wrapper(blocks), type: :home
     end
 
     def self.modal_view(blocks)
