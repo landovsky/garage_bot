@@ -28,7 +28,7 @@ class MyApp < Rack::App
   end
 
   post '/chatbot' do
-    File.open('payload_raw.txt', 'wb') { |file| file.write(payload) } if ENV['BOT_ENV'] == 'dev'
+    File.open('tmp/payload_raw.txt', 'wb') { |file| file.write(payload) } if ENV['BOT_ENV'] == 'dev'
 
     res = SlackApp::Router.call(payload)
     if res.is_a? String
