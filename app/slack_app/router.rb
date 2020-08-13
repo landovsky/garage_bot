@@ -17,8 +17,6 @@ module SlackApp
         'garage' => 'garage#park',
         'garage/:date/spot/:spot_id/book' => 'garage#book_spot',
         'garage/:date/spot/:spot_id/cancel' => 'garage#cancel_spot',
-        'garage/datepicker' => 'garage#datepicker',
-        'garage/test' => 'garage#modal_test',
         'slack_event/app_home_opened' => 'garage#park',
         "command/#{command}" => 'garage#park'
       }

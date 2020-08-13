@@ -13,15 +13,10 @@ class GarageView
     SlackApp::DSL.home_view actions(button('Cancel', action: path_for(:garage, :cancel, date: "12323", building: 'ahaha'), style: :danger))
   end
 
-  def test
-    section('Formulář')
-  end
-
   def garage(days_data, building)
     content = []
     content << section('Parking in')
     content << actions(building_picker(building))
-    content << actions(button('Ahoj', action: path_for(:garage, :test, modal: true)))
     content << days_data.map { |day_data| build_day(day_data, building) }
     content.flatten
   end
