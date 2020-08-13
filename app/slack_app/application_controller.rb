@@ -8,9 +8,7 @@ module SlackApp
     def self.call(controller, data, response_method)
       klass, action = controller.split('#')
       controller = Object.const_get("#{klass}_controller".camelize).send(:new, data, response_method)
-      puts "ApplicationController data: #{data}"
-
-      response = controller.send action.to_sym, data
+      response   = controller.send action.to_sym, data
 
       response_method[:method][response]
     rescue => e

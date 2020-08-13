@@ -1,16 +1,12 @@
 # typed: false
 # frozen_string_literal: true
 
-# require_relative '../slack'
 require_relative '../utils'
 
 class GarageView
   U = Utils
   include ::SlackApp::DSL
   include ::SlackApp::Helper
-
-  # { date_data: date_data, building: building }
-  # { date: date, booked_spot: !!booked_spot_id, booked_spot_id: booked_spot_id, vacancy: spot_available }
 
   def view
     binding.pry
@@ -31,35 +27,24 @@ class GarageView
 
   def build_day(day_data, building)
     date = day_data[:date]
-    btn  = if day_data[:booked_spot]
-             button('Cancel', action: path_for(:garage, :cancel, date: date, building: building), style: :danger)
-           elsif day_data[:vacancy]
-             button('Book', action: path_for(:garage, :book, date: date, building: building))
-           end
-
-    section("*#{date.strftime('%A')}*\n#{day_text(day_data)}", type: 'mrkdwn', accessory: btn)
-  end
-
-  def day_text(day_data)
-    if day_data[:booked_spot]
-      "park on spot #{day_data[:booked_spot_id]}"
-    elsif day_data[:vacancy]
-      ":car: #{day_data[:vacancies]} #{day_data[:vacancies] == 1 ? 'spot' : 'spots'} available"
-    else
-      'all places are taken'
+    booked_spots = day_data[:booked_spot_ids].map do |booked_spot|
+      button(booked_spot.to_s, action: path_for(:garage, :spot, :cancel, date: date, building: building, spot_id: booked_spot).to_s, style: :danger)
     end
-  end
-
-  def day(name, status, building, button = nil)
-    base = {
-      'type': 'section',
-      'block_id': [building, rand(1..1_000_000).to_s].join('-'),
-      'text': {
-        'type': 'mrkdwn',
-        'text': "*#{name}*\n#{status}"
-      }
-    }
-    button ? base.merge(accessory: button) : base
+    bookable_spots = day_data[:available_spot_ids].map do |available_spot|
+      button(available_spot.to_s, action: path_for(:garage, :spot, :book, date: date, building: building, spot_id: available_spot).to_s)
+    end
+    buttons = booked_spots + bookable_spots
+    if buttons.count.positive?
+      [
+        section(":#{date.strftime('%A')}: *#{date.strftime('%A')}*", type: 'mrkdwn'),
+        actions(buttons)
+      ].compact
+    else
+      [
+        section(":#{date.strftime('%A')}: *#{date.strftime('%A')}*", type: 'mrkdwn'),
+        section('All spots taken.')
+      ]
+    end
   end
 
   def building_picker(building)
