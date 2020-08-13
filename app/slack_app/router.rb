@@ -104,7 +104,7 @@ module SlackApp
         { type: :view, method: meth }
 
       elsif payload[:command]
-        meth = proc { |content| SlackApp::DSL.blocks(*content) }
+        meth = proc { |content| SlackApp::DSL.blocks_wrapper(content) }
         { type: :command, method: meth }
 
       elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
@@ -114,10 +114,10 @@ module SlackApp
         options = if modal_requested
           proc { |content| { trigger_id: payload[:trigger_id], view: SlackApp::DSL.modal_view(content) } }
         else
-          proc { |content| SlackApp::DSL.blocks(*content) }
+          proc { |content| SlackApp::DSL.blocks_wrapper(content) }
         end
         meth = if ENV['BOT_ENV'] == 'test'
-                proc { |content| SlackApp::DSL.blocks(*content) }
+                proc { |content| SlackApp::DSL.blocks_wrapper(*content) }
               else
                 proc do |content|
                   out = options[content]

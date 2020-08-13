@@ -4,7 +4,7 @@
 module SlackApp
   module DSL
     def self.home_view(*blocks)
-      view blocks(*blocks), type: :home
+      view blocks_wrapper(*blocks), type: :home
     end
 
     def self.modal_view(blocks)
@@ -33,11 +33,11 @@ module SlackApp
           "text": "Cancel",
           "emoji": true
         }
-      }.merge(blocks(content))
+      }.merge(blocks_wrapper(content))
     end
 
-    def self.blocks(*blocks)
-      { blocks: blocks }
+    def self.blocks_wrapper(blocks)
+      { blocks: blocks.is_a?(Array) ? blocks : [blocks] }
     end
 
     def section(text = nil, type: :plain_text, accessory: nil, fields: nil, block_id: random_block_id)
