@@ -23,9 +23,7 @@ class GarageView
     content << actions(building_picker(building))
     content << actions(button('Ahoj', action: path_for(:garage, :test, modal: true)))
     content << days_data.map { |day_data| build_day(day_data, building) }
-    c = content.flatten
-    File.open('tmp/content.json', 'wb') { |file| file.write(JSON.dump(c)) } if ENV['BOT_ENV'] == 'dev'
-    c
+    content.flatten
   end
 
   private

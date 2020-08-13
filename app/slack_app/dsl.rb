@@ -11,10 +11,6 @@ module SlackApp
       modal(blocks)
     end
 
-    def self.view_selector(blocks, modal: false)
-      modal ? modal_view(blocks) : blocks(blocks)
-    end
-
     def self.view(content, type:)
       content.merge(type: type)
     end

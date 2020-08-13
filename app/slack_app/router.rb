@@ -111,7 +111,11 @@ module SlackApp
         url             = payload[:response_url]
         modal_requested = parse_params(payload)[1][:modal] == "true"
 
-        options = proc { |content| { trigger_id: payload[:trigger_id], view: SlackApp::DSL.view_selector(content, modal: modal_requested) } }
+        options = if modal_requested
+          proc { |content| { trigger_id: payload[:trigger_id], view: SlackApp::DSL.modal_view(content) } }
+        else
+          proc { |content| SlackApp::DSL.blocks(*content) }
+        end
         meth = if ENV['BOT_ENV'] == 'test'
                 proc { |content| SlackApp::DSL.blocks(*content) }
               else
