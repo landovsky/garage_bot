@@ -11,6 +11,10 @@ class GarageController
     end
   end
 
+  def modal_test(data)
+    GarageView.new.test
+  end
+
   def park(data)
     building  = data.dig(:params, :building) || Garage::RIVER
     days_data = Garage.park(data[:user_id], building)

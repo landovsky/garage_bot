@@ -17,6 +17,8 @@ module SlackApp
         'garage' => 'garage#park',
         'garage/:date/spot/:spot_id/book' => 'garage#book_spot',
         'garage/:date/spot/:spot_id/cancel' => 'garage#cancel_spot',
+        'garage/datepicker' => 'garage#datepicker',
+        'garage/test' => 'garage#modal_test',
         'slack_event/app_home_opened' => 'garage#park',
         "command/#{command}" => 'garage#park'
       }
@@ -41,7 +43,7 @@ module SlackApp
 
     def self.call(raw_payload)
       payload = parse_payload(raw_payload)
-      File.open('payload-incoming.json', 'wb') { |file| file.write JSON.dump(payload) } if ENV['BOT_ENV'] == 'dev'
+      File.open('tmp/payload-incoming.json', 'wb') { |file| file.write JSON.dump(payload) } if ENV['BOT_ENV'] == 'dev'
 
       return payload[:challenge] if respond_to_challenge?(payload)
 
@@ -77,7 +79,11 @@ module SlackApp
         meth = if ENV['BOT_ENV'] == 'test'
                 proc { |opts| options[opts] }
               else
-                proc { |opts| SLACK.views_publish(options[opts]) }
+                proc do |opts|
+                  out = options[opts]
+                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(out)) } if ENV['BOT_ENV'] == 'dev'
+                  SLACK.views_publish(options[opts])
+                end
               end
         { type: :event, method: meth }
 
@@ -89,7 +95,11 @@ module SlackApp
         meth = if ENV['BOT_ENV'] == 'test'
                 proc { |opts| options[opts] }
               else
-                proc { |opts| SLACK.views_update(options[opts]) }
+                proc do |opts|
+                  out = options[opts]
+                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(out)) } if ENV['BOT_ENV'] == 'dev'
+                  SLACK.views_update(out)
+                end
               end
         { type: :view, method: meth }
 
@@ -98,11 +108,18 @@ module SlackApp
         { type: :command, method: meth }
 
       elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
-        url = payload[:response_url]
+        url             = payload[:response_url]
+        modal_requested = parse_params(payload)[1][:modal] == "true"
+
+        options = proc { |content| { trigger_id: payload[:trigger_id], view: SlackApp::DSL.view_selector(content, modal: modal_requested) } }
         meth = if ENV['BOT_ENV'] == 'test'
                 proc { |content| SlackApp::DSL.blocks(*content) }
               else
-                proc { |content| SLACK.post(url, SlackApp::DSL.blocks(*content)) }
+                proc do |content|
+                  out = options[content]
+                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(out)) } if ENV['BOT_ENV'] == 'dev'
+                  modal_requested ? SLACK.views_open(out) : SLACK.post(url, out)
+                end
               end
 
         { type: :message, method: meth }
@@ -132,6 +149,7 @@ module SlackApp
     def self.parse_params(payload)
       return if payload[:actions].empty?
 
+      # TODO could there be more actions?
       action = payload[:actions][0][:action_id]
       params = action.split('?')[1] || ''
 

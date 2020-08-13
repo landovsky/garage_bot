@@ -4,11 +4,40 @@
 module SlackApp
   module DSL
     def self.home_view(*blocks)
-      view blocks(*blocks)
+      view blocks(*blocks), type: :home
     end
 
-    def self.view(content)
-      content.merge(type: :home)
+    def self.modal_view(blocks)
+      modal(blocks)
+    end
+
+    def self.view_selector(blocks, modal: false)
+      modal ? modal_view(blocks) : blocks(blocks)
+    end
+
+    def self.view(content, type:)
+      content.merge(type: type)
+    end
+
+    def self.modal(content)
+      {
+        "type": "modal",
+        "title": {
+          "type": "plain_text",
+          "text": "My App",
+          "emoji": true
+        },
+        "submit": {
+          "type": "plain_text",
+          "text": "Submit",
+          "emoji": true
+        },
+        "close": {
+          "type": "plain_text",
+          "text": "Cancel",
+          "emoji": true
+        }
+      }.merge(blocks(content))
     end
 
     def self.blocks(*blocks)
@@ -50,6 +79,19 @@ module SlackApp
         },
         action_id: action
       }.merge(opts)
+    end
+
+    def datepicker(action:)
+      {
+        type: 'datepicker',
+        initial_date: '1990-04-28',
+        action_id: action,
+        placeholder: {
+          type: 'plain_text',
+          text: 'Select a date',
+          emoji: true
+        }
+      }
     end
 
     private
