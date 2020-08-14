@@ -22,6 +22,13 @@ class GarageController
     GarageView.new.garage(days_data, building)
   end
 
+  def who_parked(data)
+    building  = data.dig(:params, :building)
+    days_data = Garage.park(data[:user_id], building)
+
+    GarageView.new.who_parked(days_data)
+  end
+
   def book_spot(data)
     building = data[:params][:building]
     spot_id  = data[:spot_id]

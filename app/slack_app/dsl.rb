@@ -7,33 +7,30 @@ module SlackApp
       view blocks_wrapper(blocks), type: :home
     end
 
-    def self.modal_view(blocks)
-      modal(blocks)
-    end
-
     def self.view(content, type:)
       content.merge(type: type)
     end
 
-    def self.modal(content)
-      {
+    def self.modal_view(blocks, title:, submit: nil, close: nil)
+      base = {
         "type": "modal",
         "title": {
           "type": "plain_text",
-          "text": "My App",
-          "emoji": true
-        },
-        "submit": {
-          "type": "plain_text",
-          "text": "Submit",
-          "emoji": true
-        },
-        "close": {
-          "type": "plain_text",
-          "text": "Cancel",
+          "text": title,
           "emoji": true
         }
-      }.merge(blocks_wrapper(content))
+      }
+      base = base.merge(submit: modal_button(submit)) if submit
+      base = base.merge(close: modal_button(close)) if close
+      base.merge(blocks_wrapper(blocks))
+    end
+
+    def self.modal_button(button_text)
+      {
+        "type": "plain_text",
+        "text": button_text,
+        "emoji": true
+      }
     end
 
     def self.blocks_wrapper(blocks)
@@ -58,20 +55,22 @@ module SlackApp
       }
     end
 
-    def actions(elements, block_id: random_block_id, **opts)
+    def actions(*elements, block_id: random_block_id, **opts)
       {
         type: 'actions',
         block_id: block_id,
-        elements: [elements].flatten
+        elements: elements.flatten
       }.merge(opts)
     end
 
     def button(text, action:, **opts)
+      emoji = opts.delete(:emoji)
       {
         type: 'button',
         text: {
           type: 'plain_text',
-          text: text
+          text: text,
+          emoji: emoji || false
         },
         action_id: action
       }.merge(opts)

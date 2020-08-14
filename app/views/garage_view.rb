@@ -16,12 +16,40 @@ class GarageView
   def garage(days_data, building)
     content = []
     content << section('Parking in')
-    content << actions(building_picker(building))
+    content << actions(
+                        [building_picker(building),
+                         button('Parkers :information_source:', emoji: true,
+                                                                style: :primary,
+                                                                action: path_for(:garage, :parkers, building: building, modal: true))
+                        ])
     content << days_data.map { |day_data| build_day(day_data, building) }
     content.flatten
   end
 
+  def who_parked(days_data, building = nil)
+    content = []
+    content << days_data.map { |day_data| build_who_parks(day_data) }
+
+    SlackApp::DSL.modal_view(content.flatten, title: 'Parkers', close: "Close")
+  end
+
   private
+
+  def build_who_parks(day_data)
+    date         = day_data[:date]
+    parked_users = day_data[:parked_users]
+
+    [
+      section(":#{date.strftime('%A')}: *#{date.strftime('%A')}*", type: 'mrkdwn'),
+      (parked_users.empty? ? section('No bookings yet.') : section(build_users(parked_users), type: :mrkdwn))
+    ].compact
+  end
+
+  def build_users(day_spots)
+    day_spots.map do |spot|
+      ["*#{spot['spot_id'].to_i}* >", "<@#{spot['spot_user']}>"].join(' ')
+    end.join(', ')
+  end
 
   def build_day(day_data, building)
     date = day_data[:date]
