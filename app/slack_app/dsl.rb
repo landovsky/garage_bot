@@ -20,21 +20,23 @@ module SlackApp
         "type": "modal",
         "title": {
           "type": "plain_text",
-          "text": "My App",
-          "emoji": true
-        },
-        "submit": {
-          "type": "plain_text",
-          "text": "Submit",
+          "text": "Parkers",
           "emoji": true
         },
         "close": {
           "type": "plain_text",
-          "text": "Cancel",
+          "text": "Close",
           "emoji": true
         }
       }.merge(blocks_wrapper(content))
     end
+
+    ## Modal submit
+    # "submit": {
+    #   "type": "plain_text",
+    #   "text": "Submit",
+    #   "emoji": true
+    # },
 
     def self.blocks_wrapper(blocks)
       { blocks: blocks.is_a?(Array) ? blocks : [blocks] }
@@ -58,20 +60,22 @@ module SlackApp
       }
     end
 
-    def actions(elements, block_id: random_block_id, **opts)
+    def actions(*elements, block_id: random_block_id, **opts)
       {
         type: 'actions',
         block_id: block_id,
-        elements: [elements].flatten
+        elements: elements.flatten
       }.merge(opts)
     end
 
     def button(text, action:, **opts)
+      emoji = opts.delete(:emoji)
       {
         type: 'button',
         text: {
           type: 'plain_text',
-          text: text
+          text: text,
+          emoji: emoji || false
         },
         action_id: action
       }.merge(opts)

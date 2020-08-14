@@ -18,14 +18,15 @@ module Garage
   end
 
   def self.park_on(date, user, building = RIVER)
-    day_spots      = Store.load_item(date, building)
-    booked_spot_ids = day_spots.select { |spot| spot['spot_user'] == user }.map { |spot| spot&.fetch('spot_id', nil)&.to_i }
+    day_spots          = Store.load_item(date, building)
+    booked_spot_ids    = day_spots.select { |spot| spot['spot_user'] == user }.map { |spot| spot&.fetch('spot_id', nil)&.to_i }
     available_spot_ids = Store.available_spots(day_spots, building)
 
     {
       date: date,
       booked_spot_ids: booked_spot_ids,
-      available_spot_ids: available_spot_ids
+      available_spot_ids: available_spot_ids,
+      parked_users: day_spots
     }
   rescue => e
     Utils.error e
