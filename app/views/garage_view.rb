@@ -41,7 +41,7 @@ class GarageView
 
     [
       section(":#{date.strftime('%A')}: *#{date.strftime('%A')}*", type: 'mrkdwn'),
-      (parked_users.empty? ? section('No bookings today.') : section(build_users(parked_users), type: :mrkdwn))
+      (parked_users.empty? ? section('No bookings yet.') : section(build_users(parked_users), type: :mrkdwn))
     ].compact
   end
 
