@@ -74,14 +74,14 @@ module SlackApp
       if payload[:event]
         user_id = payload[:event][:user]
 
-        options = proc { |content| { user_id: user_id, view: SlackApp::DSL.home_view(content) } }
+        wrapper = proc { |content| { user_id: user_id, view: SlackApp::DSL.home_view(content) } }
         meth = if ENV['BOT_ENV'] == 'test'
-                proc { |opts| options[opts] }
+                proc { |content| wrapper[content] }
               else
-                proc do |opts|
-                  out = options[opts]
-                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(out)) } if ENV['BOT_ENV'] == 'dev'
-                  SLACK.views_publish(options[opts])
+                proc do |content|
+                  response = wrapper[content]
+                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(response)) } if ENV['BOT_ENV'] == 'dev'
+                  SLACK.views_publish(response)
                 end
               end
         { type: :event, method: meth }
@@ -90,19 +90,19 @@ module SlackApp
         user_id = payload[:user][:id]
         view_id = payload[:view][:id]
 
-        options = proc { |content| {
+        wrapper = proc { |content| {
           view_id: view_id,
           user_id: user_id,
           view: (modal_requested?(payload) ? content : SlackApp::DSL.home_view(content))
           }
         }
         meth = if ENV['BOT_ENV'] == 'test'
-                proc { |opts| options[opts] }
+                proc { |content| wrapper[content] }
               else
-                proc do |opts|
-                  out = options[opts]
-                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(out)) } if ENV['BOT_ENV'] == 'dev'
-                  SLACK.views_update(out)
+                proc do |content|
+                  response = wrapper[content]
+                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(response)) } if ENV['BOT_ENV'] == 'dev'
+                  SLACK.views_update(response)
                 end
               end
         { type: :view, method: meth }
@@ -114,7 +114,7 @@ module SlackApp
       elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
         url = payload[:response_url]
 
-        options = if modal_requested?(payload)
+        wrapper = if modal_requested?(payload)
           proc { |content| { trigger_id: payload[:trigger_id], view: content } }
         else
           proc { |content| SlackApp::DSL.blocks_wrapper(content) }
@@ -123,9 +123,9 @@ module SlackApp
                 proc { |content| SlackApp::DSL.blocks_wrapper(*content) }
               else
                 proc do |content|
-                  out = options[content]
-                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(out)) } if ENV['BOT_ENV'] == 'dev'
-                  modal_requested?(payload) ? SLACK.views_open(out) : SLACK.post(url, out)
+                  response = wrapper[content]
+                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(response)) } if ENV['BOT_ENV'] == 'dev'
+                  modal_requested?(payload) ? SLACK.views_open(response) : SLACK.post(url, response)
                 end
               end
 
