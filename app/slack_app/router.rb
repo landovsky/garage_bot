@@ -111,7 +111,7 @@ module SlackApp
         modal_requested = parse_params(payload)[1][:modal] == "true"
 
         options = if modal_requested
-          proc { |content| { trigger_id: payload[:trigger_id], view: SlackApp::DSL.modal_view(content) } }
+          proc { |content| { trigger_id: payload[:trigger_id], view: content } }
         else
           proc { |content| SlackApp::DSL.blocks_wrapper(content) }
         end

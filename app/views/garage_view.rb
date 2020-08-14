@@ -29,7 +29,8 @@ class GarageView
   def who_parked(days_data, building = nil)
     content = []
     content << days_data.map { |day_data| build_who_parks(day_data) }
-    content.flatten
+
+    SlackApp::DSL.modal_view(content.flatten, title: 'Parkers', close: "Close")
   end
 
   private

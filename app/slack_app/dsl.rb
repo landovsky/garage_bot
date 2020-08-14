@@ -7,36 +7,31 @@ module SlackApp
       view blocks_wrapper(blocks), type: :home
     end
 
-    def self.modal_view(blocks)
-      modal(blocks)
-    end
-
     def self.view(content, type:)
       content.merge(type: type)
     end
 
-    def self.modal(content)
-      {
+    def self.modal_view(blocks, title:, submit: nil, close: nil)
+      base = {
         "type": "modal",
         "title": {
           "type": "plain_text",
-          "text": "Parkers",
-          "emoji": true
-        },
-        "close": {
-          "type": "plain_text",
-          "text": "Close",
+          "text": title,
           "emoji": true
         }
-      }.merge(blocks_wrapper(content))
+      }
+      base = base.merge(submit: modal_button(submit)) if submit
+      base = base.merge(close: modal_button(close)) if close
+      base.merge(blocks_wrapper(blocks))
     end
 
-    ## Modal submit
-    # "submit": {
-    #   "type": "plain_text",
-    #   "text": "Submit",
-    #   "emoji": true
-    # },
+    def self.modal_button(button_text)
+      {
+        "type": "plain_text",
+        "text": button_text,
+        "emoji": true
+      }
+    end
 
     def self.blocks_wrapper(blocks)
       { blocks: blocks.is_a?(Array) ? blocks : [blocks] }
