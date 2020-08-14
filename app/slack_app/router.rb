@@ -46,15 +46,15 @@ module SlackApp
 
       return payload[:challenge] if respond_to_challenge?(payload)
 
-      response_method = identify_response_method(payload)
+      response_handler = build_response_handler(payload)
 
-      if response_method[:type] == :event
+      if response_handler[:type] == :event
         controller, _route = find_event_route(payload)
         params             = { user_id: payload.dig(:event, :user) }
-      elsif response_method[:type] == :command
+      elsif response_handler[:type] == :command
         controller, _route = find_command_route(payload)
         params             = { user_id: payload[:user_id] }
-      elsif response_method[:type] == :message
+      elsif response_handler[:type] == :message
         controller, _route, route_params = find_route(payload)
         data, params    = parse_params(payload)
         params          = data ? route_params.merge(data).merge(params: params) : {}
@@ -64,13 +64,13 @@ module SlackApp
         params          = data ? route_params.merge(data).merge(params: params) : {}
       end
 
-      ApplicationController.call(controller, params, response_method)
+      ApplicationController.call(controller, params, response_handler)
     rescue => e
       U.error e
       raise e
     end
 
-    def self.identify_response_method(payload)
+    def self.build_response_handler(payload)
       if payload[:event]
         user_id = payload[:event][:user]
 
@@ -90,7 +90,12 @@ module SlackApp
         user_id = payload[:user][:id]
         view_id = payload[:view][:id]
 
-        options = proc { |content| { view_id: view_id, user_id: user_id, view: SlackApp::DSL.home_view(content) } }
+        options = proc { |content| {
+          view_id: view_id,
+          user_id: user_id,
+          view: (modal_requested?(payload) ? content : SlackApp::DSL.home_view(content))
+          }
+        }
         meth = if ENV['BOT_ENV'] == 'test'
                 proc { |opts| options[opts] }
               else
@@ -107,10 +112,9 @@ module SlackApp
         { type: :command, method: meth }
 
       elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
-        url             = payload[:response_url]
-        modal_requested = parse_params(payload)[1][:modal] == "true"
+        url = payload[:response_url]
 
-        options = if modal_requested
+        options = if modal_requested?(payload)
           proc { |content| { trigger_id: payload[:trigger_id], view: content } }
         else
           proc { |content| SlackApp::DSL.blocks_wrapper(content) }
@@ -121,7 +125,7 @@ module SlackApp
                 proc do |content|
                   out = options[content]
                   File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(out)) } if ENV['BOT_ENV'] == 'dev'
-                  modal_requested ? SLACK.views_open(out) : SLACK.post(url, out)
+                  modal_requested?(payload) ? SLACK.views_open(out) : SLACK.post(url, out)
                 end
               end
 
@@ -129,6 +133,10 @@ module SlackApp
       else
         raise 'unhandled payload type'
       end
+    end
+
+    def self.modal_requested?(payload)
+      parse_params(payload)[1][:modal] == "true"
     end
 
     def self.find_event_route(payload)
@@ -167,6 +175,7 @@ module SlackApp
     end
 
     def self.find_route(payload)
+      # TODO what if there are more actions?
       action = payload[:actions][0][:action_id]
       puts "actions: #{action}"
       action_items = action.split('?')[0].split('/')
