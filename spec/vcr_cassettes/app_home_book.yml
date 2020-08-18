@@ -1,0 +1,391 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597701600"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200818T153444Z
+      X-Amz-Content-Sha256:
+      - 5a50a527833cc2774a8c2a90383c36502cd29420d09578d5fa6ef724c48db5ea
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200818/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=baccd6c2043cf98c408ccffeedf5e3fa46fd43a272480f2de2243563e1b4f90d
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 18 Aug 2020 15:34:44 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '139'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - GOP8NVIFH52MRHPN8RBS2SR43BVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '1855148369'
+    body:
+      encoding: UTF-8
+      string: '{"Item":{"payload":{"L":[{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"155"}}}]},"date":{"N":"1597701600"},"building":{"S":"river"}}}'
+  recorded_at: Tue, 18 Aug 2020 15:34:44 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597701600"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200818T153444Z
+      X-Amz-Content-Sha256:
+      - 5a50a527833cc2774a8c2a90383c36502cd29420d09578d5fa6ef724c48db5ea
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200818/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=baccd6c2043cf98c408ccffeedf5e3fa46fd43a272480f2de2243563e1b4f90d
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 18 Aug 2020 15:34:44 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '139'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - JMLRGOURII8F8SIS17FK3F2I5NVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '1855148369'
+    body:
+      encoding: UTF-8
+      string: '{"Item":{"payload":{"L":[{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"155"}}}]},"date":{"N":"1597701600"},"building":{"S":"river"}}}'
+  recorded_at: Tue, 18 Aug 2020 15:34:44 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597788000"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200818T153444Z
+      X-Amz-Content-Sha256:
+      - ad9ed81d72d99f6c9538b4e0dd856c86ee3c1cc997085cb06fc7d89f6208863a
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200818/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=b45d5ca3eccf438497116445e02d61c3a09aaabc2e878c797f50f23bbe90e8a5
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 18 Aug 2020 15:34:44 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - T8OKREF31MRCOR8HQ4CJN2SI4BVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '2745614147'
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 18 Aug 2020 15:34:44 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597874400"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200818T153444Z
+      X-Amz-Content-Sha256:
+      - b9670609f4979badf43061c86e2d419bc06c61456dc8dd8a216db444cc95dbef
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200818/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=90a7f58da18e72353f1d606097af7c4c58fe365bdb59b911ac0a3690800f5e64
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 18 Aug 2020 15:34:44 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 06G7MNJVQLQE0SJ99UQE88FRBFVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '2745614147'
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 18 Aug 2020 15:34:44 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597960800"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200818T153444Z
+      X-Amz-Content-Sha256:
+      - d01dc01d740078a9aa0ee883c05d470c48ef1140f6f0cbce1bdc6aca0c86ec09
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200818/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=141a1886d0b36802460bc2aac5c4c72b7b4f67bfb639298367e53c1d8436879e
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 18 Aug 2020 15:34:45 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 4KFBTP4UU6MQUUK3GAKU9R4CKJVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '2745614147'
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 18 Aug 2020 15:34:45 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1598047200"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200818T153445Z
+      X-Amz-Content-Sha256:
+      - cf27c8adaa44f7f7949626e1340bbc83b3cd7b2110eecb7df1fe01ca154475c9
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200818/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=6af30588a7ec0244118425f1bab7d666d6b21e3997ac420fece1b738a6eb2a7d
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Tue, 18 Aug 2020 15:34:45 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - CPVTQ6NU4R0SME12NAGPCI4DO3VV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '2745614147'
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Tue, 18 Aug 2020 15:34:45 GMT
+- request:
+    method: post
+    uri: https://slack.com/api/views.update
+    body:
+      encoding: UTF-8
+      string: '{"view_id":"VT9UVQVAT","user_id":"UJC1L8Q87","view":{"blocks":[{"type":"section","block_id":"5455","text":{"type":"plain_text","text":"Parking
+        in"}},{"type":"actions","block_id":"4853","elements":[{"type":"static_select","action_id":"garage?building=saldovka","placeholder":{"type":"plain_text","text":"Select
+        an item","emoji":true},"initial_option":{"text":{"type":"plain_text","text":"River","emoji":true},"value":"river"},"options":[{"text":{"type":"plain_text","text":"Saldovka","emoji":true},"value":"saldovka"},{"text":{"type":"plain_text","text":"River","emoji":true},"value":"river"}]},{"type":"button","text":{"type":"plain_text","text":"Parkers
+        :information_source:","emoji":true},"action_id":"garage/parkers?building=river\u0026modal=true","style":"primary"}]},{"type":"section","block_id":"197","text":{"type":"mrkdwn","text":":Tuesday:
+        *Tuesday*"}},{"type":"actions","block_id":"4863","elements":[{"type":"button","text":{"type":"plain_text","text":"155","emoji":false},"action_id":"garage/2020-08-18/spot/155/cancel?building=river","style":"danger"},{"type":"button","text":{"type":"plain_text","text":"156","emoji":false},"action_id":"garage/2020-08-18/spot/156/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"157","emoji":false},"action_id":"garage/2020-08-18/spot/157/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"158","emoji":false},"action_id":"garage/2020-08-18/spot/158/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"159","emoji":false},"action_id":"garage/2020-08-18/spot/159/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"160","emoji":false},"action_id":"garage/2020-08-18/spot/160/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"161","emoji":false},"action_id":"garage/2020-08-18/spot/161/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"165","emoji":false},"action_id":"garage/2020-08-18/spot/165/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"166","emoji":false},"action_id":"garage/2020-08-18/spot/166/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"191","emoji":false},"action_id":"garage/2020-08-18/spot/191/book?building=river"}]},{"type":"section","block_id":"7542","text":{"type":"mrkdwn","text":":Wednesday:
+        *Wednesday*"}},{"type":"actions","block_id":"4476","elements":[{"type":"button","text":{"type":"plain_text","text":"155","emoji":false},"action_id":"garage/2020-08-19/spot/155/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"156","emoji":false},"action_id":"garage/2020-08-19/spot/156/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"157","emoji":false},"action_id":"garage/2020-08-19/spot/157/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"158","emoji":false},"action_id":"garage/2020-08-19/spot/158/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"159","emoji":false},"action_id":"garage/2020-08-19/spot/159/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"160","emoji":false},"action_id":"garage/2020-08-19/spot/160/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"161","emoji":false},"action_id":"garage/2020-08-19/spot/161/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"165","emoji":false},"action_id":"garage/2020-08-19/spot/165/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"166","emoji":false},"action_id":"garage/2020-08-19/spot/166/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"191","emoji":false},"action_id":"garage/2020-08-19/spot/191/book?building=river"}]},{"type":"section","block_id":"3659","text":{"type":"mrkdwn","text":":Thursday:
+        *Thursday*"}},{"type":"actions","block_id":"7657","elements":[{"type":"button","text":{"type":"plain_text","text":"155","emoji":false},"action_id":"garage/2020-08-20/spot/155/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"156","emoji":false},"action_id":"garage/2020-08-20/spot/156/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"157","emoji":false},"action_id":"garage/2020-08-20/spot/157/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"158","emoji":false},"action_id":"garage/2020-08-20/spot/158/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"159","emoji":false},"action_id":"garage/2020-08-20/spot/159/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"160","emoji":false},"action_id":"garage/2020-08-20/spot/160/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"161","emoji":false},"action_id":"garage/2020-08-20/spot/161/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"165","emoji":false},"action_id":"garage/2020-08-20/spot/165/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"166","emoji":false},"action_id":"garage/2020-08-20/spot/166/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"191","emoji":false},"action_id":"garage/2020-08-20/spot/191/book?building=river"}]},{"type":"section","block_id":"6318","text":{"type":"mrkdwn","text":":Friday:
+        *Friday*"}},{"type":"actions","block_id":"5409","elements":[{"type":"button","text":{"type":"plain_text","text":"155","emoji":false},"action_id":"garage/2020-08-21/spot/155/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"156","emoji":false},"action_id":"garage/2020-08-21/spot/156/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"157","emoji":false},"action_id":"garage/2020-08-21/spot/157/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"158","emoji":false},"action_id":"garage/2020-08-21/spot/158/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"159","emoji":false},"action_id":"garage/2020-08-21/spot/159/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"160","emoji":false},"action_id":"garage/2020-08-21/spot/160/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"161","emoji":false},"action_id":"garage/2020-08-21/spot/161/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"165","emoji":false},"action_id":"garage/2020-08-21/spot/165/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"166","emoji":false},"action_id":"garage/2020-08-21/spot/166/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"191","emoji":false},"action_id":"garage/2020-08-21/spot/191/book?building=river"}]},{"type":"section","block_id":"9083","text":{"type":"mrkdwn","text":":Saturday:
+        *Saturday*"}},{"type":"actions","block_id":"1581","elements":[{"type":"button","text":{"type":"plain_text","text":"155","emoji":false},"action_id":"garage/2020-08-22/spot/155/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"156","emoji":false},"action_id":"garage/2020-08-22/spot/156/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"157","emoji":false},"action_id":"garage/2020-08-22/spot/157/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"158","emoji":false},"action_id":"garage/2020-08-22/spot/158/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"159","emoji":false},"action_id":"garage/2020-08-22/spot/159/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"160","emoji":false},"action_id":"garage/2020-08-22/spot/160/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"161","emoji":false},"action_id":"garage/2020-08-22/spot/161/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"165","emoji":false},"action_id":"garage/2020-08-22/spot/165/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"166","emoji":false},"action_id":"garage/2020-08-22/spot/166/book?building=river"},{"type":"button","text":{"type":"plain_text","text":"191","emoji":false},"action_id":"garage/2020-08-22/spot/191/book?building=river"}]}],"type":"home"}}'
+    headers:
+      Authorization:
+      - Bearer xoxb-6859189185-912471457745-iHr0jQM5mNmDd3HJPvCNBzGx
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 Aug 2020 15:34:45 GMT
+      Server:
+      - Apache
+      X-Content-Type-Options:
+      - nosniff
+      X-Slack-Req-Id:
+      - 1a45dd0dd8bed09796ede3e1fbe8bb6e
+      X-Oauth-Scopes:
+      - app_mentions:read,im:history,im:read,commands,chat:write
+      Expires:
+      - Mon, 26 Jul 1997 05:00:00 GMT
+      Cache-Control:
+      - private, no-cache, no-store, must-revalidate
+      X-Xss-Protection:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      Pragma:
+      - no-cache
+      Access-Control-Allow-Headers:
+      - slack-route, x-slack-version-ts, x-b3-traceid, x-b3-spanid, x-b3-parentspanid,
+        x-b3-sampled, x-b3-flags
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Referrer-Policy:
+      - no-referrer
+      X-Slack-Backend:
+      - r
+      Access-Control-Expose-Headers:
+      - x-slack-req-id, retry-after
+      Access-Control-Allow-Origin:
+      - "*"
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Via:
+      - haproxy-www-mki5,haproxy-edge-fra-y3ax
+    body:
+      encoding: UTF-8
+      string: '{"ok":true,"view":{"id":"VT9UVQVAT","team_id":"T06R95K5F","type":"home","blocks":[{"type":"section","block_id":"5455","text":{"type":"plain_text","text":"Parking
+        in","emoji":true}},{"type":"actions","block_id":"4853","elements":[{"type":"static_select","action_id":"garage?building=saldovka","placeholder":{"type":"plain_text","text":"Select
+        an item","emoji":true},"initial_option":{"text":{"type":"plain_text","text":"River","emoji":true},"value":"river"},"options":[{"text":{"type":"plain_text","text":"Saldovka","emoji":true},"value":"saldovka"},{"text":{"type":"plain_text","text":"River","emoji":true},"value":"river"}]},{"type":"button","action_id":"garage\/parkers?building=river&modal=true","text":{"type":"plain_text","text":"Parkers
+        :information_source:","emoji":true},"style":"primary"}]},{"type":"section","block_id":"197","text":{"type":"mrkdwn","text":":Tuesday:
+        *Tuesday*","verbatim":false}},{"type":"actions","block_id":"4863","elements":[{"type":"button","action_id":"garage\/2020-08-18\/spot\/155\/cancel?building=river","text":{"type":"plain_text","text":"155","emoji":false},"style":"danger"},{"type":"button","action_id":"garage\/2020-08-18\/spot\/156\/book?building=river","text":{"type":"plain_text","text":"156","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/157\/book?building=river","text":{"type":"plain_text","text":"157","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/158\/book?building=river","text":{"type":"plain_text","text":"158","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/159\/book?building=river","text":{"type":"plain_text","text":"159","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/160\/book?building=river","text":{"type":"plain_text","text":"160","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/161\/book?building=river","text":{"type":"plain_text","text":"161","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/165\/book?building=river","text":{"type":"plain_text","text":"165","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/166\/book?building=river","text":{"type":"plain_text","text":"166","emoji":false}},{"type":"button","action_id":"garage\/2020-08-18\/spot\/191\/book?building=river","text":{"type":"plain_text","text":"191","emoji":false}}]},{"type":"section","block_id":"7542","text":{"type":"mrkdwn","text":":Wednesday:
+        *Wednesday*","verbatim":false}},{"type":"actions","block_id":"4476","elements":[{"type":"button","action_id":"garage\/2020-08-19\/spot\/155\/book?building=river","text":{"type":"plain_text","text":"155","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/156\/book?building=river","text":{"type":"plain_text","text":"156","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/157\/book?building=river","text":{"type":"plain_text","text":"157","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/158\/book?building=river","text":{"type":"plain_text","text":"158","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/159\/book?building=river","text":{"type":"plain_text","text":"159","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/160\/book?building=river","text":{"type":"plain_text","text":"160","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/161\/book?building=river","text":{"type":"plain_text","text":"161","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/165\/book?building=river","text":{"type":"plain_text","text":"165","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/166\/book?building=river","text":{"type":"plain_text","text":"166","emoji":false}},{"type":"button","action_id":"garage\/2020-08-19\/spot\/191\/book?building=river","text":{"type":"plain_text","text":"191","emoji":false}}]},{"type":"section","block_id":"3659","text":{"type":"mrkdwn","text":":Thursday:
+        *Thursday*","verbatim":false}},{"type":"actions","block_id":"7657","elements":[{"type":"button","action_id":"garage\/2020-08-20\/spot\/155\/book?building=river","text":{"type":"plain_text","text":"155","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/156\/book?building=river","text":{"type":"plain_text","text":"156","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/157\/book?building=river","text":{"type":"plain_text","text":"157","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/158\/book?building=river","text":{"type":"plain_text","text":"158","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/159\/book?building=river","text":{"type":"plain_text","text":"159","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/160\/book?building=river","text":{"type":"plain_text","text":"160","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/161\/book?building=river","text":{"type":"plain_text","text":"161","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/165\/book?building=river","text":{"type":"plain_text","text":"165","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/166\/book?building=river","text":{"type":"plain_text","text":"166","emoji":false}},{"type":"button","action_id":"garage\/2020-08-20\/spot\/191\/book?building=river","text":{"type":"plain_text","text":"191","emoji":false}}]},{"type":"section","block_id":"6318","text":{"type":"mrkdwn","text":":Friday:
+        *Friday*","verbatim":false}},{"type":"actions","block_id":"5409","elements":[{"type":"button","action_id":"garage\/2020-08-21\/spot\/155\/book?building=river","text":{"type":"plain_text","text":"155","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/156\/book?building=river","text":{"type":"plain_text","text":"156","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/157\/book?building=river","text":{"type":"plain_text","text":"157","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/158\/book?building=river","text":{"type":"plain_text","text":"158","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/159\/book?building=river","text":{"type":"plain_text","text":"159","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/160\/book?building=river","text":{"type":"plain_text","text":"160","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/161\/book?building=river","text":{"type":"plain_text","text":"161","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/165\/book?building=river","text":{"type":"plain_text","text":"165","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/166\/book?building=river","text":{"type":"plain_text","text":"166","emoji":false}},{"type":"button","action_id":"garage\/2020-08-21\/spot\/191\/book?building=river","text":{"type":"plain_text","text":"191","emoji":false}}]},{"type":"section","block_id":"9083","text":{"type":"mrkdwn","text":":Saturday:
+        *Saturday*","verbatim":false}},{"type":"actions","block_id":"1581","elements":[{"type":"button","action_id":"garage\/2020-08-22\/spot\/155\/book?building=river","text":{"type":"plain_text","text":"155","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/156\/book?building=river","text":{"type":"plain_text","text":"156","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/157\/book?building=river","text":{"type":"plain_text","text":"157","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/158\/book?building=river","text":{"type":"plain_text","text":"158","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/159\/book?building=river","text":{"type":"plain_text","text":"159","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/160\/book?building=river","text":{"type":"plain_text","text":"160","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/161\/book?building=river","text":{"type":"plain_text","text":"161","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/165\/book?building=river","text":{"type":"plain_text","text":"165","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/166\/book?building=river","text":{"type":"plain_text","text":"166","emoji":false}},{"type":"button","action_id":"garage\/2020-08-22\/spot\/191\/book?building=river","text":{"type":"plain_text","text":"191","emoji":false}}]}],"private_metadata":"","callback_id":"","state":{"values":{}},"hash":"1597764885.WpJ2lVYV","title":{"type":"plain_text","text":"View
+        Title","emoji":true},"clear_on_close":false,"notify_on_close":false,"close":null,"submit":null,"previous_view_id":null,"root_view_id":"VT9UVQVAT","app_id":"AT4KN45L5","external_id":"","app_installed_team_id":"T06R95K5F","bot_id":"BT4K1LABS"},"warning":"missing_charset","response_metadata":{"warnings":["missing_charset"]}}'
+  recorded_at: Tue, 18 Aug 2020 15:34:45 GMT
+recorded_with: VCR 6.0.0
