@@ -11,7 +11,5 @@ require_relative 'slack_app/utils'
 require_relative 'views/garage_view'
 require_relative 'controllers/garage_controller'
 
-require 'active_support/core_ext/hash'
-
 module SlackApp
 end

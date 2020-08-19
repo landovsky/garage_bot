@@ -15,6 +15,4 @@ end
 group :test do
   gem 'factory_bot'
   gem 'rspec'
-  gem 'vcr'
-  gem 'webmock'
 end
