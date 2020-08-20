@@ -1,0 +1,315 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597960800"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200820T114624Z
+      X-Amz-Content-Sha256:
+      - d01dc01d740078a9aa0ee883c05d470c48ef1140f6f0cbce1bdc6aca0c86ec09
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200820/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=9e7ddecd56b7e5141abb43aad11100eb45900f87e070962fad4f89fc7adbd610
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 20 Aug 2020 11:46:24 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '199'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - OC1K4PR6H6E76NK1T112TCRBOBVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '3921816823'
+    body:
+      encoding: UTF-8
+      string: '{"Item":{"payload":{"L":[{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"155"}}},{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"156"}}}]},"date":{"N":"1597960800"},"building":{"S":"river"}}}'
+  recorded_at: Thu, 20 Aug 2020 11:46:24 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597874400"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200820T114624Z
+      X-Amz-Content-Sha256:
+      - b9670609f4979badf43061c86e2d419bc06c61456dc8dd8a216db444cc95dbef
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200820/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=83eccff78a8569458b1a6a3dace563a254293e6b080296aa40fccb9444332e8c
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 20 Aug 2020 11:46:24 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '199'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - F331JJU6NDTQK5BLO1QJ34O6UVVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '1267337147'
+    body:
+      encoding: UTF-8
+      string: '{"Item":{"payload":{"L":[{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"155"}}},{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"156"}}}]},"date":{"N":"1597874400"},"building":{"S":"river"}}}'
+  recorded_at: Thu, 20 Aug 2020 11:46:24 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1597960800"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200820T114624Z
+      X-Amz-Content-Sha256:
+      - d01dc01d740078a9aa0ee883c05d470c48ef1140f6f0cbce1bdc6aca0c86ec09
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200820/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=9e7ddecd56b7e5141abb43aad11100eb45900f87e070962fad4f89fc7adbd610
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 20 Aug 2020 11:46:24 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '199'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - MVNDVH4V8KIBLHUIJGA3G75BT7VV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '3921816823'
+    body:
+      encoding: UTF-8
+      string: '{"Item":{"payload":{"L":[{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"155"}}},{"M":{"spot_user":{"S":"UJC1L8Q87"},"spot_id":{"N":"156"}}}]},"date":{"N":"1597960800"},"building":{"S":"river"}}}'
+  recorded_at: Thu, 20 Aug 2020 11:46:25 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1598047200"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200820T114625Z
+      X-Amz-Content-Sha256:
+      - cf27c8adaa44f7f7949626e1340bbc83b3cd7b2110eecb7df1fe01ca154475c9
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200820/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=8b60b8494c4f153457443eb61736f9fe2c51698f38ac405a2891846458705757
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 20 Aug 2020 11:46:25 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '80'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 160MINS0F8JT4BN2JMJT3BKB9RVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '300394162'
+    body:
+      encoding: UTF-8
+      string: '{"Item":{"payload":{"L":[]},"date":{"N":"1598047200"},"building":{"S":"river"}}}'
+  recorded_at: Thu, 20 Aug 2020 11:46:25 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1598133600"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200820T114625Z
+      X-Amz-Content-Sha256:
+      - ef668343fa07843b2aae60530a6dca018c5ba073c1fa2c32cbb1da3d6d49b914
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200820/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=62400cdb7a5d913f6d1affd5be7278b4a156fa0fa56a57bcd053a47f4cab0dd2
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 20 Aug 2020 11:46:25 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - 9G3EIL72SFG47OCL14VRVFI43BVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '2745614147'
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Thu, 20 Aug 2020 11:46:25 GMT
+- request:
+    method: post
+    uri: https://dynamodb.eu-central-1.amazonaws.com/
+    body:
+      encoding: UTF-8
+      string: '{"TableName":"applifting-parking","Key":{"date":{"N":"1598220000"},"building":{"S":"river"}}}'
+    headers:
+      Content-Type:
+      - application/x-amz-json-1.0
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby3/3.89.1 ruby/2.5.6 x86_64-darwin18 aws-sdk-dynamodb/1.41.0
+      X-Amz-Target:
+      - DynamoDB_20120810.GetItem
+      Host:
+      - dynamodb.eu-central-1.amazonaws.com
+      X-Amz-Date:
+      - 20200820T114625Z
+      X-Amz-Content-Sha256:
+      - 300d7032257d4e8beead71bd049e2aa5269989ccf81ad2764cff76558364c7e9
+      Authorization:
+      - AWS4-HMAC-SHA256 Credential=AKIAXNW2W6WIE4BOJZPS/20200820/eu-central-1/dynamodb/aws4_request,
+        SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date;x-amz-target,
+        Signature=b8ba4770dfe6fc77e3beac223542210424878c701ac52fec9e113e5a196bdfe9
+      Content-Length:
+      - '93'
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Server
+      Date:
+      - Thu, 20 Aug 2020 11:46:25 GMT
+      Content-Type:
+      - application/x-amz-json-1.0
+      Content-Length:
+      - '2'
+      Connection:
+      - keep-alive
+      X-Amzn-Requestid:
+      - VHA00F4N0NSJUHCM886N33KTMBVV4KQNSO5AEMVJF66Q9ASUAAJG
+      X-Amz-Crc32:
+      - '2745614147'
+    body:
+      encoding: UTF-8
+      string: "{}"
+  recorded_at: Thu, 20 Aug 2020 11:46:25 GMT
+recorded_with: VCR 6.0.0

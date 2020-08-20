@@ -1,1 +1,0 @@
-token=raiyvEnJ2xN6tNDIG8bfHHis&team_id=T06R95K5F&team_domain=applifting&channel_id=DHYNEDB5H&channel_name=directmessage&user_id=UJC1L8Q87&user_name=tomas.landovsky&command=%2Ftmp&text=&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT06R95K5F%2F934215825639%2FGt6viMCcok2ID9R8EqOwXmER&trigger_id=931899495764.6859189185.f4c941de21f9532d55dbd45cc22d4f6b

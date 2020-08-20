@@ -10,6 +10,10 @@ module SlackApp
         puts e.backtrace[0..2]
         puts '==============='
       end
+
+      def log_output(output)
+        File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(output)) }
+      end
     end
   end
 end

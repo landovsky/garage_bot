@@ -71,44 +71,44 @@ module SlackApp
     end
 
     def self.build_response_handler(payload)
+      test_env = ENV['BOT_ENV'] == 'test'
+      dev_env  = ENV['BOT_ENV'] == 'dev'
+
       if payload[:event]
         user_id = payload[:event][:user]
 
         wrapper = proc { |content| { user_id: user_id, view: SlackApp::DSL.home_view(content) } }
-        meth = if ENV['BOT_ENV'] == 'test'
-                proc { |content| wrapper[content] }
-              else
-                proc do |content|
-                  response = wrapper[content]
-                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(response)) } if ENV['BOT_ENV'] == 'dev'
-                  SLACK.views_publish(response)
-                end
-              end
+        meth = proc do |content|
+          response = wrapper[content]
+          U.log_output(response) if dev_env
+          test_env ? response : SLACK.views_publish(response)
+        end
         { type: :event, method: meth }
 
       elsif payload[:view]
         user_id = payload[:user][:id]
         view_id = payload[:view][:id]
 
-        wrapper = proc { |content| {
-          view_id: view_id,
-          user_id: user_id,
-          view: (modal_requested?(payload) ? content : SlackApp::DSL.home_view(content))
+        wrapper = proc { |content|
+          {
+            view_id: view_id,
+            user_id: user_id,
+            view: (modal_requested?(payload) ? content : SlackApp::DSL.home_view(content))
           }
         }
-        meth = if ENV['BOT_ENV'] == 'test'
-                proc { |content| wrapper[content] }
-              else
-                proc do |content|
-                  response = wrapper[content]
-                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(response)) } if ENV['BOT_ENV'] == 'dev'
-                  SLACK.views_update(response)
-                end
-              end
+        meth = proc do |content|
+          response = wrapper[content]
+          U.log_output(response) if dev_env
+          test_env ? response : SLACK.views_update(response)
+        end
         { type: :view, method: meth }
 
       elsif payload[:command]
-        meth = proc { |content| SlackApp::DSL.blocks_wrapper(content) }
+        meth = proc do |content|
+          response = SlackApp::DSL.blocks_wrapper(content)
+          U.log_output response if dev_env
+          response
+        end
         { type: :command, method: meth }
 
       elsif payload.dig(:container, :type) == 'message' && payload[:response_url]
@@ -119,16 +119,12 @@ module SlackApp
         else
           proc { |content| SlackApp::DSL.blocks_wrapper(content) }
         end
-        meth = if ENV['BOT_ENV'] == 'test'
-                proc { |content| SlackApp::DSL.blocks_wrapper(*content) }
-              else
-                proc do |content|
-                  response = wrapper[content]
-                  File.open('tmp/output.json', 'wb') { |file| file.write(JSON.dump(response)) } if ENV['BOT_ENV'] == 'dev'
-                  modal_requested?(payload) ? SLACK.views_open(response) : SLACK.post(url, response)
-                end
-              end
 
+        meth = proc do |content|
+          response = wrapper[content]
+          U.log_output(response) if dev_env
+          test_env ? response : (modal_requested?(payload) ? SLACK.views_open(response) : SLACK.post(url, response))
+        end
         { type: :message, method: meth }
       else
         raise 'unhandled payload type'
