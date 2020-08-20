@@ -6,7 +6,7 @@ module Helpers
       File.read("spec/fixtures/#{event}.txt"),
       JSON.parse(File.read("spec/fixtures/#{event}.json")).symbolize_keys
     ]
-    expected_result = normalize_payload(deep_transform(expected_result))
+    expected_result = normalize_payload(deep_symbolize_keys(expected_result))
     [raw_request, expected_result]
   end
 
@@ -18,7 +18,11 @@ module Helpers
     payload
   end
 
-  def deep_transform(hash)
+  def cassette_exists?(cassette_name)
+    File.exist?('spec/vcr_casettes')
+  end
+
+  def deep_symbolize_keys(hash)
     hash.deep_transform_keys! { |key| key.to_sym }
   end
 

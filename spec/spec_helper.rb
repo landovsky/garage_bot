@@ -17,9 +17,17 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'pry'
+require 'vcr'
 require 'active_support/all'
-require 'support/helpers'
 require_relative '../app/slack_app'
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
+
+BOT_ENV = 'test'
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/vcr_cassettes'
+  config.hook_into :webmock
+end
 
 RSpec.configure do |config|
   config.include Helpers
