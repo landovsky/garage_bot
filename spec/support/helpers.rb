@@ -11,8 +11,16 @@ module Helpers
   end
 
   def normalize_payload(payload)
-    payload[:view][:blocks] = payload[:view][:blocks].map do |block|
-      normalize_block block.merge(block_id: nil)
+    if payload[:blocks]
+      payload[:blocks] = payload[:blocks].map do |block|
+        normalize_block block.merge(block_id: nil)
+      end
+    elsif payload[:view][:blocks]
+      payload[:view][:blocks] = payload[:view][:blocks].map do |block|
+        normalize_block block.merge(block_id: nil)
+      end
+    else
+      raise 'Unknown payload structure.'
     end
 
     payload

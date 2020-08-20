@@ -89,10 +89,11 @@ module SlackApp
         user_id = payload[:user][:id]
         view_id = payload[:view][:id]
 
-        wrapper = proc { |content| {
-          view_id: view_id,
-          user_id: user_id,
-          view: (modal_requested?(payload) ? content : SlackApp::DSL.home_view(content))
+        wrapper = proc { |content|
+          {
+            view_id: view_id,
+            user_id: user_id,
+            view: (modal_requested?(payload) ? content : SlackApp::DSL.home_view(content))
           }
         }
         meth = proc do |content|
@@ -103,7 +104,11 @@ module SlackApp
         { type: :view, method: meth }
 
       elsif payload[:command]
-        meth = proc { |content| SlackApp::DSL.blocks_wrapper(content) }
+        meth = proc do |content|
+          response = SlackApp::DSL.blocks_wrapper(content)
+          U.log_output response if dev_env
+          response
+        end
         { type: :command, method: meth }
 
       elsif payload.dig(:container, :type) == 'message' && payload[:response_url]

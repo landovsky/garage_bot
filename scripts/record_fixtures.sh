@@ -15,7 +15,8 @@ VCRS     = 'spec/vcr_cassettes/'
 
 variants = %w[
   app_home_opened app_home_book app_home_cancel app_home_parkers
-  app_home_select command_invoke command_book command_cancel command_select challenge
+  app_home_select command_invoke command_book command_cancel command_select
+  command_parkers challenge
 ]
 
 def move_files(variant)
