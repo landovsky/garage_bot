@@ -1,5 +1,7 @@
-# typed: strong
+# typed: true
 # frozen_string_literal: true
+
+require 'slack/block_kit'
 
 require_relative 'slack_app/application_controller'
 require_relative 'slack_app/dsl'
