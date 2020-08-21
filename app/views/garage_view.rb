@@ -13,6 +13,46 @@ class GarageView
     SlackApp::DSL.home_view actions(button('Cancel', action: path_for(:garage, :cancel, date: "12323", building: 'ahaha'), style: :danger))
   end
 
+  def test
+    actions([button('Open', action: path_for(:form_test, modal: true))])
+  end
+
+  def form_modal
+    # content = [
+    #   {:type=>"actions",
+    #     :elements=>
+    #       [
+    #         {:type=>"conversations_select", :placeholder=>{:type=>"plain_text", :text=>"Select a conversation", :emoji=>true}},
+    #         {:type=>"channels_select", :placeholder=>{:type=>"plain_text", :text=>"Select a channel", :emoji=>true}},
+    #         {:type=>"users_select", :placeholder=>{:type=>"plain_text", :text=>"Select a user", :emoji=>true}},
+    #         {:type=>"static_select",
+    #           :placeholder=>{:type=>"plain_text", :text=>"Select an item", :emoji=>true},
+    #       :options=>
+    #         [{:text=>{:type=>"plain_text", :text=>"*this is plain_text text*", :emoji=>true}, :value=>"value-0"},
+    #         {:text=>{:type=>"plain_text", :text=>"*this is plain_text text*", :emoji=>true}, :value=>"value-1"},
+    #         {:text=>{:type=>"plain_text", :text=>"*this is plain_text text*", :emoji=>true}, :value=>"value-2"}]}
+    #       ]
+    #   }
+    # ]
+    blocks = [
+      {
+        :type=>"input",
+        block_id: 'my_block_id',
+        :element=> {
+          action_id: 'my_element_id',
+          :type=>"conversations_select",
+          :placeholder=> {
+            :type=>"plain_text",
+            :text=>"Select users", :emoji=>true
+            }
+          },
+        :label=> {
+          :type=>"plain_text", :text=>"Label", :emoji=>true}
+        }
+    ]
+    SlackApp::DSL.modal_view(blocks.flatten, title: 'Test form', submit: 'Submit', close: "Close")
+  end
+
   def garage(days_data, building)
     content = []
     content << section('Parking in')

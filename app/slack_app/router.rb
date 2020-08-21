@@ -19,7 +19,8 @@ module SlackApp
         'garage/:date/spot/:spot_id/cancel' => 'garage#cancel_spot',
         'garage/parkers' => 'garage#who_parked',
         'slack_event/app_home_opened' => 'garage#park',
-        "command/#{command}" => 'garage#park'
+        "command/#{command}" => 'garage#test',
+        "form_test" => 'garage#form_modal'
       }
     end
 
@@ -58,6 +59,8 @@ module SlackApp
         controller, _route, route_params = find_route(payload)
         data, params    = parse_params(payload)
         params          = data ? route_params.merge(data).merge(params: params) : {}
+      elsif response_handler[:type] == :view_submission
+        puts payload
       else
         controller, _route, route_params = find_route(payload)
         data, params    = parse_params(payload)

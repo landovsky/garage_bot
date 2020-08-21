@@ -4,9 +4,6 @@
 require 'spec_helper'
 
 RSpec.describe 'App home' do
-  ActiveSupport::TestCase
-  include ActiveSupport::Testing::TimeHelpers
-
   let(:router)     { SlackApp::Router }
   let(:timestamps) { YAML.load(File.open('spec/fixtures/fixtures.yml')) }
 
