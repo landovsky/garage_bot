@@ -11,7 +11,7 @@ module SlackApp
       content.merge(type: type)
     end
 
-    def self.modal_view(blocks, title:, submit: nil, close: nil)
+    def self.modal_view(blocks, title:, submit: nil, close: nil, callback_id: nil)
       base = {
         "type": "modal",
         "title": {
@@ -22,6 +22,7 @@ module SlackApp
       }
       base = base.merge(submit: modal_button(submit)) if submit
       base = base.merge(close: modal_button(close)) if close
+      base = base.merge(callback_id: callback_id) if callback_id
       base.merge(blocks_wrapper(blocks))
     end
 

@@ -20,7 +20,8 @@ module SlackApp
         'garage/parkers' => 'garage#who_parked',
         'slack_event/app_home_opened' => 'garage#park',
         "command/#{command}" => 'garage#test',
-        "form_test" => 'garage#form_modal'
+        "form_test" => 'garage#form_modal',
+        'form_submission' => 'garage#form_submission'
       }
     end
 
@@ -60,7 +61,7 @@ module SlackApp
         data, params    = parse_params(payload)
         params          = data ? route_params.merge(data).merge(params: params) : {}
       elsif response_handler[:type] == :view_submission
-        puts payload
+        controller, _route = find_submission_route(payload[:view][:callback_id])
       else
         controller, _route, route_params = find_route(payload)
         data, params    = parse_params(payload)
@@ -87,6 +88,10 @@ module SlackApp
           test_env ? response : SLACK.views_publish(response)
         end
         { type: :event, method: meth }
+
+      elsif payload[:type] == 'view_submission'
+        meth = proc { { response_action: "clear" } }
+        { type: :view_submission, method: meth }
 
       elsif payload[:view]
         user_id = payload[:user][:id]
@@ -171,6 +176,13 @@ module SlackApp
       end.to_h.symbolize_keys
 
       [data, params]
+    end
+
+    def self.find_submission_route(action)
+      controller = routes[action]
+      raise "no route found for #{action}" unless controller
+
+      [controller, action]
     end
 
     def self.find_route(payload)

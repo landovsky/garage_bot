@@ -36,15 +36,16 @@ class GarageView
     # ]
     blocks = Slack::BlockKit.blocks do |b|
       b.append Slack::BlockKit::Layout::Input.new(
-        label: 'Some label',
+        label: 'User',
+        block_id: 'my_block_id',
         element: Slack::BlockKit::Element::UsersSelect.new(
-          action_id: :my_action_id,
-          placeholder: 'Titulek inputu'
+          action_id: :slack_user,
+          placeholder: 'Select from list...'
         )
       )
     end
 
-    SlackApp::DSL.modal_view(blocks.as_json, title: 'Test form', submit: 'Submit', close: "Close")
+    SlackApp::DSL.modal_view(blocks.as_json, title: 'Test form', submit: 'Submit', close: "Close", callback_id: 'form_submission')
   end
 
   def garage(days_data, building)

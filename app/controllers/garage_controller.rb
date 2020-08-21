@@ -8,11 +8,14 @@ class GarageController
   def initialize(data, _response_method)
     data.each do |key, value|
       instance_variable_set("@#{key}".to_sym, value)
-    end
+    end if data
   end
 
   def test(data)
     GarageView.new.test
+  end
+
+  def form_submission(data)
   end
 
   def form_modal(data)
