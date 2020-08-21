@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/aws-partitions/all/aws-partitions.rbi
 #
-# aws-partitions-1.281.0
+# aws-partitions-1.269.0
 
 module Aws
 end

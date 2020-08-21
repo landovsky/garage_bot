@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/rspec-expectations/all/rspec-expectations.rbi
 #
-# rspec-expectations-3.9.0
+# rspec-expectations-3.9.2
 
 module RSpec
 end
@@ -347,7 +347,7 @@ end
 module RSpec::Expectations::Configuration::NullBacktraceFormatter
   def self.format_backtrace(backtrace); end
 end
-class InvalidName___Class_0x00___Differ_227
+class InvalidName___Class_0x00___Differ_225
 end
 module RSpec::Expectations::ExpectationHelper
   def self.check_message(msg); end
@@ -798,7 +798,7 @@ class RSpec::Matchers::BuiltIn::Exist < RSpec::Matchers::BuiltIn::BaseMatcher
   def initialize(*expected); end
   def matches?(actual); end
 end
-class Anonymous_Struct_228 < Struct
+class Anonymous_Struct_226 < Struct
   def actual; end
   def actual=(_); end
   def expected; end
@@ -808,7 +808,7 @@ class Anonymous_Struct_228 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class RSpec::Matchers::BuiltIn::Exist::ExistenceTest < Anonymous_Struct_228
+class RSpec::Matchers::BuiltIn::Exist::ExistenceTest < Anonymous_Struct_226
   def actual_exists?; end
   def deprecated(predicate, actual); end
   def existence_values; end
@@ -961,7 +961,7 @@ module RSpec::Matchers::BuiltIn::CaptureStderr
   def self.capture(block); end
   def self.name; end
 end
-class Anonymous_Struct_229 < Struct
+class Anonymous_Struct_227 < Struct
   def name; end
   def name=(_); end
   def self.[](*arg0); end
@@ -971,7 +971,7 @@ class Anonymous_Struct_229 < Struct
   def stream; end
   def stream=(_); end
 end
-class RSpec::Matchers::BuiltIn::CaptureStreamToTempfile < Anonymous_Struct_229
+class RSpec::Matchers::BuiltIn::CaptureStreamToTempfile < Anonymous_Struct_227
   def capture(block); end
 end
 class RSpec::Matchers::BuiltIn::RaiseError
@@ -1014,11 +1014,13 @@ class RSpec::Matchers::BuiltIn::RespondTo < RSpec::Matchers::BuiltIn::BaseMatche
   def failure_message; end
   def failure_message_when_negated; end
   def find_failing_method_names(actual, filter_method); end
+  def ignoring_method_signature_failure!; end
   def initialize(*names); end
   def matches?(actual); end
   def matches_arity?(actual, name); end
   def method_signature_for(actual, name); end
   def pp_names; end
+  def setup_method_signature_expectation; end
   def with(n); end
   def with_any_keywords; end
   def with_arity; end
@@ -1069,6 +1071,7 @@ end
 class RSpec::Matchers::BuiltIn::YieldControl < RSpec::Matchers::BuiltIn::BaseMatcher
   def at_least(number); end
   def at_most(number); end
+  def count_constraint_to_number(n); end
   def does_not_match?(block); end
   def exactly(number); end
   def failure_message; end

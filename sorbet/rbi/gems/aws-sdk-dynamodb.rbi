@@ -7,13 +7,13 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/aws-sdk-dynamodb/all/aws-sdk-dynamodb.rbi
 #
-# aws-sdk-dynamodb-1.44.0
+# aws-sdk-dynamodb-1.41.0
 
 module Aws::DynamoDB
 end
 module Aws::DynamoDB::Types
 end
-class Anonymous_Struct_35 < Struct
+class Anonymous_Struct_33 < Struct
   def archival_backup_arn; end
   def archival_backup_arn=(_); end
   def archival_date_time; end
@@ -25,10 +25,10 @@ class Anonymous_Struct_35 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ArchivalSummary < Anonymous_Struct_35
+class Aws::DynamoDB::Types::ArchivalSummary < Anonymous_Struct_33
   include Aws::Structure
 end
-class Anonymous_Struct_36 < Struct
+class Anonymous_Struct_34 < Struct
   def attribute_name; end
   def attribute_name=(_); end
   def attribute_type; end
@@ -38,10 +38,10 @@ class Anonymous_Struct_36 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::AttributeDefinition < Anonymous_Struct_36
+class Aws::DynamoDB::Types::AttributeDefinition < Anonymous_Struct_34
   include Aws::Structure
 end
-class Anonymous_Struct_37 < Struct
+class Anonymous_Struct_35 < Struct
   def b; end
   def b=(_); end
   def bool; end
@@ -67,10 +67,10 @@ class Anonymous_Struct_37 < Struct
   def ss; end
   def ss=(_); end
 end
-class Aws::DynamoDB::Types::AttributeValue < Anonymous_Struct_37
+class Aws::DynamoDB::Types::AttributeValue < Anonymous_Struct_35
   include Aws::Structure
 end
-class Anonymous_Struct_38 < Struct
+class Anonymous_Struct_36 < Struct
   def action; end
   def action=(_); end
   def self.[](*arg0); end
@@ -80,36 +80,36 @@ class Anonymous_Struct_38 < Struct
   def value; end
   def value=(_); end
 end
-class Aws::DynamoDB::Types::AttributeValueUpdate < Anonymous_Struct_38
+class Aws::DynamoDB::Types::AttributeValueUpdate < Anonymous_Struct_36
+  include Aws::Structure
+end
+class Anonymous_Struct_37 < Struct
+  def policy_name; end
+  def policy_name=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+  def target_tracking_scaling_policy_configuration; end
+  def target_tracking_scaling_policy_configuration=(_); end
+end
+class Aws::DynamoDB::Types::AutoScalingPolicyDescription < Anonymous_Struct_37
+  include Aws::Structure
+end
+class Anonymous_Struct_38 < Struct
+  def policy_name; end
+  def policy_name=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+  def target_tracking_scaling_policy_configuration; end
+  def target_tracking_scaling_policy_configuration=(_); end
+end
+class Aws::DynamoDB::Types::AutoScalingPolicyUpdate < Anonymous_Struct_38
   include Aws::Structure
 end
 class Anonymous_Struct_39 < Struct
-  def policy_name; end
-  def policy_name=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-  def target_tracking_scaling_policy_configuration; end
-  def target_tracking_scaling_policy_configuration=(_); end
-end
-class Aws::DynamoDB::Types::AutoScalingPolicyDescription < Anonymous_Struct_39
-  include Aws::Structure
-end
-class Anonymous_Struct_40 < Struct
-  def policy_name; end
-  def policy_name=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-  def target_tracking_scaling_policy_configuration; end
-  def target_tracking_scaling_policy_configuration=(_); end
-end
-class Aws::DynamoDB::Types::AutoScalingPolicyUpdate < Anonymous_Struct_40
-  include Aws::Structure
-end
-class Anonymous_Struct_41 < Struct
   def auto_scaling_disabled; end
   def auto_scaling_disabled=(_); end
   def auto_scaling_role_arn; end
@@ -125,10 +125,10 @@ class Anonymous_Struct_41 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::AutoScalingSettingsDescription < Anonymous_Struct_41
+class Aws::DynamoDB::Types::AutoScalingSettingsDescription < Anonymous_Struct_39
   include Aws::Structure
 end
-class Anonymous_Struct_42 < Struct
+class Anonymous_Struct_40 < Struct
   def auto_scaling_disabled; end
   def auto_scaling_disabled=(_); end
   def auto_scaling_role_arn; end
@@ -144,44 +144,44 @@ class Anonymous_Struct_42 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::AutoScalingSettingsUpdate < Anonymous_Struct_42
+class Aws::DynamoDB::Types::AutoScalingSettingsUpdate < Anonymous_Struct_40
+  include Aws::Structure
+end
+class Anonymous_Struct_41 < Struct
+  def disable_scale_in; end
+  def disable_scale_in=(_); end
+  def scale_in_cooldown; end
+  def scale_in_cooldown=(_); end
+  def scale_out_cooldown; end
+  def scale_out_cooldown=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+  def target_value; end
+  def target_value=(_); end
+end
+class Aws::DynamoDB::Types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription < Anonymous_Struct_41
+  include Aws::Structure
+end
+class Anonymous_Struct_42 < Struct
+  def disable_scale_in; end
+  def disable_scale_in=(_); end
+  def scale_in_cooldown; end
+  def scale_in_cooldown=(_); end
+  def scale_out_cooldown; end
+  def scale_out_cooldown=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+  def target_value; end
+  def target_value=(_); end
+end
+class Aws::DynamoDB::Types::AutoScalingTargetTrackingScalingPolicyConfigurationUpdate < Anonymous_Struct_42
   include Aws::Structure
 end
 class Anonymous_Struct_43 < Struct
-  def disable_scale_in; end
-  def disable_scale_in=(_); end
-  def scale_in_cooldown; end
-  def scale_in_cooldown=(_); end
-  def scale_out_cooldown; end
-  def scale_out_cooldown=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-  def target_value; end
-  def target_value=(_); end
-end
-class Aws::DynamoDB::Types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription < Anonymous_Struct_43
-  include Aws::Structure
-end
-class Anonymous_Struct_44 < Struct
-  def disable_scale_in; end
-  def disable_scale_in=(_); end
-  def scale_in_cooldown; end
-  def scale_in_cooldown=(_); end
-  def scale_out_cooldown; end
-  def scale_out_cooldown=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-  def target_value; end
-  def target_value=(_); end
-end
-class Aws::DynamoDB::Types::AutoScalingTargetTrackingScalingPolicyConfigurationUpdate < Anonymous_Struct_44
-  include Aws::Structure
-end
-class Anonymous_Struct_45 < Struct
   def backup_details; end
   def backup_details=(_); end
   def self.[](*arg0); end
@@ -193,10 +193,10 @@ class Anonymous_Struct_45 < Struct
   def source_table_feature_details; end
   def source_table_feature_details=(_); end
 end
-class Aws::DynamoDB::Types::BackupDescription < Anonymous_Struct_45
+class Aws::DynamoDB::Types::BackupDescription < Anonymous_Struct_43
   include Aws::Structure
 end
-class Anonymous_Struct_46 < Struct
+class Anonymous_Struct_44 < Struct
   def backup_arn; end
   def backup_arn=(_); end
   def backup_creation_date_time; end
@@ -216,32 +216,32 @@ class Anonymous_Struct_46 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::BackupDetails < Anonymous_Struct_46
+class Aws::DynamoDB::Types::BackupDetails < Anonymous_Struct_44
+  include Aws::Structure
+end
+class Anonymous_Struct_45 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::BackupInUseException < Anonymous_Struct_45
+  include Aws::Structure
+end
+class Anonymous_Struct_46 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::BackupNotFoundException < Anonymous_Struct_46
   include Aws::Structure
 end
 class Anonymous_Struct_47 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::BackupInUseException < Anonymous_Struct_47
-  include Aws::Structure
-end
-class Anonymous_Struct_48 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::BackupNotFoundException < Anonymous_Struct_48
-  include Aws::Structure
-end
-class Anonymous_Struct_49 < Struct
   def backup_arn; end
   def backup_arn=(_); end
   def backup_creation_date_time; end
@@ -267,10 +267,10 @@ class Anonymous_Struct_49 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::BackupSummary < Anonymous_Struct_49
+class Aws::DynamoDB::Types::BackupSummary < Anonymous_Struct_47
   include Aws::Structure
 end
-class Anonymous_Struct_50 < Struct
+class Anonymous_Struct_48 < Struct
   def request_items; end
   def request_items=(_); end
   def return_consumed_capacity; end
@@ -280,10 +280,10 @@ class Anonymous_Struct_50 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::BatchGetItemInput < Anonymous_Struct_50
+class Aws::DynamoDB::Types::BatchGetItemInput < Anonymous_Struct_48
   include Aws::Structure
 end
-class Anonymous_Struct_51 < Struct
+class Anonymous_Struct_49 < Struct
   def consumed_capacity; end
   def consumed_capacity=(_); end
   def responses; end
@@ -295,10 +295,10 @@ class Anonymous_Struct_51 < Struct
   def unprocessed_keys; end
   def unprocessed_keys=(_); end
 end
-class Aws::DynamoDB::Types::BatchGetItemOutput < Anonymous_Struct_51
+class Aws::DynamoDB::Types::BatchGetItemOutput < Anonymous_Struct_49
   include Aws::Structure
 end
-class Anonymous_Struct_52 < Struct
+class Anonymous_Struct_50 < Struct
   def request_items; end
   def request_items=(_); end
   def return_consumed_capacity; end
@@ -310,10 +310,10 @@ class Anonymous_Struct_52 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::BatchWriteItemInput < Anonymous_Struct_52
+class Aws::DynamoDB::Types::BatchWriteItemInput < Anonymous_Struct_50
   include Aws::Structure
 end
-class Anonymous_Struct_53 < Struct
+class Anonymous_Struct_51 < Struct
   def consumed_capacity; end
   def consumed_capacity=(_); end
   def item_collection_metrics; end
@@ -325,10 +325,10 @@ class Anonymous_Struct_53 < Struct
   def unprocessed_items; end
   def unprocessed_items=(_); end
 end
-class Aws::DynamoDB::Types::BatchWriteItemOutput < Anonymous_Struct_53
+class Aws::DynamoDB::Types::BatchWriteItemOutput < Anonymous_Struct_51
   include Aws::Structure
 end
-class Anonymous_Struct_54 < Struct
+class Anonymous_Struct_52 < Struct
   def billing_mode; end
   def billing_mode=(_); end
   def last_update_to_pay_per_request_date_time; end
@@ -338,10 +338,10 @@ class Anonymous_Struct_54 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::BillingModeSummary < Anonymous_Struct_54
+class Aws::DynamoDB::Types::BillingModeSummary < Anonymous_Struct_52
   include Aws::Structure
 end
-class Anonymous_Struct_55 < Struct
+class Anonymous_Struct_53 < Struct
   def code; end
   def code=(_); end
   def item; end
@@ -353,10 +353,10 @@ class Anonymous_Struct_55 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::CancellationReason < Anonymous_Struct_55
+class Aws::DynamoDB::Types::CancellationReason < Anonymous_Struct_53
   include Aws::Structure
 end
-class Anonymous_Struct_56 < Struct
+class Anonymous_Struct_54 < Struct
   def capacity_units; end
   def capacity_units=(_); end
   def read_capacity_units; end
@@ -368,10 +368,10 @@ class Anonymous_Struct_56 < Struct
   def write_capacity_units; end
   def write_capacity_units=(_); end
 end
-class Aws::DynamoDB::Types::Capacity < Anonymous_Struct_56
+class Aws::DynamoDB::Types::Capacity < Anonymous_Struct_54
   include Aws::Structure
 end
-class Anonymous_Struct_57 < Struct
+class Anonymous_Struct_55 < Struct
   def attribute_value_list; end
   def attribute_value_list=(_); end
   def comparison_operator; end
@@ -381,10 +381,10 @@ class Anonymous_Struct_57 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::Condition < Anonymous_Struct_57
+class Aws::DynamoDB::Types::Condition < Anonymous_Struct_55
   include Aws::Structure
 end
-class Anonymous_Struct_58 < Struct
+class Anonymous_Struct_56 < Struct
   def condition_expression; end
   def condition_expression=(_); end
   def expression_attribute_names; end
@@ -402,10 +402,10 @@ class Anonymous_Struct_58 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::ConditionCheck < Anonymous_Struct_58
+class Aws::DynamoDB::Types::ConditionCheck < Anonymous_Struct_56
   include Aws::Structure
 end
-class Anonymous_Struct_59 < Struct
+class Anonymous_Struct_57 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -413,10 +413,10 @@ class Anonymous_Struct_59 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ConditionalCheckFailedException < Anonymous_Struct_59
+class Aws::DynamoDB::Types::ConditionalCheckFailedException < Anonymous_Struct_57
   include Aws::Structure
 end
-class Anonymous_Struct_60 < Struct
+class Anonymous_Struct_58 < Struct
   def capacity_units; end
   def capacity_units=(_); end
   def global_secondary_indexes; end
@@ -436,10 +436,10 @@ class Anonymous_Struct_60 < Struct
   def write_capacity_units; end
   def write_capacity_units=(_); end
 end
-class Aws::DynamoDB::Types::ConsumedCapacity < Anonymous_Struct_60
+class Aws::DynamoDB::Types::ConsumedCapacity < Anonymous_Struct_58
   include Aws::Structure
 end
-class Anonymous_Struct_61 < Struct
+class Anonymous_Struct_59 < Struct
   def continuous_backups_status; end
   def continuous_backups_status=(_); end
   def point_in_time_recovery_description; end
@@ -449,10 +449,10 @@ class Anonymous_Struct_61 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ContinuousBackupsDescription < Anonymous_Struct_61
+class Aws::DynamoDB::Types::ContinuousBackupsDescription < Anonymous_Struct_59
   include Aws::Structure
 end
-class Anonymous_Struct_62 < Struct
+class Anonymous_Struct_60 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -460,10 +460,10 @@ class Anonymous_Struct_62 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ContinuousBackupsUnavailableException < Anonymous_Struct_62
+class Aws::DynamoDB::Types::ContinuousBackupsUnavailableException < Anonymous_Struct_60
   include Aws::Structure
 end
-class Anonymous_Struct_63 < Struct
+class Anonymous_Struct_61 < Struct
   def contributor_insights_status; end
   def contributor_insights_status=(_); end
   def index_name; end
@@ -475,10 +475,10 @@ class Anonymous_Struct_63 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::ContributorInsightsSummary < Anonymous_Struct_63
+class Aws::DynamoDB::Types::ContributorInsightsSummary < Anonymous_Struct_61
   include Aws::Structure
 end
-class Anonymous_Struct_64 < Struct
+class Anonymous_Struct_62 < Struct
   def backup_name; end
   def backup_name=(_); end
   def self.[](*arg0); end
@@ -488,10 +488,10 @@ class Anonymous_Struct_64 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::CreateBackupInput < Anonymous_Struct_64
+class Aws::DynamoDB::Types::CreateBackupInput < Anonymous_Struct_62
   include Aws::Structure
 end
-class Anonymous_Struct_65 < Struct
+class Anonymous_Struct_63 < Struct
   def backup_details; end
   def backup_details=(_); end
   def self.[](*arg0); end
@@ -499,10 +499,10 @@ class Anonymous_Struct_65 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::CreateBackupOutput < Anonymous_Struct_65
+class Aws::DynamoDB::Types::CreateBackupOutput < Anonymous_Struct_63
   include Aws::Structure
 end
-class Anonymous_Struct_66 < Struct
+class Anonymous_Struct_64 < Struct
   def index_name; end
   def index_name=(_); end
   def key_schema; end
@@ -516,10 +516,10 @@ class Anonymous_Struct_66 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::CreateGlobalSecondaryIndexAction < Anonymous_Struct_66
+class Aws::DynamoDB::Types::CreateGlobalSecondaryIndexAction < Anonymous_Struct_64
   include Aws::Structure
 end
-class Anonymous_Struct_67 < Struct
+class Anonymous_Struct_65 < Struct
   def global_table_name; end
   def global_table_name=(_); end
   def replication_group; end
@@ -529,10 +529,10 @@ class Anonymous_Struct_67 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::CreateGlobalTableInput < Anonymous_Struct_67
+class Aws::DynamoDB::Types::CreateGlobalTableInput < Anonymous_Struct_65
   include Aws::Structure
 end
-class Anonymous_Struct_68 < Struct
+class Anonymous_Struct_66 < Struct
   def global_table_description; end
   def global_table_description=(_); end
   def self.[](*arg0); end
@@ -540,10 +540,10 @@ class Anonymous_Struct_68 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::CreateGlobalTableOutput < Anonymous_Struct_68
+class Aws::DynamoDB::Types::CreateGlobalTableOutput < Anonymous_Struct_66
   include Aws::Structure
 end
-class Anonymous_Struct_69 < Struct
+class Anonymous_Struct_67 < Struct
   def region_name; end
   def region_name=(_); end
   def self.[](*arg0); end
@@ -551,10 +551,10 @@ class Anonymous_Struct_69 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::CreateReplicaAction < Anonymous_Struct_69
+class Aws::DynamoDB::Types::CreateReplicaAction < Anonymous_Struct_67
   include Aws::Structure
 end
-class Anonymous_Struct_70 < Struct
+class Anonymous_Struct_68 < Struct
   def global_secondary_indexes; end
   def global_secondary_indexes=(_); end
   def kms_master_key_id; end
@@ -568,10 +568,10 @@ class Anonymous_Struct_70 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::CreateReplicationGroupMemberAction < Anonymous_Struct_70
+class Aws::DynamoDB::Types::CreateReplicationGroupMemberAction < Anonymous_Struct_68
   include Aws::Structure
 end
-class Anonymous_Struct_71 < Struct
+class Anonymous_Struct_69 < Struct
   def attribute_definitions; end
   def attribute_definitions=(_); end
   def billing_mode; end
@@ -597,10 +597,10 @@ class Anonymous_Struct_71 < Struct
   def tags; end
   def tags=(_); end
 end
-class Aws::DynamoDB::Types::CreateTableInput < Anonymous_Struct_71
+class Aws::DynamoDB::Types::CreateTableInput < Anonymous_Struct_69
   include Aws::Structure
 end
-class Anonymous_Struct_72 < Struct
+class Anonymous_Struct_70 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -608,10 +608,10 @@ class Anonymous_Struct_72 < Struct
   def table_description; end
   def table_description=(_); end
 end
-class Aws::DynamoDB::Types::CreateTableOutput < Anonymous_Struct_72
+class Aws::DynamoDB::Types::CreateTableOutput < Anonymous_Struct_70
   include Aws::Structure
 end
-class Anonymous_Struct_73 < Struct
+class Anonymous_Struct_71 < Struct
   def condition_expression; end
   def condition_expression=(_); end
   def expression_attribute_names; end
@@ -629,10 +629,10 @@ class Anonymous_Struct_73 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::Delete < Anonymous_Struct_73
+class Aws::DynamoDB::Types::Delete < Anonymous_Struct_71
   include Aws::Structure
 end
-class Anonymous_Struct_74 < Struct
+class Anonymous_Struct_72 < Struct
   def backup_arn; end
   def backup_arn=(_); end
   def self.[](*arg0); end
@@ -640,10 +640,10 @@ class Anonymous_Struct_74 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DeleteBackupInput < Anonymous_Struct_74
+class Aws::DynamoDB::Types::DeleteBackupInput < Anonymous_Struct_72
   include Aws::Structure
 end
-class Anonymous_Struct_75 < Struct
+class Anonymous_Struct_73 < Struct
   def backup_description; end
   def backup_description=(_); end
   def self.[](*arg0); end
@@ -651,10 +651,10 @@ class Anonymous_Struct_75 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DeleteBackupOutput < Anonymous_Struct_75
+class Aws::DynamoDB::Types::DeleteBackupOutput < Anonymous_Struct_73
   include Aws::Structure
 end
-class Anonymous_Struct_76 < Struct
+class Anonymous_Struct_74 < Struct
   def index_name; end
   def index_name=(_); end
   def self.[](*arg0); end
@@ -662,10 +662,10 @@ class Anonymous_Struct_76 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DeleteGlobalSecondaryIndexAction < Anonymous_Struct_76
+class Aws::DynamoDB::Types::DeleteGlobalSecondaryIndexAction < Anonymous_Struct_74
   include Aws::Structure
 end
-class Anonymous_Struct_77 < Struct
+class Anonymous_Struct_75 < Struct
   def condition_expression; end
   def condition_expression=(_); end
   def conditional_operator; end
@@ -691,10 +691,10 @@ class Anonymous_Struct_77 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::DeleteItemInput < Anonymous_Struct_77
+class Aws::DynamoDB::Types::DeleteItemInput < Anonymous_Struct_75
   include Aws::Structure
 end
-class Anonymous_Struct_78 < Struct
+class Anonymous_Struct_76 < Struct
   def attributes; end
   def attributes=(_); end
   def consumed_capacity; end
@@ -706,32 +706,32 @@ class Anonymous_Struct_78 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DeleteItemOutput < Anonymous_Struct_78
+class Aws::DynamoDB::Types::DeleteItemOutput < Anonymous_Struct_76
+  include Aws::Structure
+end
+class Anonymous_Struct_77 < Struct
+  def region_name; end
+  def region_name=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::DeleteReplicaAction < Anonymous_Struct_77
+  include Aws::Structure
+end
+class Anonymous_Struct_78 < Struct
+  def region_name; end
+  def region_name=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::DeleteReplicationGroupMemberAction < Anonymous_Struct_78
   include Aws::Structure
 end
 class Anonymous_Struct_79 < Struct
-  def region_name; end
-  def region_name=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::DeleteReplicaAction < Anonymous_Struct_79
-  include Aws::Structure
-end
-class Anonymous_Struct_80 < Struct
-  def region_name; end
-  def region_name=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::DeleteReplicationGroupMemberAction < Anonymous_Struct_80
-  include Aws::Structure
-end
-class Anonymous_Struct_81 < Struct
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -739,10 +739,10 @@ class Anonymous_Struct_81 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DeleteRequest < Anonymous_Struct_81
+class Aws::DynamoDB::Types::DeleteRequest < Anonymous_Struct_79
   include Aws::Structure
 end
-class Anonymous_Struct_82 < Struct
+class Anonymous_Struct_80 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -750,10 +750,10 @@ class Anonymous_Struct_82 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::DeleteTableInput < Anonymous_Struct_82
+class Aws::DynamoDB::Types::DeleteTableInput < Anonymous_Struct_80
   include Aws::Structure
 end
-class Anonymous_Struct_83 < Struct
+class Anonymous_Struct_81 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -761,10 +761,10 @@ class Anonymous_Struct_83 < Struct
   def table_description; end
   def table_description=(_); end
 end
-class Aws::DynamoDB::Types::DeleteTableOutput < Anonymous_Struct_83
+class Aws::DynamoDB::Types::DeleteTableOutput < Anonymous_Struct_81
   include Aws::Structure
 end
-class Anonymous_Struct_84 < Struct
+class Anonymous_Struct_82 < Struct
   def backup_arn; end
   def backup_arn=(_); end
   def self.[](*arg0); end
@@ -772,10 +772,10 @@ class Anonymous_Struct_84 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DescribeBackupInput < Anonymous_Struct_84
+class Aws::DynamoDB::Types::DescribeBackupInput < Anonymous_Struct_82
   include Aws::Structure
 end
-class Anonymous_Struct_85 < Struct
+class Anonymous_Struct_83 < Struct
   def backup_description; end
   def backup_description=(_); end
   def self.[](*arg0); end
@@ -783,10 +783,10 @@ class Anonymous_Struct_85 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DescribeBackupOutput < Anonymous_Struct_85
+class Aws::DynamoDB::Types::DescribeBackupOutput < Anonymous_Struct_83
   include Aws::Structure
 end
-class Anonymous_Struct_86 < Struct
+class Anonymous_Struct_84 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -794,10 +794,10 @@ class Anonymous_Struct_86 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::DescribeContinuousBackupsInput < Anonymous_Struct_86
+class Aws::DynamoDB::Types::DescribeContinuousBackupsInput < Anonymous_Struct_84
   include Aws::Structure
 end
-class Anonymous_Struct_87 < Struct
+class Anonymous_Struct_85 < Struct
   def continuous_backups_description; end
   def continuous_backups_description=(_); end
   def self.[](*arg0); end
@@ -805,10 +805,10 @@ class Anonymous_Struct_87 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DescribeContinuousBackupsOutput < Anonymous_Struct_87
+class Aws::DynamoDB::Types::DescribeContinuousBackupsOutput < Anonymous_Struct_85
   include Aws::Structure
 end
-class Anonymous_Struct_88 < Struct
+class Anonymous_Struct_86 < Struct
   def index_name; end
   def index_name=(_); end
   def self.[](*arg0); end
@@ -818,10 +818,10 @@ class Anonymous_Struct_88 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::DescribeContributorInsightsInput < Anonymous_Struct_88
+class Aws::DynamoDB::Types::DescribeContributorInsightsInput < Anonymous_Struct_86
   include Aws::Structure
 end
-class Anonymous_Struct_89 < Struct
+class Anonymous_Struct_87 < Struct
   def contributor_insights_rule_list; end
   def contributor_insights_rule_list=(_); end
   def contributor_insights_status; end
@@ -839,12 +839,12 @@ class Anonymous_Struct_89 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::DescribeContributorInsightsOutput < Anonymous_Struct_89
+class Aws::DynamoDB::Types::DescribeContributorInsightsOutput < Anonymous_Struct_87
   include Aws::Structure
 end
 class Aws::DynamoDB::Types::DescribeEndpointsRequest < Aws::EmptyStructure
 end
-class Anonymous_Struct_90 < Struct
+class Anonymous_Struct_88 < Struct
   def endpoints; end
   def endpoints=(_); end
   def self.[](*arg0); end
@@ -852,7 +852,29 @@ class Anonymous_Struct_90 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DescribeEndpointsResponse < Anonymous_Struct_90
+class Aws::DynamoDB::Types::DescribeEndpointsResponse < Anonymous_Struct_88
+  include Aws::Structure
+end
+class Anonymous_Struct_89 < Struct
+  def global_table_name; end
+  def global_table_name=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::DescribeGlobalTableInput < Anonymous_Struct_89
+  include Aws::Structure
+end
+class Anonymous_Struct_90 < Struct
+  def global_table_description; end
+  def global_table_description=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::DescribeGlobalTableOutput < Anonymous_Struct_90
   include Aws::Structure
 end
 class Anonymous_Struct_91 < Struct
@@ -863,32 +885,10 @@ class Anonymous_Struct_91 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DescribeGlobalTableInput < Anonymous_Struct_91
+class Aws::DynamoDB::Types::DescribeGlobalTableSettingsInput < Anonymous_Struct_91
   include Aws::Structure
 end
 class Anonymous_Struct_92 < Struct
-  def global_table_description; end
-  def global_table_description=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::DescribeGlobalTableOutput < Anonymous_Struct_92
-  include Aws::Structure
-end
-class Anonymous_Struct_93 < Struct
-  def global_table_name; end
-  def global_table_name=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::DescribeGlobalTableSettingsInput < Anonymous_Struct_93
-  include Aws::Structure
-end
-class Anonymous_Struct_94 < Struct
   def global_table_name; end
   def global_table_name=(_); end
   def replica_settings; end
@@ -898,12 +898,12 @@ class Anonymous_Struct_94 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::DescribeGlobalTableSettingsOutput < Anonymous_Struct_94
+class Aws::DynamoDB::Types::DescribeGlobalTableSettingsOutput < Anonymous_Struct_92
   include Aws::Structure
 end
 class Aws::DynamoDB::Types::DescribeLimitsInput < Aws::EmptyStructure
 end
-class Anonymous_Struct_95 < Struct
+class Anonymous_Struct_93 < Struct
   def account_max_read_capacity_units; end
   def account_max_read_capacity_units=(_); end
   def account_max_write_capacity_units; end
@@ -917,7 +917,29 @@ class Anonymous_Struct_95 < Struct
   def table_max_write_capacity_units; end
   def table_max_write_capacity_units=(_); end
 end
-class Aws::DynamoDB::Types::DescribeLimitsOutput < Anonymous_Struct_95
+class Aws::DynamoDB::Types::DescribeLimitsOutput < Anonymous_Struct_93
+  include Aws::Structure
+end
+class Anonymous_Struct_94 < Struct
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+  def table_name; end
+  def table_name=(_); end
+end
+class Aws::DynamoDB::Types::DescribeTableInput < Anonymous_Struct_94
+  include Aws::Structure
+end
+class Anonymous_Struct_95 < Struct
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+  def table; end
+  def table=(_); end
+end
+class Aws::DynamoDB::Types::DescribeTableOutput < Anonymous_Struct_95
   include Aws::Structure
 end
 class Anonymous_Struct_96 < Struct
@@ -928,7 +950,7 @@ class Anonymous_Struct_96 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::DescribeTableInput < Anonymous_Struct_96
+class Aws::DynamoDB::Types::DescribeTableReplicaAutoScalingInput < Anonymous_Struct_96
   include Aws::Structure
 end
 class Anonymous_Struct_97 < Struct
@@ -936,10 +958,10 @@ class Anonymous_Struct_97 < Struct
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
-  def table; end
-  def table=(_); end
+  def table_auto_scaling_description; end
+  def table_auto_scaling_description=(_); end
 end
-class Aws::DynamoDB::Types::DescribeTableOutput < Anonymous_Struct_97
+class Aws::DynamoDB::Types::DescribeTableReplicaAutoScalingOutput < Anonymous_Struct_97
   include Aws::Structure
 end
 class Anonymous_Struct_98 < Struct
@@ -950,7 +972,7 @@ class Anonymous_Struct_98 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::DescribeTableReplicaAutoScalingInput < Anonymous_Struct_98
+class Aws::DynamoDB::Types::DescribeTimeToLiveInput < Anonymous_Struct_98
   include Aws::Structure
 end
 class Anonymous_Struct_99 < Struct
@@ -958,35 +980,13 @@ class Anonymous_Struct_99 < Struct
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
-  def table_auto_scaling_description; end
-  def table_auto_scaling_description=(_); end
-end
-class Aws::DynamoDB::Types::DescribeTableReplicaAutoScalingOutput < Anonymous_Struct_99
-  include Aws::Structure
-end
-class Anonymous_Struct_100 < Struct
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-  def table_name; end
-  def table_name=(_); end
-end
-class Aws::DynamoDB::Types::DescribeTimeToLiveInput < Anonymous_Struct_100
-  include Aws::Structure
-end
-class Anonymous_Struct_101 < Struct
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
   def time_to_live_description; end
   def time_to_live_description=(_); end
 end
-class Aws::DynamoDB::Types::DescribeTimeToLiveOutput < Anonymous_Struct_101
+class Aws::DynamoDB::Types::DescribeTimeToLiveOutput < Anonymous_Struct_99
   include Aws::Structure
 end
-class Anonymous_Struct_102 < Struct
+class Anonymous_Struct_100 < Struct
   def address; end
   def address=(_); end
   def cache_period_in_minutes; end
@@ -996,10 +996,10 @@ class Anonymous_Struct_102 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::Endpoint < Anonymous_Struct_102
+class Aws::DynamoDB::Types::Endpoint < Anonymous_Struct_100
   include Aws::Structure
 end
-class Anonymous_Struct_103 < Struct
+class Anonymous_Struct_101 < Struct
   def attribute_value_list; end
   def attribute_value_list=(_); end
   def comparison_operator; end
@@ -1013,10 +1013,10 @@ class Anonymous_Struct_103 < Struct
   def value; end
   def value=(_); end
 end
-class Aws::DynamoDB::Types::ExpectedAttributeValue < Anonymous_Struct_103
+class Aws::DynamoDB::Types::ExpectedAttributeValue < Anonymous_Struct_101
   include Aws::Structure
 end
-class Anonymous_Struct_104 < Struct
+class Anonymous_Struct_102 < Struct
   def exception_description; end
   def exception_description=(_); end
   def exception_name; end
@@ -1026,10 +1026,10 @@ class Anonymous_Struct_104 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::FailureException < Anonymous_Struct_104
+class Aws::DynamoDB::Types::FailureException < Anonymous_Struct_102
   include Aws::Structure
 end
-class Anonymous_Struct_105 < Struct
+class Anonymous_Struct_103 < Struct
   def expression_attribute_names; end
   def expression_attribute_names=(_); end
   def key; end
@@ -1043,10 +1043,10 @@ class Anonymous_Struct_105 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::Get < Anonymous_Struct_105
+class Aws::DynamoDB::Types::Get < Anonymous_Struct_103
   include Aws::Structure
 end
-class Anonymous_Struct_106 < Struct
+class Anonymous_Struct_104 < Struct
   def attributes_to_get; end
   def attributes_to_get=(_); end
   def consistent_read; end
@@ -1066,10 +1066,10 @@ class Anonymous_Struct_106 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::GetItemInput < Anonymous_Struct_106
+class Aws::DynamoDB::Types::GetItemInput < Anonymous_Struct_104
   include Aws::Structure
 end
-class Anonymous_Struct_107 < Struct
+class Anonymous_Struct_105 < Struct
   def consumed_capacity; end
   def consumed_capacity=(_); end
   def item; end
@@ -1079,10 +1079,10 @@ class Anonymous_Struct_107 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GetItemOutput < Anonymous_Struct_107
+class Aws::DynamoDB::Types::GetItemOutput < Anonymous_Struct_105
   include Aws::Structure
 end
-class Anonymous_Struct_108 < Struct
+class Anonymous_Struct_106 < Struct
   def index_name; end
   def index_name=(_); end
   def key_schema; end
@@ -1096,10 +1096,10 @@ class Anonymous_Struct_108 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalSecondaryIndex < Anonymous_Struct_108
+class Aws::DynamoDB::Types::GlobalSecondaryIndex < Anonymous_Struct_106
   include Aws::Structure
 end
-class Anonymous_Struct_109 < Struct
+class Anonymous_Struct_107 < Struct
   def index_name; end
   def index_name=(_); end
   def provisioned_write_capacity_auto_scaling_update; end
@@ -1109,10 +1109,10 @@ class Anonymous_Struct_109 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalSecondaryIndexAutoScalingUpdate < Anonymous_Struct_109
+class Aws::DynamoDB::Types::GlobalSecondaryIndexAutoScalingUpdate < Anonymous_Struct_107
   include Aws::Structure
 end
-class Anonymous_Struct_110 < Struct
+class Anonymous_Struct_108 < Struct
   def backfilling; end
   def backfilling=(_); end
   def index_arn; end
@@ -1136,10 +1136,10 @@ class Anonymous_Struct_110 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalSecondaryIndexDescription < Anonymous_Struct_110
+class Aws::DynamoDB::Types::GlobalSecondaryIndexDescription < Anonymous_Struct_108
   include Aws::Structure
 end
-class Anonymous_Struct_111 < Struct
+class Anonymous_Struct_109 < Struct
   def index_name; end
   def index_name=(_); end
   def key_schema; end
@@ -1153,10 +1153,10 @@ class Anonymous_Struct_111 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalSecondaryIndexInfo < Anonymous_Struct_111
+class Aws::DynamoDB::Types::GlobalSecondaryIndexInfo < Anonymous_Struct_109
   include Aws::Structure
 end
-class Anonymous_Struct_112 < Struct
+class Anonymous_Struct_110 < Struct
   def create; end
   def create=(_); end
   def delete; end
@@ -1168,10 +1168,10 @@ class Anonymous_Struct_112 < Struct
   def update; end
   def update=(_); end
 end
-class Aws::DynamoDB::Types::GlobalSecondaryIndexUpdate < Anonymous_Struct_112
+class Aws::DynamoDB::Types::GlobalSecondaryIndexUpdate < Anonymous_Struct_110
   include Aws::Structure
 end
-class Anonymous_Struct_113 < Struct
+class Anonymous_Struct_111 < Struct
   def global_table_name; end
   def global_table_name=(_); end
   def replication_group; end
@@ -1181,10 +1181,10 @@ class Anonymous_Struct_113 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalTable < Anonymous_Struct_113
+class Aws::DynamoDB::Types::GlobalTable < Anonymous_Struct_111
   include Aws::Structure
 end
-class Anonymous_Struct_114 < Struct
+class Anonymous_Struct_112 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -1192,10 +1192,10 @@ class Anonymous_Struct_114 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalTableAlreadyExistsException < Anonymous_Struct_114
+class Aws::DynamoDB::Types::GlobalTableAlreadyExistsException < Anonymous_Struct_112
   include Aws::Structure
 end
-class Anonymous_Struct_115 < Struct
+class Anonymous_Struct_113 < Struct
   def creation_date_time; end
   def creation_date_time=(_); end
   def global_table_arn; end
@@ -1211,10 +1211,10 @@ class Anonymous_Struct_115 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalTableDescription < Anonymous_Struct_115
+class Aws::DynamoDB::Types::GlobalTableDescription < Anonymous_Struct_113
   include Aws::Structure
 end
-class Anonymous_Struct_116 < Struct
+class Anonymous_Struct_114 < Struct
   def index_name; end
   def index_name=(_); end
   def provisioned_write_capacity_auto_scaling_settings_update; end
@@ -1226,7 +1226,29 @@ class Anonymous_Struct_116 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalTableGlobalSecondaryIndexSettingsUpdate < Anonymous_Struct_116
+class Aws::DynamoDB::Types::GlobalTableGlobalSecondaryIndexSettingsUpdate < Anonymous_Struct_114
+  include Aws::Structure
+end
+class Anonymous_Struct_115 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::GlobalTableNotFoundException < Anonymous_Struct_115
+  include Aws::Structure
+end
+class Anonymous_Struct_116 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::IdempotentParameterMismatchException < Anonymous_Struct_116
   include Aws::Structure
 end
 class Anonymous_Struct_117 < Struct
@@ -1237,7 +1259,7 @@ class Anonymous_Struct_117 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::GlobalTableNotFoundException < Anonymous_Struct_117
+class Aws::DynamoDB::Types::IndexNotFoundException < Anonymous_Struct_117
   include Aws::Structure
 end
 class Anonymous_Struct_118 < Struct
@@ -1248,7 +1270,7 @@ class Anonymous_Struct_118 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::IdempotentParameterMismatchException < Anonymous_Struct_118
+class Aws::DynamoDB::Types::InternalServerError < Anonymous_Struct_118
   include Aws::Structure
 end
 class Anonymous_Struct_119 < Struct
@@ -1259,18 +1281,20 @@ class Anonymous_Struct_119 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::IndexNotFoundException < Anonymous_Struct_119
+class Aws::DynamoDB::Types::InvalidRestoreTimeException < Anonymous_Struct_119
   include Aws::Structure
 end
 class Anonymous_Struct_120 < Struct
-  def message; end
-  def message=(_); end
+  def item_collection_key; end
+  def item_collection_key=(_); end
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
+  def size_estimate_range_gb; end
+  def size_estimate_range_gb=(_); end
 end
-class Aws::DynamoDB::Types::InternalServerError < Anonymous_Struct_120
+class Aws::DynamoDB::Types::ItemCollectionMetrics < Anonymous_Struct_120
   include Aws::Structure
 end
 class Anonymous_Struct_121 < Struct
@@ -1281,34 +1305,10 @@ class Anonymous_Struct_121 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::InvalidRestoreTimeException < Anonymous_Struct_121
+class Aws::DynamoDB::Types::ItemCollectionSizeLimitExceededException < Anonymous_Struct_121
   include Aws::Structure
 end
 class Anonymous_Struct_122 < Struct
-  def item_collection_key; end
-  def item_collection_key=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-  def size_estimate_range_gb; end
-  def size_estimate_range_gb=(_); end
-end
-class Aws::DynamoDB::Types::ItemCollectionMetrics < Anonymous_Struct_122
-  include Aws::Structure
-end
-class Anonymous_Struct_123 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::ItemCollectionSizeLimitExceededException < Anonymous_Struct_123
-  include Aws::Structure
-end
-class Anonymous_Struct_124 < Struct
   def item; end
   def item=(_); end
   def self.[](*arg0); end
@@ -1316,10 +1316,10 @@ class Anonymous_Struct_124 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ItemResponse < Anonymous_Struct_124
+class Aws::DynamoDB::Types::ItemResponse < Anonymous_Struct_122
   include Aws::Structure
 end
-class Anonymous_Struct_125 < Struct
+class Anonymous_Struct_123 < Struct
   def attribute_name; end
   def attribute_name=(_); end
   def key_type; end
@@ -1329,10 +1329,10 @@ class Anonymous_Struct_125 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::KeySchemaElement < Anonymous_Struct_125
+class Aws::DynamoDB::Types::KeySchemaElement < Anonymous_Struct_123
   include Aws::Structure
 end
-class Anonymous_Struct_126 < Struct
+class Anonymous_Struct_124 < Struct
   def attributes_to_get; end
   def attributes_to_get=(_); end
   def consistent_read; end
@@ -1348,10 +1348,10 @@ class Anonymous_Struct_126 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::KeysAndAttributes < Anonymous_Struct_126
+class Aws::DynamoDB::Types::KeysAndAttributes < Anonymous_Struct_124
   include Aws::Structure
 end
-class Anonymous_Struct_127 < Struct
+class Anonymous_Struct_125 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -1359,10 +1359,10 @@ class Anonymous_Struct_127 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::LimitExceededException < Anonymous_Struct_127
+class Aws::DynamoDB::Types::LimitExceededException < Anonymous_Struct_125
   include Aws::Structure
 end
-class Anonymous_Struct_128 < Struct
+class Anonymous_Struct_126 < Struct
   def backup_type; end
   def backup_type=(_); end
   def exclusive_start_backup_arn; end
@@ -1380,10 +1380,10 @@ class Anonymous_Struct_128 < Struct
   def time_range_upper_bound; end
   def time_range_upper_bound=(_); end
 end
-class Aws::DynamoDB::Types::ListBackupsInput < Anonymous_Struct_128
+class Aws::DynamoDB::Types::ListBackupsInput < Anonymous_Struct_126
   include Aws::Structure
 end
-class Anonymous_Struct_129 < Struct
+class Anonymous_Struct_127 < Struct
   def backup_summaries; end
   def backup_summaries=(_); end
   def last_evaluated_backup_arn; end
@@ -1393,10 +1393,10 @@ class Anonymous_Struct_129 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ListBackupsOutput < Anonymous_Struct_129
+class Aws::DynamoDB::Types::ListBackupsOutput < Anonymous_Struct_127
   include Aws::Structure
 end
-class Anonymous_Struct_130 < Struct
+class Anonymous_Struct_128 < Struct
   def max_results; end
   def max_results=(_); end
   def next_token; end
@@ -1408,10 +1408,10 @@ class Anonymous_Struct_130 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::ListContributorInsightsInput < Anonymous_Struct_130
+class Aws::DynamoDB::Types::ListContributorInsightsInput < Anonymous_Struct_128
   include Aws::Structure
 end
-class Anonymous_Struct_131 < Struct
+class Anonymous_Struct_129 < Struct
   def contributor_insights_summaries; end
   def contributor_insights_summaries=(_); end
   def next_token; end
@@ -1421,10 +1421,10 @@ class Anonymous_Struct_131 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ListContributorInsightsOutput < Anonymous_Struct_131
+class Aws::DynamoDB::Types::ListContributorInsightsOutput < Anonymous_Struct_129
   include Aws::Structure
 end
-class Anonymous_Struct_132 < Struct
+class Anonymous_Struct_130 < Struct
   def exclusive_start_global_table_name; end
   def exclusive_start_global_table_name=(_); end
   def limit; end
@@ -1436,10 +1436,10 @@ class Anonymous_Struct_132 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ListGlobalTablesInput < Anonymous_Struct_132
+class Aws::DynamoDB::Types::ListGlobalTablesInput < Anonymous_Struct_130
   include Aws::Structure
 end
-class Anonymous_Struct_133 < Struct
+class Anonymous_Struct_131 < Struct
   def global_tables; end
   def global_tables=(_); end
   def last_evaluated_global_table_name; end
@@ -1449,10 +1449,10 @@ class Anonymous_Struct_133 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ListGlobalTablesOutput < Anonymous_Struct_133
+class Aws::DynamoDB::Types::ListGlobalTablesOutput < Anonymous_Struct_131
   include Aws::Structure
 end
-class Anonymous_Struct_134 < Struct
+class Anonymous_Struct_132 < Struct
   def exclusive_start_table_name; end
   def exclusive_start_table_name=(_); end
   def limit; end
@@ -1462,10 +1462,10 @@ class Anonymous_Struct_134 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ListTablesInput < Anonymous_Struct_134
+class Aws::DynamoDB::Types::ListTablesInput < Anonymous_Struct_132
   include Aws::Structure
 end
-class Anonymous_Struct_135 < Struct
+class Anonymous_Struct_133 < Struct
   def last_evaluated_table_name; end
   def last_evaluated_table_name=(_); end
   def self.[](*arg0); end
@@ -1475,10 +1475,10 @@ class Anonymous_Struct_135 < Struct
   def table_names; end
   def table_names=(_); end
 end
-class Aws::DynamoDB::Types::ListTablesOutput < Anonymous_Struct_135
+class Aws::DynamoDB::Types::ListTablesOutput < Anonymous_Struct_133
   include Aws::Structure
 end
-class Anonymous_Struct_136 < Struct
+class Anonymous_Struct_134 < Struct
   def next_token; end
   def next_token=(_); end
   def resource_arn; end
@@ -1488,10 +1488,10 @@ class Anonymous_Struct_136 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ListTagsOfResourceInput < Anonymous_Struct_136
+class Aws::DynamoDB::Types::ListTagsOfResourceInput < Anonymous_Struct_134
   include Aws::Structure
 end
-class Anonymous_Struct_137 < Struct
+class Anonymous_Struct_135 < Struct
   def next_token; end
   def next_token=(_); end
   def self.[](*arg0); end
@@ -1501,10 +1501,10 @@ class Anonymous_Struct_137 < Struct
   def tags; end
   def tags=(_); end
 end
-class Aws::DynamoDB::Types::ListTagsOfResourceOutput < Anonymous_Struct_137
+class Aws::DynamoDB::Types::ListTagsOfResourceOutput < Anonymous_Struct_135
   include Aws::Structure
 end
-class Anonymous_Struct_138 < Struct
+class Anonymous_Struct_136 < Struct
   def index_name; end
   def index_name=(_); end
   def key_schema; end
@@ -1516,10 +1516,10 @@ class Anonymous_Struct_138 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::LocalSecondaryIndex < Anonymous_Struct_138
+class Aws::DynamoDB::Types::LocalSecondaryIndex < Anonymous_Struct_136
   include Aws::Structure
 end
-class Anonymous_Struct_139 < Struct
+class Anonymous_Struct_137 < Struct
   def index_arn; end
   def index_arn=(_); end
   def index_name; end
@@ -1537,10 +1537,10 @@ class Anonymous_Struct_139 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::LocalSecondaryIndexDescription < Anonymous_Struct_139
+class Aws::DynamoDB::Types::LocalSecondaryIndexDescription < Anonymous_Struct_137
   include Aws::Structure
 end
-class Anonymous_Struct_140 < Struct
+class Anonymous_Struct_138 < Struct
   def index_name; end
   def index_name=(_); end
   def key_schema; end
@@ -1552,10 +1552,10 @@ class Anonymous_Struct_140 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::LocalSecondaryIndexInfo < Anonymous_Struct_140
+class Aws::DynamoDB::Types::LocalSecondaryIndexInfo < Anonymous_Struct_138
   include Aws::Structure
 end
-class Anonymous_Struct_141 < Struct
+class Anonymous_Struct_139 < Struct
   def earliest_restorable_date_time; end
   def earliest_restorable_date_time=(_); end
   def latest_restorable_date_time; end
@@ -1567,10 +1567,10 @@ class Anonymous_Struct_141 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::PointInTimeRecoveryDescription < Anonymous_Struct_141
+class Aws::DynamoDB::Types::PointInTimeRecoveryDescription < Anonymous_Struct_139
   include Aws::Structure
 end
-class Anonymous_Struct_142 < Struct
+class Anonymous_Struct_140 < Struct
   def point_in_time_recovery_enabled; end
   def point_in_time_recovery_enabled=(_); end
   def self.[](*arg0); end
@@ -1578,10 +1578,10 @@ class Anonymous_Struct_142 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::PointInTimeRecoverySpecification < Anonymous_Struct_142
+class Aws::DynamoDB::Types::PointInTimeRecoverySpecification < Anonymous_Struct_140
   include Aws::Structure
 end
-class Anonymous_Struct_143 < Struct
+class Anonymous_Struct_141 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -1589,10 +1589,10 @@ class Anonymous_Struct_143 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::PointInTimeRecoveryUnavailableException < Anonymous_Struct_143
+class Aws::DynamoDB::Types::PointInTimeRecoveryUnavailableException < Anonymous_Struct_141
   include Aws::Structure
 end
-class Anonymous_Struct_144 < Struct
+class Anonymous_Struct_142 < Struct
   def non_key_attributes; end
   def non_key_attributes=(_); end
   def projection_type; end
@@ -1602,10 +1602,10 @@ class Anonymous_Struct_144 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::Projection < Anonymous_Struct_144
+class Aws::DynamoDB::Types::Projection < Anonymous_Struct_142
   include Aws::Structure
 end
-class Anonymous_Struct_145 < Struct
+class Anonymous_Struct_143 < Struct
   def read_capacity_units; end
   def read_capacity_units=(_); end
   def self.[](*arg0); end
@@ -1615,10 +1615,10 @@ class Anonymous_Struct_145 < Struct
   def write_capacity_units; end
   def write_capacity_units=(_); end
 end
-class Aws::DynamoDB::Types::ProvisionedThroughput < Anonymous_Struct_145
+class Aws::DynamoDB::Types::ProvisionedThroughput < Anonymous_Struct_143
   include Aws::Structure
 end
-class Anonymous_Struct_146 < Struct
+class Anonymous_Struct_144 < Struct
   def last_decrease_date_time; end
   def last_decrease_date_time=(_); end
   def last_increase_date_time; end
@@ -1634,10 +1634,10 @@ class Anonymous_Struct_146 < Struct
   def write_capacity_units; end
   def write_capacity_units=(_); end
 end
-class Aws::DynamoDB::Types::ProvisionedThroughputDescription < Anonymous_Struct_146
+class Aws::DynamoDB::Types::ProvisionedThroughputDescription < Anonymous_Struct_144
   include Aws::Structure
 end
-class Anonymous_Struct_147 < Struct
+class Anonymous_Struct_145 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -1645,10 +1645,10 @@ class Anonymous_Struct_147 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ProvisionedThroughputExceededException < Anonymous_Struct_147
+class Aws::DynamoDB::Types::ProvisionedThroughputExceededException < Anonymous_Struct_145
   include Aws::Structure
 end
-class Anonymous_Struct_148 < Struct
+class Anonymous_Struct_146 < Struct
   def read_capacity_units; end
   def read_capacity_units=(_); end
   def self.[](*arg0); end
@@ -1656,10 +1656,10 @@ class Anonymous_Struct_148 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ProvisionedThroughputOverride < Anonymous_Struct_148
+class Aws::DynamoDB::Types::ProvisionedThroughputOverride < Anonymous_Struct_146
   include Aws::Structure
 end
-class Anonymous_Struct_149 < Struct
+class Anonymous_Struct_147 < Struct
   def condition_expression; end
   def condition_expression=(_); end
   def expression_attribute_names; end
@@ -1677,10 +1677,10 @@ class Anonymous_Struct_149 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::Put < Anonymous_Struct_149
+class Aws::DynamoDB::Types::Put < Anonymous_Struct_147
   include Aws::Structure
 end
-class Anonymous_Struct_150 < Struct
+class Anonymous_Struct_148 < Struct
   def condition_expression; end
   def condition_expression=(_); end
   def conditional_operator; end
@@ -1706,10 +1706,10 @@ class Anonymous_Struct_150 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::PutItemInput < Anonymous_Struct_150
+class Aws::DynamoDB::Types::PutItemInput < Anonymous_Struct_148
   include Aws::Structure
 end
-class Anonymous_Struct_151 < Struct
+class Anonymous_Struct_149 < Struct
   def attributes; end
   def attributes=(_); end
   def consumed_capacity; end
@@ -1721,10 +1721,10 @@ class Anonymous_Struct_151 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::PutItemOutput < Anonymous_Struct_151
+class Aws::DynamoDB::Types::PutItemOutput < Anonymous_Struct_149
   include Aws::Structure
 end
-class Anonymous_Struct_152 < Struct
+class Anonymous_Struct_150 < Struct
   def item; end
   def item=(_); end
   def self.[](*arg0); end
@@ -1732,10 +1732,10 @@ class Anonymous_Struct_152 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::PutRequest < Anonymous_Struct_152
+class Aws::DynamoDB::Types::PutRequest < Anonymous_Struct_150
   include Aws::Structure
 end
-class Anonymous_Struct_153 < Struct
+class Anonymous_Struct_151 < Struct
   def attributes_to_get; end
   def attributes_to_get=(_); end
   def conditional_operator; end
@@ -1775,10 +1775,10 @@ class Anonymous_Struct_153 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::QueryInput < Anonymous_Struct_153
+class Aws::DynamoDB::Types::QueryInput < Anonymous_Struct_151
   include Aws::Structure
 end
-class Anonymous_Struct_154 < Struct
+class Anonymous_Struct_152 < Struct
   def consumed_capacity; end
   def consumed_capacity=(_); end
   def count; end
@@ -1794,10 +1794,10 @@ class Anonymous_Struct_154 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::QueryOutput < Anonymous_Struct_154
+class Aws::DynamoDB::Types::QueryOutput < Anonymous_Struct_152
   include Aws::Structure
 end
-class Anonymous_Struct_155 < Struct
+class Anonymous_Struct_153 < Struct
   def region_name; end
   def region_name=(_); end
   def self.[](*arg0); end
@@ -1805,10 +1805,10 @@ class Anonymous_Struct_155 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::Replica < Anonymous_Struct_155
+class Aws::DynamoDB::Types::Replica < Anonymous_Struct_153
   include Aws::Structure
 end
-class Anonymous_Struct_156 < Struct
+class Anonymous_Struct_154 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -1816,10 +1816,10 @@ class Anonymous_Struct_156 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaAlreadyExistsException < Anonymous_Struct_156
+class Aws::DynamoDB::Types::ReplicaAlreadyExistsException < Anonymous_Struct_154
   include Aws::Structure
 end
-class Anonymous_Struct_157 < Struct
+class Anonymous_Struct_155 < Struct
   def global_secondary_indexes; end
   def global_secondary_indexes=(_); end
   def region_name; end
@@ -1835,10 +1835,10 @@ class Anonymous_Struct_157 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaAutoScalingDescription < Anonymous_Struct_157
+class Aws::DynamoDB::Types::ReplicaAutoScalingDescription < Anonymous_Struct_155
   include Aws::Structure
 end
-class Anonymous_Struct_158 < Struct
+class Anonymous_Struct_156 < Struct
   def region_name; end
   def region_name=(_); end
   def replica_global_secondary_index_updates; end
@@ -1850,10 +1850,10 @@ class Anonymous_Struct_158 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaAutoScalingUpdate < Anonymous_Struct_158
+class Aws::DynamoDB::Types::ReplicaAutoScalingUpdate < Anonymous_Struct_156
   include Aws::Structure
 end
-class Anonymous_Struct_159 < Struct
+class Anonymous_Struct_157 < Struct
   def global_secondary_indexes; end
   def global_secondary_indexes=(_); end
   def kms_master_key_id; end
@@ -1873,10 +1873,10 @@ class Anonymous_Struct_159 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaDescription < Anonymous_Struct_159
+class Aws::DynamoDB::Types::ReplicaDescription < Anonymous_Struct_157
   include Aws::Structure
 end
-class Anonymous_Struct_160 < Struct
+class Anonymous_Struct_158 < Struct
   def index_name; end
   def index_name=(_); end
   def provisioned_throughput_override; end
@@ -1886,10 +1886,10 @@ class Anonymous_Struct_160 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndex < Anonymous_Struct_160
+class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndex < Anonymous_Struct_158
   include Aws::Structure
 end
-class Anonymous_Struct_161 < Struct
+class Anonymous_Struct_159 < Struct
   def index_name; end
   def index_name=(_); end
   def index_status; end
@@ -1903,10 +1903,10 @@ class Anonymous_Struct_161 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexAutoScalingDescription < Anonymous_Struct_161
+class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexAutoScalingDescription < Anonymous_Struct_159
   include Aws::Structure
 end
-class Anonymous_Struct_162 < Struct
+class Anonymous_Struct_160 < Struct
   def index_name; end
   def index_name=(_); end
   def provisioned_read_capacity_auto_scaling_update; end
@@ -1916,10 +1916,10 @@ class Anonymous_Struct_162 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexAutoScalingUpdate < Anonymous_Struct_162
+class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexAutoScalingUpdate < Anonymous_Struct_160
   include Aws::Structure
 end
-class Anonymous_Struct_163 < Struct
+class Anonymous_Struct_161 < Struct
   def index_name; end
   def index_name=(_); end
   def provisioned_throughput_override; end
@@ -1929,10 +1929,10 @@ class Anonymous_Struct_163 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexDescription < Anonymous_Struct_163
+class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexDescription < Anonymous_Struct_161
   include Aws::Structure
 end
-class Anonymous_Struct_164 < Struct
+class Anonymous_Struct_162 < Struct
   def index_name; end
   def index_name=(_); end
   def index_status; end
@@ -1950,10 +1950,10 @@ class Anonymous_Struct_164 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexSettingsDescription < Anonymous_Struct_164
+class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexSettingsDescription < Anonymous_Struct_162
   include Aws::Structure
 end
-class Anonymous_Struct_165 < Struct
+class Anonymous_Struct_163 < Struct
   def index_name; end
   def index_name=(_); end
   def provisioned_read_capacity_auto_scaling_settings_update; end
@@ -1965,10 +1965,10 @@ class Anonymous_Struct_165 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexSettingsUpdate < Anonymous_Struct_165
+class Aws::DynamoDB::Types::ReplicaGlobalSecondaryIndexSettingsUpdate < Anonymous_Struct_163
   include Aws::Structure
 end
-class Anonymous_Struct_166 < Struct
+class Anonymous_Struct_164 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -1976,10 +1976,10 @@ class Anonymous_Struct_166 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaNotFoundException < Anonymous_Struct_166
+class Aws::DynamoDB::Types::ReplicaNotFoundException < Anonymous_Struct_164
   include Aws::Structure
 end
-class Anonymous_Struct_167 < Struct
+class Anonymous_Struct_165 < Struct
   def region_name; end
   def region_name=(_); end
   def replica_billing_mode_summary; end
@@ -2001,10 +2001,10 @@ class Anonymous_Struct_167 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaSettingsDescription < Anonymous_Struct_167
+class Aws::DynamoDB::Types::ReplicaSettingsDescription < Anonymous_Struct_165
   include Aws::Structure
 end
-class Anonymous_Struct_168 < Struct
+class Anonymous_Struct_166 < Struct
   def region_name; end
   def region_name=(_); end
   def replica_global_secondary_index_settings_update; end
@@ -2018,10 +2018,10 @@ class Anonymous_Struct_168 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaSettingsUpdate < Anonymous_Struct_168
+class Aws::DynamoDB::Types::ReplicaSettingsUpdate < Anonymous_Struct_166
   include Aws::Structure
 end
-class Anonymous_Struct_169 < Struct
+class Anonymous_Struct_167 < Struct
   def create; end
   def create=(_); end
   def delete; end
@@ -2031,10 +2031,10 @@ class Anonymous_Struct_169 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ReplicaUpdate < Anonymous_Struct_169
+class Aws::DynamoDB::Types::ReplicaUpdate < Anonymous_Struct_167
   include Aws::Structure
 end
-class Anonymous_Struct_170 < Struct
+class Anonymous_Struct_168 < Struct
   def create; end
   def create=(_); end
   def delete; end
@@ -2046,7 +2046,29 @@ class Anonymous_Struct_170 < Struct
   def update; end
   def update=(_); end
 end
-class Aws::DynamoDB::Types::ReplicationGroupUpdate < Anonymous_Struct_170
+class Aws::DynamoDB::Types::ReplicationGroupUpdate < Anonymous_Struct_168
+  include Aws::Structure
+end
+class Anonymous_Struct_169 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::RequestLimitExceeded < Anonymous_Struct_169
+  include Aws::Structure
+end
+class Anonymous_Struct_170 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::ResourceInUseException < Anonymous_Struct_170
   include Aws::Structure
 end
 class Anonymous_Struct_171 < Struct
@@ -2057,32 +2079,10 @@ class Anonymous_Struct_171 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::RequestLimitExceeded < Anonymous_Struct_171
+class Aws::DynamoDB::Types::ResourceNotFoundException < Anonymous_Struct_171
   include Aws::Structure
 end
 class Anonymous_Struct_172 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::ResourceInUseException < Anonymous_Struct_172
-  include Aws::Structure
-end
-class Anonymous_Struct_173 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::ResourceNotFoundException < Anonymous_Struct_173
-  include Aws::Structure
-end
-class Anonymous_Struct_174 < Struct
   def restore_date_time; end
   def restore_date_time=(_); end
   def restore_in_progress; end
@@ -2096,10 +2096,10 @@ class Anonymous_Struct_174 < Struct
   def source_table_arn; end
   def source_table_arn=(_); end
 end
-class Aws::DynamoDB::Types::RestoreSummary < Anonymous_Struct_174
+class Aws::DynamoDB::Types::RestoreSummary < Anonymous_Struct_172
   include Aws::Structure
 end
-class Anonymous_Struct_175 < Struct
+class Anonymous_Struct_173 < Struct
   def backup_arn; end
   def backup_arn=(_); end
   def billing_mode_override; end
@@ -2114,15 +2114,13 @@ class Anonymous_Struct_175 < Struct
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
-  def sse_specification_override; end
-  def sse_specification_override=(_); end
   def target_table_name; end
   def target_table_name=(_); end
 end
-class Aws::DynamoDB::Types::RestoreTableFromBackupInput < Anonymous_Struct_175
+class Aws::DynamoDB::Types::RestoreTableFromBackupInput < Anonymous_Struct_173
   include Aws::Structure
 end
-class Anonymous_Struct_176 < Struct
+class Anonymous_Struct_174 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2130,10 +2128,10 @@ class Anonymous_Struct_176 < Struct
   def table_description; end
   def table_description=(_); end
 end
-class Aws::DynamoDB::Types::RestoreTableFromBackupOutput < Anonymous_Struct_176
+class Aws::DynamoDB::Types::RestoreTableFromBackupOutput < Anonymous_Struct_174
   include Aws::Structure
 end
-class Anonymous_Struct_177 < Struct
+class Anonymous_Struct_175 < Struct
   def billing_mode_override; end
   def billing_mode_override=(_); end
   def global_secondary_index_override; end
@@ -2148,21 +2146,17 @@ class Anonymous_Struct_177 < Struct
   def self.inspect; end
   def self.members; end
   def self.new(*arg0); end
-  def source_table_arn; end
-  def source_table_arn=(_); end
   def source_table_name; end
   def source_table_name=(_); end
-  def sse_specification_override; end
-  def sse_specification_override=(_); end
   def target_table_name; end
   def target_table_name=(_); end
   def use_latest_restorable_time; end
   def use_latest_restorable_time=(_); end
 end
-class Aws::DynamoDB::Types::RestoreTableToPointInTimeInput < Anonymous_Struct_177
+class Aws::DynamoDB::Types::RestoreTableToPointInTimeInput < Anonymous_Struct_175
   include Aws::Structure
 end
-class Anonymous_Struct_178 < Struct
+class Anonymous_Struct_176 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2170,10 +2164,10 @@ class Anonymous_Struct_178 < Struct
   def table_description; end
   def table_description=(_); end
 end
-class Aws::DynamoDB::Types::RestoreTableToPointInTimeOutput < Anonymous_Struct_178
+class Aws::DynamoDB::Types::RestoreTableToPointInTimeOutput < Anonymous_Struct_176
   include Aws::Structure
 end
-class Anonymous_Struct_179 < Struct
+class Anonymous_Struct_177 < Struct
   def inaccessible_encryption_date_time; end
   def inaccessible_encryption_date_time=(_); end
   def kms_master_key_arn; end
@@ -2187,10 +2181,10 @@ class Anonymous_Struct_179 < Struct
   def status; end
   def status=(_); end
 end
-class Aws::DynamoDB::Types::SSEDescription < Anonymous_Struct_179
+class Aws::DynamoDB::Types::SSEDescription < Anonymous_Struct_177
   include Aws::Structure
 end
-class Anonymous_Struct_180 < Struct
+class Anonymous_Struct_178 < Struct
   def enabled; end
   def enabled=(_); end
   def kms_master_key_id; end
@@ -2202,10 +2196,10 @@ class Anonymous_Struct_180 < Struct
   def sse_type; end
   def sse_type=(_); end
 end
-class Aws::DynamoDB::Types::SSESpecification < Anonymous_Struct_180
+class Aws::DynamoDB::Types::SSESpecification < Anonymous_Struct_178
   include Aws::Structure
 end
-class Anonymous_Struct_181 < Struct
+class Anonymous_Struct_179 < Struct
   def attributes_to_get; end
   def attributes_to_get=(_); end
   def conditional_operator; end
@@ -2243,10 +2237,10 @@ class Anonymous_Struct_181 < Struct
   def total_segments; end
   def total_segments=(_); end
 end
-class Aws::DynamoDB::Types::ScanInput < Anonymous_Struct_181
+class Aws::DynamoDB::Types::ScanInput < Anonymous_Struct_179
   include Aws::Structure
 end
-class Anonymous_Struct_182 < Struct
+class Anonymous_Struct_180 < Struct
   def consumed_capacity; end
   def consumed_capacity=(_); end
   def count; end
@@ -2262,10 +2256,10 @@ class Anonymous_Struct_182 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::ScanOutput < Anonymous_Struct_182
+class Aws::DynamoDB::Types::ScanOutput < Anonymous_Struct_180
   include Aws::Structure
 end
-class Anonymous_Struct_183 < Struct
+class Anonymous_Struct_181 < Struct
   def billing_mode; end
   def billing_mode=(_); end
   def item_count; end
@@ -2289,10 +2283,10 @@ class Anonymous_Struct_183 < Struct
   def table_size_bytes; end
   def table_size_bytes=(_); end
 end
-class Aws::DynamoDB::Types::SourceTableDetails < Anonymous_Struct_183
+class Aws::DynamoDB::Types::SourceTableDetails < Anonymous_Struct_181
   include Aws::Structure
 end
-class Anonymous_Struct_184 < Struct
+class Anonymous_Struct_182 < Struct
   def global_secondary_indexes; end
   def global_secondary_indexes=(_); end
   def local_secondary_indexes; end
@@ -2308,10 +2302,10 @@ class Anonymous_Struct_184 < Struct
   def time_to_live_description; end
   def time_to_live_description=(_); end
 end
-class Aws::DynamoDB::Types::SourceTableFeatureDetails < Anonymous_Struct_184
+class Aws::DynamoDB::Types::SourceTableFeatureDetails < Anonymous_Struct_182
   include Aws::Structure
 end
-class Anonymous_Struct_185 < Struct
+class Anonymous_Struct_183 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2321,10 +2315,10 @@ class Anonymous_Struct_185 < Struct
   def stream_view_type; end
   def stream_view_type=(_); end
 end
-class Aws::DynamoDB::Types::StreamSpecification < Anonymous_Struct_185
+class Aws::DynamoDB::Types::StreamSpecification < Anonymous_Struct_183
   include Aws::Structure
 end
-class Anonymous_Struct_186 < Struct
+class Anonymous_Struct_184 < Struct
   def message; end
   def message=(_); end
   def self.[](*arg0); end
@@ -2332,10 +2326,10 @@ class Anonymous_Struct_186 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::TableAlreadyExistsException < Anonymous_Struct_186
+class Aws::DynamoDB::Types::TableAlreadyExistsException < Anonymous_Struct_184
   include Aws::Structure
 end
-class Anonymous_Struct_187 < Struct
+class Anonymous_Struct_185 < Struct
   def replicas; end
   def replicas=(_); end
   def self.[](*arg0); end
@@ -2347,10 +2341,10 @@ class Anonymous_Struct_187 < Struct
   def table_status; end
   def table_status=(_); end
 end
-class Aws::DynamoDB::Types::TableAutoScalingDescription < Anonymous_Struct_187
+class Aws::DynamoDB::Types::TableAutoScalingDescription < Anonymous_Struct_185
   include Aws::Structure
 end
-class Anonymous_Struct_188 < Struct
+class Anonymous_Struct_186 < Struct
   def archival_summary; end
   def archival_summary=(_); end
   def attribute_definitions; end
@@ -2398,32 +2392,32 @@ class Anonymous_Struct_188 < Struct
   def table_status; end
   def table_status=(_); end
 end
-class Aws::DynamoDB::Types::TableDescription < Anonymous_Struct_188
+class Aws::DynamoDB::Types::TableDescription < Anonymous_Struct_186
+  include Aws::Structure
+end
+class Anonymous_Struct_187 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::TableInUseException < Anonymous_Struct_187
+  include Aws::Structure
+end
+class Anonymous_Struct_188 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::TableNotFoundException < Anonymous_Struct_188
   include Aws::Structure
 end
 class Anonymous_Struct_189 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::TableInUseException < Anonymous_Struct_189
-  include Aws::Structure
-end
-class Anonymous_Struct_190 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::TableNotFoundException < Anonymous_Struct_190
-  include Aws::Structure
-end
-class Anonymous_Struct_191 < Struct
   def key; end
   def key=(_); end
   def self.[](*arg0); end
@@ -2433,10 +2427,10 @@ class Anonymous_Struct_191 < Struct
   def value; end
   def value=(_); end
 end
-class Aws::DynamoDB::Types::Tag < Anonymous_Struct_191
+class Aws::DynamoDB::Types::Tag < Anonymous_Struct_189
   include Aws::Structure
 end
-class Anonymous_Struct_192 < Struct
+class Anonymous_Struct_190 < Struct
   def resource_arn; end
   def resource_arn=(_); end
   def self.[](*arg0); end
@@ -2446,10 +2440,10 @@ class Anonymous_Struct_192 < Struct
   def tags; end
   def tags=(_); end
 end
-class Aws::DynamoDB::Types::TagResourceInput < Anonymous_Struct_192
+class Aws::DynamoDB::Types::TagResourceInput < Anonymous_Struct_190
   include Aws::Structure
 end
-class Anonymous_Struct_193 < Struct
+class Anonymous_Struct_191 < Struct
   def attribute_name; end
   def attribute_name=(_); end
   def self.[](*arg0); end
@@ -2459,10 +2453,10 @@ class Anonymous_Struct_193 < Struct
   def time_to_live_status; end
   def time_to_live_status=(_); end
 end
-class Aws::DynamoDB::Types::TimeToLiveDescription < Anonymous_Struct_193
+class Aws::DynamoDB::Types::TimeToLiveDescription < Anonymous_Struct_191
   include Aws::Structure
 end
-class Anonymous_Struct_194 < Struct
+class Anonymous_Struct_192 < Struct
   def attribute_name; end
   def attribute_name=(_); end
   def enabled; end
@@ -2472,10 +2466,10 @@ class Anonymous_Struct_194 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::TimeToLiveSpecification < Anonymous_Struct_194
+class Aws::DynamoDB::Types::TimeToLiveSpecification < Anonymous_Struct_192
   include Aws::Structure
 end
-class Anonymous_Struct_195 < Struct
+class Anonymous_Struct_193 < Struct
   def get; end
   def get=(_); end
   def self.[](*arg0); end
@@ -2483,10 +2477,10 @@ class Anonymous_Struct_195 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::TransactGetItem < Anonymous_Struct_195
+class Aws::DynamoDB::Types::TransactGetItem < Anonymous_Struct_193
   include Aws::Structure
 end
-class Anonymous_Struct_196 < Struct
+class Anonymous_Struct_194 < Struct
   def return_consumed_capacity; end
   def return_consumed_capacity=(_); end
   def self.[](*arg0); end
@@ -2496,10 +2490,10 @@ class Anonymous_Struct_196 < Struct
   def transact_items; end
   def transact_items=(_); end
 end
-class Aws::DynamoDB::Types::TransactGetItemsInput < Anonymous_Struct_196
+class Aws::DynamoDB::Types::TransactGetItemsInput < Anonymous_Struct_194
   include Aws::Structure
 end
-class Anonymous_Struct_197 < Struct
+class Anonymous_Struct_195 < Struct
   def consumed_capacity; end
   def consumed_capacity=(_); end
   def responses; end
@@ -2509,10 +2503,10 @@ class Anonymous_Struct_197 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::TransactGetItemsOutput < Anonymous_Struct_197
+class Aws::DynamoDB::Types::TransactGetItemsOutput < Anonymous_Struct_195
   include Aws::Structure
 end
-class Anonymous_Struct_198 < Struct
+class Anonymous_Struct_196 < Struct
   def condition_check; end
   def condition_check=(_); end
   def delete; end
@@ -2526,10 +2520,10 @@ class Anonymous_Struct_198 < Struct
   def update; end
   def update=(_); end
 end
-class Aws::DynamoDB::Types::TransactWriteItem < Anonymous_Struct_198
+class Aws::DynamoDB::Types::TransactWriteItem < Anonymous_Struct_196
   include Aws::Structure
 end
-class Anonymous_Struct_199 < Struct
+class Anonymous_Struct_197 < Struct
   def client_request_token; end
   def client_request_token=(_); end
   def return_consumed_capacity; end
@@ -2543,10 +2537,10 @@ class Anonymous_Struct_199 < Struct
   def transact_items; end
   def transact_items=(_); end
 end
-class Aws::DynamoDB::Types::TransactWriteItemsInput < Anonymous_Struct_199
+class Aws::DynamoDB::Types::TransactWriteItemsInput < Anonymous_Struct_197
   include Aws::Structure
 end
-class Anonymous_Struct_200 < Struct
+class Anonymous_Struct_198 < Struct
   def consumed_capacity; end
   def consumed_capacity=(_); end
   def item_collection_metrics; end
@@ -2556,10 +2550,10 @@ class Anonymous_Struct_200 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::TransactWriteItemsOutput < Anonymous_Struct_200
+class Aws::DynamoDB::Types::TransactWriteItemsOutput < Anonymous_Struct_198
   include Aws::Structure
 end
-class Anonymous_Struct_201 < Struct
+class Anonymous_Struct_199 < Struct
   def cancellation_reasons; end
   def cancellation_reasons=(_); end
   def message; end
@@ -2569,32 +2563,32 @@ class Anonymous_Struct_201 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::TransactionCanceledException < Anonymous_Struct_201
+class Aws::DynamoDB::Types::TransactionCanceledException < Anonymous_Struct_199
+  include Aws::Structure
+end
+class Anonymous_Struct_200 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::TransactionConflictException < Anonymous_Struct_200
+  include Aws::Structure
+end
+class Anonymous_Struct_201 < Struct
+  def message; end
+  def message=(_); end
+  def self.[](*arg0); end
+  def self.inspect; end
+  def self.members; end
+  def self.new(*arg0); end
+end
+class Aws::DynamoDB::Types::TransactionInProgressException < Anonymous_Struct_201
   include Aws::Structure
 end
 class Anonymous_Struct_202 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::TransactionConflictException < Anonymous_Struct_202
-  include Aws::Structure
-end
-class Anonymous_Struct_203 < Struct
-  def message; end
-  def message=(_); end
-  def self.[](*arg0); end
-  def self.inspect; end
-  def self.members; end
-  def self.new(*arg0); end
-end
-class Aws::DynamoDB::Types::TransactionInProgressException < Anonymous_Struct_203
-  include Aws::Structure
-end
-class Anonymous_Struct_204 < Struct
   def resource_arn; end
   def resource_arn=(_); end
   def self.[](*arg0); end
@@ -2604,10 +2598,10 @@ class Anonymous_Struct_204 < Struct
   def tag_keys; end
   def tag_keys=(_); end
 end
-class Aws::DynamoDB::Types::UntagResourceInput < Anonymous_Struct_204
+class Aws::DynamoDB::Types::UntagResourceInput < Anonymous_Struct_202
   include Aws::Structure
 end
-class Anonymous_Struct_205 < Struct
+class Anonymous_Struct_203 < Struct
   def condition_expression; end
   def condition_expression=(_); end
   def expression_attribute_names; end
@@ -2627,10 +2621,10 @@ class Anonymous_Struct_205 < Struct
   def update_expression; end
   def update_expression=(_); end
 end
-class Aws::DynamoDB::Types::Update < Anonymous_Struct_205
+class Aws::DynamoDB::Types::Update < Anonymous_Struct_203
   include Aws::Structure
 end
-class Anonymous_Struct_206 < Struct
+class Anonymous_Struct_204 < Struct
   def point_in_time_recovery_specification; end
   def point_in_time_recovery_specification=(_); end
   def self.[](*arg0); end
@@ -2640,10 +2634,10 @@ class Anonymous_Struct_206 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::UpdateContinuousBackupsInput < Anonymous_Struct_206
+class Aws::DynamoDB::Types::UpdateContinuousBackupsInput < Anonymous_Struct_204
   include Aws::Structure
 end
-class Anonymous_Struct_207 < Struct
+class Anonymous_Struct_205 < Struct
   def continuous_backups_description; end
   def continuous_backups_description=(_); end
   def self.[](*arg0); end
@@ -2651,10 +2645,10 @@ class Anonymous_Struct_207 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateContinuousBackupsOutput < Anonymous_Struct_207
+class Aws::DynamoDB::Types::UpdateContinuousBackupsOutput < Anonymous_Struct_205
   include Aws::Structure
 end
-class Anonymous_Struct_208 < Struct
+class Anonymous_Struct_206 < Struct
   def contributor_insights_action; end
   def contributor_insights_action=(_); end
   def index_name; end
@@ -2666,10 +2660,10 @@ class Anonymous_Struct_208 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::UpdateContributorInsightsInput < Anonymous_Struct_208
+class Aws::DynamoDB::Types::UpdateContributorInsightsInput < Anonymous_Struct_206
   include Aws::Structure
 end
-class Anonymous_Struct_209 < Struct
+class Anonymous_Struct_207 < Struct
   def contributor_insights_status; end
   def contributor_insights_status=(_); end
   def index_name; end
@@ -2681,10 +2675,10 @@ class Anonymous_Struct_209 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::UpdateContributorInsightsOutput < Anonymous_Struct_209
+class Aws::DynamoDB::Types::UpdateContributorInsightsOutput < Anonymous_Struct_207
   include Aws::Structure
 end
-class Anonymous_Struct_210 < Struct
+class Anonymous_Struct_208 < Struct
   def index_name; end
   def index_name=(_); end
   def provisioned_throughput; end
@@ -2694,10 +2688,10 @@ class Anonymous_Struct_210 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateGlobalSecondaryIndexAction < Anonymous_Struct_210
+class Aws::DynamoDB::Types::UpdateGlobalSecondaryIndexAction < Anonymous_Struct_208
   include Aws::Structure
 end
-class Anonymous_Struct_211 < Struct
+class Anonymous_Struct_209 < Struct
   def global_table_name; end
   def global_table_name=(_); end
   def replica_updates; end
@@ -2707,10 +2701,10 @@ class Anonymous_Struct_211 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateGlobalTableInput < Anonymous_Struct_211
+class Aws::DynamoDB::Types::UpdateGlobalTableInput < Anonymous_Struct_209
   include Aws::Structure
 end
-class Anonymous_Struct_212 < Struct
+class Anonymous_Struct_210 < Struct
   def global_table_description; end
   def global_table_description=(_); end
   def self.[](*arg0); end
@@ -2718,10 +2712,10 @@ class Anonymous_Struct_212 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateGlobalTableOutput < Anonymous_Struct_212
+class Aws::DynamoDB::Types::UpdateGlobalTableOutput < Anonymous_Struct_210
   include Aws::Structure
 end
-class Anonymous_Struct_213 < Struct
+class Anonymous_Struct_211 < Struct
   def global_table_billing_mode; end
   def global_table_billing_mode=(_); end
   def global_table_global_secondary_index_settings_update; end
@@ -2739,10 +2733,10 @@ class Anonymous_Struct_213 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateGlobalTableSettingsInput < Anonymous_Struct_213
+class Aws::DynamoDB::Types::UpdateGlobalTableSettingsInput < Anonymous_Struct_211
   include Aws::Structure
 end
-class Anonymous_Struct_214 < Struct
+class Anonymous_Struct_212 < Struct
   def global_table_name; end
   def global_table_name=(_); end
   def replica_settings; end
@@ -2752,10 +2746,10 @@ class Anonymous_Struct_214 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateGlobalTableSettingsOutput < Anonymous_Struct_214
+class Aws::DynamoDB::Types::UpdateGlobalTableSettingsOutput < Anonymous_Struct_212
   include Aws::Structure
 end
-class Anonymous_Struct_215 < Struct
+class Anonymous_Struct_213 < Struct
   def attribute_updates; end
   def attribute_updates=(_); end
   def condition_expression; end
@@ -2785,10 +2779,10 @@ class Anonymous_Struct_215 < Struct
   def update_expression; end
   def update_expression=(_); end
 end
-class Aws::DynamoDB::Types::UpdateItemInput < Anonymous_Struct_215
+class Aws::DynamoDB::Types::UpdateItemInput < Anonymous_Struct_213
   include Aws::Structure
 end
-class Anonymous_Struct_216 < Struct
+class Anonymous_Struct_214 < Struct
   def attributes; end
   def attributes=(_); end
   def consumed_capacity; end
@@ -2800,10 +2794,10 @@ class Anonymous_Struct_216 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateItemOutput < Anonymous_Struct_216
+class Aws::DynamoDB::Types::UpdateItemOutput < Anonymous_Struct_214
   include Aws::Structure
 end
-class Anonymous_Struct_217 < Struct
+class Anonymous_Struct_215 < Struct
   def global_secondary_indexes; end
   def global_secondary_indexes=(_); end
   def kms_master_key_id; end
@@ -2817,10 +2811,10 @@ class Anonymous_Struct_217 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::UpdateReplicationGroupMemberAction < Anonymous_Struct_217
+class Aws::DynamoDB::Types::UpdateReplicationGroupMemberAction < Anonymous_Struct_215
   include Aws::Structure
 end
-class Anonymous_Struct_218 < Struct
+class Anonymous_Struct_216 < Struct
   def attribute_definitions; end
   def attribute_definitions=(_); end
   def billing_mode; end
@@ -2842,10 +2836,10 @@ class Anonymous_Struct_218 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::UpdateTableInput < Anonymous_Struct_218
+class Aws::DynamoDB::Types::UpdateTableInput < Anonymous_Struct_216
   include Aws::Structure
 end
-class Anonymous_Struct_219 < Struct
+class Anonymous_Struct_217 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2853,10 +2847,10 @@ class Anonymous_Struct_219 < Struct
   def table_description; end
   def table_description=(_); end
 end
-class Aws::DynamoDB::Types::UpdateTableOutput < Anonymous_Struct_219
+class Aws::DynamoDB::Types::UpdateTableOutput < Anonymous_Struct_217
   include Aws::Structure
 end
-class Anonymous_Struct_220 < Struct
+class Anonymous_Struct_218 < Struct
   def global_secondary_index_updates; end
   def global_secondary_index_updates=(_); end
   def provisioned_write_capacity_auto_scaling_update; end
@@ -2870,10 +2864,10 @@ class Anonymous_Struct_220 < Struct
   def table_name; end
   def table_name=(_); end
 end
-class Aws::DynamoDB::Types::UpdateTableReplicaAutoScalingInput < Anonymous_Struct_220
+class Aws::DynamoDB::Types::UpdateTableReplicaAutoScalingInput < Anonymous_Struct_218
   include Aws::Structure
 end
-class Anonymous_Struct_221 < Struct
+class Anonymous_Struct_219 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2881,10 +2875,10 @@ class Anonymous_Struct_221 < Struct
   def table_auto_scaling_description; end
   def table_auto_scaling_description=(_); end
 end
-class Aws::DynamoDB::Types::UpdateTableReplicaAutoScalingOutput < Anonymous_Struct_221
+class Aws::DynamoDB::Types::UpdateTableReplicaAutoScalingOutput < Anonymous_Struct_219
   include Aws::Structure
 end
-class Anonymous_Struct_222 < Struct
+class Anonymous_Struct_220 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2894,10 +2888,10 @@ class Anonymous_Struct_222 < Struct
   def time_to_live_specification; end
   def time_to_live_specification=(_); end
 end
-class Aws::DynamoDB::Types::UpdateTimeToLiveInput < Anonymous_Struct_222
+class Aws::DynamoDB::Types::UpdateTimeToLiveInput < Anonymous_Struct_220
   include Aws::Structure
 end
-class Anonymous_Struct_223 < Struct
+class Anonymous_Struct_221 < Struct
   def self.[](*arg0); end
   def self.inspect; end
   def self.members; end
@@ -2905,10 +2899,10 @@ class Anonymous_Struct_223 < Struct
   def time_to_live_specification; end
   def time_to_live_specification=(_); end
 end
-class Aws::DynamoDB::Types::UpdateTimeToLiveOutput < Anonymous_Struct_223
+class Aws::DynamoDB::Types::UpdateTimeToLiveOutput < Anonymous_Struct_221
   include Aws::Structure
 end
-class Anonymous_Struct_224 < Struct
+class Anonymous_Struct_222 < Struct
   def delete_request; end
   def delete_request=(_); end
   def put_request; end
@@ -2918,7 +2912,7 @@ class Anonymous_Struct_224 < Struct
   def self.members; end
   def self.new(*arg0); end
 end
-class Aws::DynamoDB::Types::WriteRequest < Anonymous_Struct_224
+class Aws::DynamoDB::Types::WriteRequest < Anonymous_Struct_222
   include Aws::Structure
 end
 module Aws::DynamoDB::ClientApi
@@ -3009,10 +3003,10 @@ class Aws::DynamoDB::Client < Seahorse::Client::Base
   def waiter(waiter_name, options = nil); end
   def waiter_names; end
   def waiters; end
-  include Anonymous_Module_225
+  include Anonymous_Module_223
   include Aws::ClientStubs
 end
-module Anonymous_Module_225
+module Anonymous_Module_223
   def batch_get_item(*args, &block); end
   def batch_write_item(*args, &block); end
   def create_backup(*args, &block); end

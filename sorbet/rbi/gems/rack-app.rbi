@@ -7,7 +7,7 @@
 #
 #   https://github.com/sorbet/sorbet-typed/new/master?filename=lib/rack-app/all/rack-app.rbi
 #
-# rack-app-7.6.1
+# rack-app-7.5.2
 
 module Rack::App::Constants
   def self.rack_constant(constant_name, fallback_value); end
