@@ -27,7 +27,7 @@ module Helpers
   end
 
   def cassette_exists?(cassette_name)
-    File.exist?('spec/vcr_casettes')
+    File.exist?("#{VCR_CASSETTES}/#{cassette_name}.yml")
   end
 
   def deep_symbolize_keys(hash)

@@ -23,9 +23,10 @@ require_relative '../app/slack_app'
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
 BOT_ENV = 'test'
+VCR_CASSETTES = 'spec/vcr_cassettes'
 
 VCR.configure do |config|
-  config.cassette_library_dir = 'spec/vcr_cassettes'
+  config.cassette_library_dir = VCR_CASSETTES
   config.hook_into :webmock
 end
 
