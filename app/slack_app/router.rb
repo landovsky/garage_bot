@@ -18,7 +18,9 @@ module SlackApp
         'garage/:date/spot/:spot_id/book' => 'garage#book_spot',
         'garage/:date/spot/:spot_id/cancel' => 'garage#cancel_spot',
         'garage/parkers' => 'garage#who_parked',
-        'slack_event/app_home_opened' => 'garage#park',
+        'slack_event/app_home_opened' => 'garage#test',
+        'slack_event/app_mention' => 'garage#test',
+        'slack_event/message' => 'garage#message',
         "command/#{command}" => 'garage#test',
         "form_test" => 'garage#form_modal',
         'form_submission' => 'garage#form_submission'
@@ -49,6 +51,7 @@ module SlackApp
       return payload[:challenge] if respond_to_challenge?(payload)
 
       response_handler = build_response_handler(payload)
+      puts "response handler type: #{response_handler[:type]}"
 
       if response_handler[:type] == :event
         controller, _route = find_event_route(payload)
@@ -78,7 +81,33 @@ module SlackApp
       test_env = ENV['BOT_ENV'] == 'test'
       dev_env  = ENV['BOT_ENV'] == 'dev'
 
-      if payload[:event]
+      if payload[:event] && payload[:event][:type] == 'app_mention'
+        channel = payload[:event][:channel]
+        ts      = payload[:event][:ts]
+
+        wrapper = proc { |content| { channel: channel, reply_broadcast: false, thread_ts: ts, blocks: content } }
+        meth = proc do |content|
+          response = wrapper[content]
+          U.log_output(response) if dev_env
+          test_env ? response : SLACK.reply(response)
+        end
+        { type: :event, method: meth }
+
+      elsif payload[:event] && payload[:event][:type] == 'message'
+        channel = payload[:event][:channel]
+        ts      = payload[:event][:ts]
+
+        message_from_self = payload[:event][:bot_id] && payload.dig(:event, :bot_profile, :app_id) == 'AT4KN45L5'
+
+        wrapper = proc { |text| { channel: channel, text: text } }
+        meth = proc do |content|
+          response = wrapper[content]
+          U.log_output(response) if dev_env
+          test_env ? response : SLACK.reply(response) unless message_from_self
+        end
+        { type: :event, method: meth }
+
+      elsif payload[:event]
         user_id = payload[:event][:user]
 
         wrapper = proc { |content| { user_id: user_id, view: SlackApp::DSL.home_view(content) } }

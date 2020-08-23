@@ -14,38 +14,69 @@ class GarageView
   end
 
   def test
-    actions([button('Open', action: path_for(:form_test, modal: true))])
+    # actions([button('Book holidays', action: path_for(:form_test, modal: true))])
+    Slack::BlockKit.blocks do |b|
+      b.actions do |a|
+        a.button(
+          text: 'Book holidays',
+          action_id: path_for(:form_test, modal: true)
+        )
+      end
+    end.as_json
   end
 
-  def form_modal
-    # content = [
-    #   {:type=>"actions",
-    #     :elements=>
-    #       [
-    #         {:type=>"conversations_select", :placeholder=>{:type=>"plain_text", :text=>"Select a conversation", :emoji=>true}},
-    #         {:type=>"channels_select", :placeholder=>{:type=>"plain_text", :text=>"Select a channel", :emoji=>true}},
-    #         {:type=>"users_select", :placeholder=>{:type=>"plain_text", :text=>"Select a user", :emoji=>true}},
-    #         {:type=>"static_select",
-    #           :placeholder=>{:type=>"plain_text", :text=>"Select an item", :emoji=>true},
-    #       :options=>
-    #         [{:text=>{:type=>"plain_text", :text=>"*this is plain_text text*", :emoji=>true}, :value=>"value-0"},
-    #         {:text=>{:type=>"plain_text", :text=>"*this is plain_text text*", :emoji=>true}, :value=>"value-1"},
-    #         {:text=>{:type=>"plain_text", :text=>"*this is plain_text text*", :emoji=>true}, :value=>"value-2"}]}
-    #       ]
-    #   }
-    # ]
-    blocks = Slack::BlockKit.blocks do |b|
+  def cal_input
+    Slack::BlockKit.blocks do |b|
+      b.actions do |action|
+        action.users_select(
+          action_id: :user_id,
+          placeholder: 'Select from list...'
+        )
+      end
+    end.as_json
+  end
+
+  def form
+    Slack::BlockKit.blocks do |b|
       b.append Slack::BlockKit::Layout::Input.new(
         label: 'User',
-        block_id: 'my_block_id',
+        block_id: :user_id,
         element: Slack::BlockKit::Element::UsersSelect.new(
-          action_id: :slack_user,
+          action_id: :user_id,
           placeholder: 'Select from list...'
         )
       )
-    end
+      b.append Slack::BlockKit::Layout::Input.new(
+        label: 'Channel',
+        block_id: :channel_id,
+        element: Slack::BlockKit::Element::ChannelsSelect.new(
+          action_id: :channel_id,
+          placeholder: 'Select from list...'
+        )
+      )
+      b.append Slack::BlockKit::Layout::Input.new(
+        label: 'Plain input',
+        block_id: :plain_input,
+        element: Slack::BlockKit::Element::PlainTextInput.new(
+          action_id: :plain_input
+        )
+      )
+      select = Slack::BlockKit::Element::StaticSelect.new(
+        action_id: :my_static_select,
+        placeholder: 'Select from list...'
+      )
+      select.option value: '1', text: :this
+      select.option value: '2', text: :that
+      b.append Slack::BlockKit::Layout::Input.new(
+        label: 'Static select',
+        block_id: 'my_static_select',
+        element: select
+      )
+    end.as_json
+  end
 
-    SlackApp::DSL.modal_view(blocks.as_json, title: 'Test form', submit: 'Submit', close: "Close", callback_id: 'form_submission')
+  def form_modal
+    SlackApp::DSL.modal_view(form, title: 'Test form', submit: 'Submit', close: "Close", callback_id: 'form_submission')
   end
 
   def garage(days_data, building)

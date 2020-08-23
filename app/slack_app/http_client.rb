@@ -17,6 +17,10 @@ module SlackApp
       post('https://slack.com/api/views.open', payload)
     end
 
+    def self.reply(payload)
+      post('https://slack.com/api/chat.postMessage', payload)
+    end
+
     def self.post(url, payload, token = ENV['SLACK_API_TOKEN'])
       uri  = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)

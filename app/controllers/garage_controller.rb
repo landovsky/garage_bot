@@ -15,6 +15,18 @@ class GarageController
     GarageView.new.test
   end
 
+  def message(data)
+    :pong
+  end
+
+  def cal_input(data)
+    GarageView.new.cal_input
+  end
+
+  def form(data)
+    GarageView.new.form
+  end
+
   def form_submission(data)
   end
 
