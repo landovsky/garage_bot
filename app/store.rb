@@ -6,7 +6,7 @@ require_relative 'dynamo'
 module Store
   def self.all_spots(building)
     data = {
-      Garage::RIVER => [155, 156, 157, 158, 159, 160, 161, 165, 166, 197, 198, 199, 200, 201, 202],
+      Garage::RIVER => [155, 156, 157, 158, 159, 160, 161, 165, 166, 197, 199, 200, 201, 202],
       Garage::SALDOVKA => [1, 2, 3, 4]
     }
     data[building]
@@ -16,7 +16,6 @@ module Store
     day_spots = load_item(date, building)
 
     return false unless spot_id_available?(day_spots, building, spot_id.to_i)
-
 
     action_merge_booking(day_spots, spot_id.to_i, user).tap do |new_payload|
       Dynamo.persist(date, building, new_payload)
