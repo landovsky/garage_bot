@@ -17,8 +17,7 @@ class GarageView
     content = []
     content << section('Parking in')
     content << actions(
-                        [building_picker(building),
-                         button('Parkers :information_source:', emoji: true,
+                        [button('Parkers :information_source:', emoji: true,
                                                                 style: :primary,
                                                                 action: path_for(:garage, :parkers, building: building, modal: true))
                         ])
