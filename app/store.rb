@@ -4,17 +4,25 @@
 require_relative 'dynamo'
 
 module Store
-  def self.all_spots(building)
+  def self.all_spots(building, email_domain)
+    shared_spots = [155, 156, 157, 158, 159, 160, 161, 165, 191, 197, 199, 200]
     data = {
-      Garage::RIVER => [26, 27, 155, 156, 157, 158, 159, 160, 161, 165, 191, 197, 199, 200]
+      Garage::RIVER => {
+        "applifting.cz" => [14, 15] + shared_spots,
+        "applifting.io" => [14, 15] + shared_spots,
+        "dxheroes.io" => [14, 15] + shared_spots,
+        "knowspread.com" => shared_spots,
+        "superface.ai" => shared_spots,
+        "sedlakovalegal.com" => shared_spots,
+      }
     }
-    data[building]
+    data[building][email_domain]
   end
 
-  def self.book_spot(date, user, building, spot_id)
+  def self.book_spot(date, user, building, spot_id, email_domain)
     day_spots = load_item(date, building)
 
-    return false unless spot_id_available?(day_spots, building, spot_id.to_i)
+    return false unless spot_id_available?(day_spots, building, spot_id.to_i, email_domain)
 
     action_merge_booking(day_spots, spot_id.to_i, user).tap do |new_payload|
       Dynamo.persist(date, building, new_payload)
@@ -37,14 +45,14 @@ module Store
     day_spots.reject { |spot| spot['spot_user'] == user && spot['spot_id'] == spot_id.to_i }
   end
 
-  def self.available_spots(day_spots, building)
+  def self.available_spots(day_spots, building, email_domain)
     taken_spots = day_spots.map { |spot| spot['spot_id'].to_i }
 
-    all_spots(building) - taken_spots
+    all_spots(building, email_domain) - taken_spots
   end
 
-  def self.spot_id_available?(day_spots, building, spot_id)
-    available_spots(day_spots, building).include? spot_id.to_i
+  def self.spot_id_available?(day_spots, building, spot_id, email_domain)
+    available_spots(day_spots, building, email_domain).include? spot_id.to_i
   end
 
   def self.load_item(date, building)

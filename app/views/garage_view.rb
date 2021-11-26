@@ -14,14 +14,16 @@ class GarageView
   end
 
   def garage(days_data, building)
+    spot_ids = days_data.first.fetch(:booked_spot_ids, []) + days_data.first.fetch(:available_spot_ids, nil).compact.flatten
+
     content = []
-    content << section('Parking in')
     content << actions(
                         [button('Parkers :information_source:', emoji: true,
                                                                 style: :primary,
                                                                 action: path_for(:garage, :parkers, building: building, modal: true))
                         ])
     content << days_data.map { |day_data| build_day(day_data, building) }
+    content << section('Spots 14 and 15 are on -1 level.') if spot_ids.include?(14) || spot_ids.include?(15)
     content.flatten
   end
 

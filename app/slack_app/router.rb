@@ -4,6 +4,7 @@
 require_relative 'application_controller'
 require_relative 'http_client'
 require_relative 'utils'
+require_relative 'http_client'
 require 'cgi'
 
 module SlackApp
@@ -50,24 +51,40 @@ module SlackApp
 
       if response_handler[:type] == :event
         controller, _route = find_event_route(payload)
-        params             = { user_id: payload.dig(:event, :user) }
+        params             = { user_id: payload.dig(:event, :user), email_domain: get_domain(payload) }
       elsif response_handler[:type] == :command
         controller, _route = find_command_route(payload)
-        params             = { user_id: payload[:user_id] }
+        params             = { user_id: payload[:user_id], email_domain: get_domain(payload) }
       elsif response_handler[:type] == :message
         controller, _route, route_params = find_route(payload)
-        data, params    = parse_params(payload)
+        data, params    = parse_action_params(payload)
         params          = data ? route_params.merge(data).merge(params: params) : {}
+        params          = params.merge email_domain: get_domain(payload)
       else
         controller, _route, route_params = find_route(payload)
-        data, params    = parse_params(payload)
+        data, params    = parse_action_params(payload)
         params          = data ? route_params.merge(data).merge(params: params) : {}
+        params          = params.merge email_domain: get_domain(payload)
       end
 
       ApplicationController.call(controller, params, response_handler)
     rescue => e
       U.error e
       raise e
+    end
+
+    def self.get_domain(payload)
+      user_id = if payload[:type] == 'block_actions'
+                  payload.dig :user, :id
+                else
+                  payload.dig :event, :user
+                end
+
+      user_info = HTTPClient.user_info user_id
+      email = user_info.dig('user', 'profile', 'email') if user_info
+      return unless email
+
+      email.split('@').last
     end
 
     def self.build_response_handler(payload)
@@ -132,7 +149,7 @@ module SlackApp
     end
 
     def self.modal_requested?(payload)
-      parse_params(payload)[1][:modal] == "true"
+      parse_action_params(payload)[1][:modal] == "true"
     end
 
     def self.find_event_route(payload)
@@ -153,7 +170,7 @@ module SlackApp
       [controller, action]
     end
 
-    def self.parse_params(payload)
+    def self.parse_action_params(payload)
       return if payload[:actions].empty?
 
       # TODO could there be more actions?

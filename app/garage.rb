@@ -11,16 +11,16 @@ module Garage
   SALDOVKA = 'saldovka'
   RIVER    = 'river'
 
-  def self.park(user, building = RIVER)
+  def self.park(user, email_domain, building = RIVER)
     (Utils.today..Utils.days_from_now(DAY_COUNT)).map do |date|
-      park_on(date, user, building)
+      park_on(date, user, email_domain, building)
     end
   end
 
-  def self.park_on(date, user, building = RIVER)
+  def self.park_on(date, user, email_domain, building = RIVER)
     day_spots          = Store.load_item(date, building)
     booked_spot_ids    = day_spots.select { |spot| spot['spot_user'] == user }.map { |spot| spot&.fetch('spot_id', nil)&.to_i }
-    available_spot_ids = Store.available_spots(day_spots, building)
+    available_spot_ids = Store.available_spots(day_spots, building, email_domain)
 
     {
       date: date,
