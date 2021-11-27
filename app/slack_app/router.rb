@@ -76,8 +76,8 @@ module SlackApp
     def self.get_domain(payload)
       user_id = if payload[:type] == 'block_actions'
                   payload.dig :user, :id
-                else
-                  payload.dig :event, :user
+                else                            # command
+                  payload.dig(:event, :user) || payload[:user_id]
                 end
 
       user_info = HTTPClient.user_info user_id
