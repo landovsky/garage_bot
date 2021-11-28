@@ -13,7 +13,8 @@ module Store
         "dxheroes.io" => [14, 15] + shared_spots,
         "knowspread.com" => shared_spots,
         "superface.ai" => shared_spots,
-        "sedlakovalegal.com" => shared_spots,
+        "telus.com" => shared_spots,
+        "sedlakovalegal.com" => shared_spots
       }
     }
     data[building][email_domain]
