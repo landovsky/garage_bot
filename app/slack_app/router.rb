@@ -110,13 +110,14 @@ module SlackApp
           {
             view_id: view_id,
             user_id: user_id,
+            trigger_id: payload[:trigger_id],
             view: (modal_requested?(payload) ? content : SlackApp::DSL.home_view(content))
           }
         }
         meth = proc do |content|
           response = wrapper[content]
           U.log_output(response) if dev_env
-          test_env ? response : SLACK.views_update(response)
+          test_env ? response : (modal_requested?(payload) ? SLACK.views_open(response) : SLACK.views_update(response))
         end
         { type: :view, method: meth }
 
