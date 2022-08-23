@@ -1,7 +1,7 @@
 # typed: false
 # frozen_string_literal: true
 
-load_paths = Dir['vendor/ruby/2.5.0/**/lib']
+load_paths = Dir['vendor/ruby/2.7.0/**/lib']
 $LOAD_PATH.unshift(*load_paths)
 
 require 'json'

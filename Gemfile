@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.5.6'
+ruby '2.7.2'
 
 group :development do
   gem 'aws-sdk-dynamodb'
