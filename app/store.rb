@@ -5,12 +5,12 @@ require_relative 'dynamo'
 
 module Store
   def self.all_spots(building, email_domain)
-    shared_spots = [155, 156, 157, 158, 159, 160, 161, 165, 191, 197, 199, 200]
+    shared_spots = [155, 156, 157, 158, 159, 160, 161, 165, 191, 197, 199, 200, 201, 202]
     data = {
       Garage::RIVER => {
-        "applifting.cz" => [14, 15] + shared_spots,
-        "applifting.io" => [14, 15] + shared_spots,
-        "dxheroes.io" => [14, 15] + shared_spots,
+        "applifting.cz" => [79, 80] + shared_spots,
+        "applifting.io" => [79, 80] + shared_spots,
+        "dxheroes.io" => [79, 80] + shared_spots,
         "knowspread.com" => shared_spots,
         "superface.ai" => shared_spots,
         "telus.com" => shared_spots,
