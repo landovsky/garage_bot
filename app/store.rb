@@ -4,20 +4,17 @@
 require_relative 'dynamo'
 
 module Store
-  def self.all_spots(building, email_domain)
+  def self.all_spots(_building, _email_domain)
     shared_spots = [14, 15, 79, 80, 81, 82, 83, 155, 156, 157, 158, 159, 160, 161, 191, 197, 199, 200, 201, 202]
-    data = {
+
+    # This can be used to assign different spots to different email domains
+    _data = {
       Garage::RIVER => {
-        "applifting.cz" => shared_spots,
-        "applifting.io" => shared_spots,
-        "dxheroes.io" => shared_spots,
-        "knowspread.com" => shared_spots,
-        "superface.ai" => shared_spots,
-        "telus.com" => shared_spots,
-        "sedlakovalegal.com" => shared_spots
+        'applifting.cz' => shared_spots
       }
     }
-    data[building][email_domain]
+
+    shared_spots
   end
 
   def self.book_spot(date, user, building, spot_id, email_domain)
