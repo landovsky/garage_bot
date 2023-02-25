@@ -2,15 +2,15 @@
 
 source 'https://rubygems.org'
 
-ruby '2.7.2'
+ruby '2.7.7'
 
 group :development do
+  gem 'activesupport', '~> 6.0', '>= 6.0.3.2'
   gem 'aws-sdk-dynamodb'
   gem 'pry'
   gem 'rack-app'
-  gem 'sorbet'
   gem 'solargraph'
-  gem 'activesupport', '~> 6.0', '>= 6.0.3.2'
+  gem 'sorbet'
 end
 
 group :test do
