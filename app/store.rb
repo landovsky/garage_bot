@@ -5,7 +5,7 @@ require_relative 'dynamo'
 
 module Store
   def self.all_spots(_building, _email_domain)
-    shared_spots = [15, 80, 81, 82, 83, 155, 156, 158, 159, 160, 191, 197, 199, 200, 201, 202]
+    shared_spots = [15, 80, 81, 82, 83, 155, 156, 158, 159, 160, 166, 191, 197, 199, 200, 201, 202]
 
     # This can be used to assign different spots to different email domains
     _data = {
